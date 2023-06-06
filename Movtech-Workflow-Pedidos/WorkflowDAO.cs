@@ -16,13 +16,19 @@ namespace Movtech_Workflow_Pedidos
             Connection = connection;
         }
 
-        public List<WorkflowPedidosModel> GetEtapas()
+        public List<WorkflowPedidosModel> GetEtapas(WorkflowPedidosModel workflow)
         {
             List<WorkflowPedidosModel> etapas = new List<WorkflowPedidosModel>();
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT etapas FROM MvtCadEtapas ORDER BY seqOrdem");
+                sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento FROM MvtCadCliente c");
+                sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
+                sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
+                sql.AppendLine("WHERE c.nomeCliente = @cliente AND p.nomeProduto = @produto AND pd.documento = @documento");
+                command.Parameters.Add(new SqlParameter("@cliente", workflow.NomeCliente));
+                command.Parameters.Add(new SqlParameter("@produto", workflow.NomeProduto));
+                command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())
                 {
@@ -37,17 +43,21 @@ namespace Movtech_Workflow_Pedidos
 
         public WorkflowPedidosModel PopulateDrEtapas(SqlDataReader dr)
         {
-            string etapas = "";
+            WorkflowPedidosModel model = new WorkflowPedidosModel();
 
-            if (DBNull.Value != dr["etapas"])
+            if (DBNull.Value != dr["nomeCliente"])
             {
-                etapas = dr["etapas"] + "";
+                model.NomeCliente = dr["nomeCliente"].ToString();
             }
-
-            return new WorkflowPedidosModel()
+            if (DBNull.Value != dr["nomeProduto"])
             {
-                Etapas = etapas
-            };
+                model.NomeProduto = dr["nomeProduto"].ToString();
+            }
+            if (DBNull.Value != dr["documento"])
+            {
+                model.Documento = dr["documento"].ToString();
+            }
+            return model;
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Movtech_Workflow_Pedidos
         private void FormWorkflowPedidos_Load(object sender, EventArgs e)
         {
             lblDataAtual.Text = "Data: " + DateTime.Now.ToString("dd/MM/yyyy");
+            InitializaColumnsTable();
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -79,19 +80,55 @@ namespace Movtech_Workflow_Pedidos
             txtProduto.Text = string.Empty;
         }
 
-        private void InitializeTable()
+        public void InitializeTable(DataGridView dataGridView)
         {
-            dtgDadosPedidos.Rows.Clear();
+            dataGridView.Rows.Clear();
 
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
                 WorkflowDAO dao = new WorkflowDAO(connection);
-                List<WorkflowPedidosModel> etapas = dao.GetEtapas();
+                List<WorkflowPedidosModel> etapas = dao.GetEtapas(new WorkflowPedidosModel()
+                {
+                    NomeCliente = txtNomeCliente.Text,
+                    NomeProduto = txtProduto.Text,
+                    Documento = txtPedido.Text
+                });
+
                 foreach (WorkflowPedidosModel etapa in etapas)
                 {
-                    DataGridViewColumn column1 = dtgDadosPedidos.Columns[dtgDadosPedidos.Columns.Add("colNome1", etapa.Etapas)];
+                    DataGridViewRow row = dataGridView.Rows[dataGridView.Rows.Add()];
+                    row.Cells[colNomeCliente.Index].Value = etapa.NomeCliente;
+                    row.Cells[colPedido.Index].Value = etapa.Documento;
                 }
             }
+        }
+
+        private void InitializaColumnsTable()
+        {
+            string query = "SELECT etapas FROM MvtCadEtapas ORDER BY seqOrdem";
+            List<string> etapas = new List<string>();
+
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string etapa = reader.GetString(0);
+                    etapas.Add(etapa);
+                }
+            }
+
+            foreach (string etapa in etapas)
+            {
+                dtgDadosPedidos.Columns.Add(etapa, etapa);
+            }
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            InitializeTable(dtgDadosPedidos);
         }
     }
 }
