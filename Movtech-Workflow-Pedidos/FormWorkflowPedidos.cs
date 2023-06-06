@@ -99,6 +99,10 @@ namespace Movtech_Workflow_Pedidos
                     DataGridViewRow row = dataGridView.Rows[dataGridView.Rows.Add()];
                     row.Cells[colNomeCliente.Index].Value = etapa.NomeCliente;
                     row.Cells[colPedido.Index].Value = etapa.Documento;
+                    row.Cells[colQuantidade.Index].Value = etapa.Quantidade;
+                    row.Cells[colValorTotal.Index].Value = etapa.ValorTotal;
+                    row.Cells[colValorUnit.Index].Value = etapa.ValorUnitario;
+                    row.Cells[colDataEntrega.Index].Value = etapa.DataEntrega.Substring(0, 10);
                 }
             }
         }

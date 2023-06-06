@@ -16,13 +16,16 @@ namespace Movtech_Workflow_Pedidos
             Connection = connection;
         }
 
+        //realizar uma função para fazer uma consulta sql e gerar o leadTime para calcular a data de entrega do pedido e jogar na datagridview.
+
         public List<WorkflowPedidosModel> GetEtapas(WorkflowPedidosModel workflow)
         {
             List<WorkflowPedidosModel> etapas = new List<WorkflowPedidosModel>();
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento FROM MvtCadCliente c");
+                sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado/pd.qtde) AS valorUnit,");
+                sql.AppendLine("DATEADD(day, 45, pd.dataEmissao) AS dataEntrega FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
                 sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
                 sql.AppendLine("WHERE c.nomeCliente = @cliente AND p.nomeProduto = @produto AND pd.documento = @documento");
@@ -56,6 +59,22 @@ namespace Movtech_Workflow_Pedidos
             if (DBNull.Value != dr["documento"])
             {
                 model.Documento = dr["documento"].ToString();
+            }
+            if (DBNull.Value != dr["qtde"])
+            {
+                model.Quantidade = dr["qtde"].ToString();
+            }
+            if (DBNull.Value != dr["valorFaturado"])
+            {
+                model.ValorTotal = dr["valorFaturado"].ToString();
+            }
+            if (DBNull.Value != dr["valorUnit"])
+            {
+                model.ValorUnitario = dr["valorUnit"].ToString();
+            }
+            if (DBNull.Value != dr["dataEntrega"])
+            {
+                model.DataEntrega = dr["dataEntrega"].ToString();
             }
             return model;
         }

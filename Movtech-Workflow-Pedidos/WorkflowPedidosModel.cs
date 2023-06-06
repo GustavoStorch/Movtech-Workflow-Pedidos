@@ -23,5 +23,13 @@ namespace Movtech_Workflow_Pedidos
         public string Documento { get; set; }
 
         public string Etapas { get; set; }
+
+        public string Quantidade { get; set; }
+
+        public string ValorTotal { get; set; }
+
+        public string ValorUnitario { get; set; }
+
+        public string DataEntrega { get; set; }
     }
 }
