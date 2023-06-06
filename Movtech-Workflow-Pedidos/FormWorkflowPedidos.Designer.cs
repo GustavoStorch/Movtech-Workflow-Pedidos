@@ -47,6 +47,12 @@
             this.btnBuscarPedidos = new System.Windows.Forms.Button();
             this.btnBuscarProduto = new System.Windows.Forms.Button();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
+            this.colPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDataEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,12 +163,22 @@
             // 
             // dtgDadosPedidos
             // 
+            this.dtgDadosPedidos.AllowUserToAddRows = false;
+            this.dtgDadosPedidos.AllowUserToDeleteRows = false;
             this.dtgDadosPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgDadosPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colPedido,
+            this.colNomeCliente,
+            this.colDataEntrega,
+            this.colQuantidade,
+            this.colValorUnit,
+            this.colValorTotal});
             this.dtgDadosPedidos.Location = new System.Drawing.Point(16, 208);
             this.dtgDadosPedidos.Name = "dtgDadosPedidos";
+            this.dtgDadosPedidos.ReadOnly = true;
             this.dtgDadosPedidos.RowHeadersWidth = 62;
             this.dtgDadosPedidos.RowTemplate.Height = 28;
             this.dtgDadosPedidos.Size = new System.Drawing.Size(1180, 482);
@@ -240,6 +256,54 @@
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
             this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 
+            // colPedido
+            // 
+            this.colPedido.HeaderText = "Pedido";
+            this.colPedido.MinimumWidth = 8;
+            this.colPedido.Name = "colPedido";
+            this.colPedido.ReadOnly = true;
+            this.colPedido.Width = 150;
+            // 
+            // colNomeCliente
+            // 
+            this.colNomeCliente.HeaderText = "Cliente";
+            this.colNomeCliente.MinimumWidth = 8;
+            this.colNomeCliente.Name = "colNomeCliente";
+            this.colNomeCliente.ReadOnly = true;
+            this.colNomeCliente.Width = 150;
+            // 
+            // colDataEntrega
+            // 
+            this.colDataEntrega.HeaderText = "Data Entrega";
+            this.colDataEntrega.MinimumWidth = 8;
+            this.colDataEntrega.Name = "colDataEntrega";
+            this.colDataEntrega.ReadOnly = true;
+            this.colDataEntrega.Width = 150;
+            // 
+            // colQuantidade
+            // 
+            this.colQuantidade.HeaderText = "Qtd";
+            this.colQuantidade.MinimumWidth = 8;
+            this.colQuantidade.Name = "colQuantidade";
+            this.colQuantidade.ReadOnly = true;
+            this.colQuantidade.Width = 150;
+            // 
+            // colValorUnit
+            // 
+            this.colValorUnit.HeaderText = "Valor Unit";
+            this.colValorUnit.MinimumWidth = 8;
+            this.colValorUnit.Name = "colValorUnit";
+            this.colValorUnit.ReadOnly = true;
+            this.colValorUnit.Width = 150;
+            // 
+            // colValorTotal
+            // 
+            this.colValorTotal.HeaderText = "Valor Total";
+            this.colValorTotal.MinimumWidth = 8;
+            this.colValorTotal.Name = "colValorTotal";
+            this.colValorTotal.ReadOnly = true;
+            this.colValorTotal.Width = 150;
+            // 
             // FormWorkflowPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -294,6 +358,12 @@
         private System.Windows.Forms.Button btnBuscarPedidos;
         private System.Windows.Forms.TextBox txtPedido;
         private System.Windows.Forms.Label lblPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNomeCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDataEntrega;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colValorUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotal;
     }
 }
 

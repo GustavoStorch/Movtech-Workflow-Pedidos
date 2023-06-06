@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -76,6 +77,21 @@ namespace Movtech_Workflow_Pedidos
             txtNomeCliente.Text = string.Empty;
             txtPedido.Text = string.Empty;
             txtProduto.Text = string.Empty;
+        }
+
+        private void InitializeTable()
+        {
+            dtgDadosPedidos.Rows.Clear();
+
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                WorkflowDAO dao = new WorkflowDAO(connection);
+                List<WorkflowPedidosModel> etapas = dao.GetEtapas();
+                foreach (WorkflowPedidosModel etapa in etapas)
+                {
+                    DataGridViewColumn column1 = dtgDadosPedidos.Columns[dtgDadosPedidos.Columns.Add("colNome1", etapa.Etapas)];
+                }
+            }
         }
     }
 }

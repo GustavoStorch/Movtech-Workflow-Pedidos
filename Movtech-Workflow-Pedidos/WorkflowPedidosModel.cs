@@ -21,5 +21,7 @@ namespace Movtech_Workflow_Pedidos
         public string CodProduto { get; set; }
 
         public string Documento { get; set; }
+
+        public string Etapas { get; set; }
     }
 }
