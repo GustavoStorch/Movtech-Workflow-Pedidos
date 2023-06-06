@@ -1,0 +1,11 @@
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\bin\Debug\Movtech-Workflow-Pedidos.exe.config
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\bin\Debug\Movtech-Workflow-Pedidos.exe
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\bin\Debug\Movtech-Workflow-Pedidos.pdb
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech-Workflow-Pedidos.csproj.AssemblyReference.cache
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech-Workflow-Pedidos.csproj.SuggestedBindingRedirects.cache
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormWorkflowPedidos.resources
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.Properties.Resources.resources
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech-Workflow-Pedidos.csproj.GenerateResource.cache
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech-Workflow-Pedidos.csproj.CoreCompileInputs.cache
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech-Workflow-Pedidos.exe
+C:\Users\estagiario1\source\repos\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech-Workflow-Pedidos.pdb
