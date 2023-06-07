@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Movtech_Workflow_Pedidos
 {
@@ -17,34 +18,47 @@ namespace Movtech_Workflow_Pedidos
         }
 
         //realizar uma função para fazer uma consulta sql e gerar o leadTime para calcular a data de entrega do pedido e jogar na datagridview.
-
-        public List<WorkflowPedidosModel> GetEtapas(WorkflowPedidosModel workflow)
+        /*public int RecuperaLeadTime()
         {
-            List<WorkflowPedidosModel> etapas = new List<WorkflowPedidosModel>();
+            using (SqlCommand command = Connection.CreateCommand())
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine("SELECT SUM(leadTime) AS prazoEntrega From MvtCadEtapas");
+                command.CommandText = sql.ToString();
+                int prazoEntrega = Convert.ToInt32(command.ExecuteScalar());
+                return prazoEntrega;
+            }
+        }*/
+
+        public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
+        {
+            //int prazoEntrega = RecuperaLeadTime();
+            List<WorkflowPedidosModel> pedidos = new List<WorkflowPedidosModel>();
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
                 sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado/pd.qtde) AS valorUnit,");
-                sql.AppendLine("DATEADD(day, 45, pd.dataEmissao) AS dataEntrega FROM MvtCadCliente c");
+                //sql.AppendLine("DATEADD(day, @prazoEntrega, pd.dataEmissao) AS dataEntrega FROM MvtCadCliente c");
+                sql.AppendLine("pd.dataProjecao FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
                 sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
-                sql.AppendLine("WHERE c.nomeCliente = @cliente AND p.nomeProduto = @produto AND pd.documento = @documento");
-                command.Parameters.Add(new SqlParameter("@cliente", workflow.NomeCliente));
+                sql.AppendLine("WHERE c.nomeCliente = @cliente AND p.nomeProduto = @produto AND pd.documento = @documento");command.Parameters.Add(new SqlParameter("@cliente", workflow.NomeCliente));
                 command.Parameters.Add(new SqlParameter("@produto", workflow.NomeProduto));
                 command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
+                //command.Parameters.Add(new SqlParameter("@prazoEntrega", prazoEntrega));
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        etapas.Add(PopulateDrEtapas(dr));
+                        pedidos.Add(PopulateDrPedidos(dr));
                     }
                 }
             }
-            return etapas;
+            return pedidos;
         }
 
-        public WorkflowPedidosModel PopulateDrEtapas(SqlDataReader dr)
+        public WorkflowPedidosModel PopulateDrPedidos(SqlDataReader dr)
         {
             WorkflowPedidosModel model = new WorkflowPedidosModel();
 
@@ -72,9 +86,9 @@ namespace Movtech_Workflow_Pedidos
             {
                 model.ValorUnitario = dr["valorUnit"].ToString();
             }
-            if (DBNull.Value != dr["dataEntrega"])
+            if (DBNull.Value != dr["dataProjecao"])
             {
-                model.DataEntrega = dr["dataEntrega"].ToString();
+                model.DataEntrega = dr["dataProjecao"].ToString();
             }
             return model;
         }

@@ -13,6 +13,8 @@ namespace Movtech_Workflow_Pedidos
 {
     public partial class FormWorkflowPedidos : Form
     {
+        public string dataFake { get; } = "02/02/2020";
+
         public string codCliente { get; private set; }
 
         public string codProduto { get; private set; }
@@ -24,7 +26,7 @@ namespace Movtech_Workflow_Pedidos
 
         private void FormWorkflowPedidos_Load(object sender, EventArgs e)
         {
-            lblDataAtual.Text = "Data: " + DateTime.Now.ToString("dd/MM/yyyy");
+            lblDataAtual.Text = "Data: " + DateTime.Now.ToString(dataFake);
             InitializaColumnsTable();
         }
 
@@ -66,6 +68,17 @@ namespace Movtech_Workflow_Pedidos
             txtPedido.Text = formBuscarPedidos.documento;
         }
 
+        private void btnBaixarEtapa_Click(object sender, EventArgs e)
+        {
+            CarregaFormBaixaEtapa(); 
+        }
+
+        public void CarregaFormBaixaEtapa()
+        {
+            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa();
+            formBaixaEtapa.ShowDialog();
+        }
+
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             LimparCampos();
@@ -87,22 +100,22 @@ namespace Movtech_Workflow_Pedidos
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
                 WorkflowDAO dao = new WorkflowDAO(connection);
-                List<WorkflowPedidosModel> etapas = dao.GetEtapas(new WorkflowPedidosModel()
+                List<WorkflowPedidosModel> pedidos = dao.GetPedidos(new WorkflowPedidosModel()
                 {
                     NomeCliente = txtNomeCliente.Text,
                     NomeProduto = txtProduto.Text,
                     Documento = txtPedido.Text
                 });
 
-                foreach (WorkflowPedidosModel etapa in etapas)
+                foreach (WorkflowPedidosModel pedido in pedidos)
                 {
                     DataGridViewRow row = dataGridView.Rows[dataGridView.Rows.Add()];
-                    row.Cells[colNomeCliente.Index].Value = etapa.NomeCliente;
-                    row.Cells[colPedido.Index].Value = etapa.Documento;
-                    row.Cells[colQuantidade.Index].Value = etapa.Quantidade;
-                    row.Cells[colValorTotal.Index].Value = etapa.ValorTotal;
-                    row.Cells[colValorUnit.Index].Value = etapa.ValorUnitario;
-                    row.Cells[colDataEntrega.Index].Value = etapa.DataEntrega.Substring(0, 10);
+                    row.Cells[colNomeCliente.Index].Value = pedido.NomeCliente;
+                    row.Cells[colPedido.Index].Value = pedido.Documento;
+                    row.Cells[colQuantidade.Index].Value = pedido.Quantidade;
+                    row.Cells[colValorTotal.Index].Value = pedido.ValorTotal;
+                    row.Cells[colValorUnit.Index].Value = pedido.ValorUnitario;
+                    row.Cells[colDataEntrega.Index].Value = pedido.DataEntrega.Substring(0, 10);
                 }
             }
         }
@@ -134,5 +147,15 @@ namespace Movtech_Workflow_Pedidos
         {
             InitializeTable(dtgDadosPedidos);
         }
+
+        private void dtgDadosPedidos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        /*private void dtgDadosPedidos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CarregaFormBaixaEtapa();
+        }*/
     }
 }

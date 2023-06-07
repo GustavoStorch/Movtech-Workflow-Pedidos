@@ -31,5 +31,9 @@ namespace Movtech_Workflow_Pedidos
         public string ValorUnitario { get; set; }
 
         public string DataEntrega { get; set; }
+
+        public string CodOperador { get; set; }
+
+        public string NomeOperador { get; set; }
     }
 }
