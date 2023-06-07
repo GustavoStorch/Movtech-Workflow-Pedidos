@@ -72,26 +72,6 @@ namespace Movtech_Workflow_Pedidos
             txtPedido.Text = formBuscarPedidos.documento;
         }
 
-        private void btnBaixarEtapa_Click(object sender, EventArgs e)
-        {
-            CarregaFormBaixaEtapa(); 
-        }
-
-        public void CarregaFormBaixaEtapa()
-        {
-            pedido = txtPedido.Text;
-            using (SqlConnection connection = DaoConnection.GetConexao())
-            {
-                WorkflowDAO dao = new WorkflowDAO(connection);
-                empresa = dao.GetNomeEmpresa(new WorkflowPedidosModel()
-                {
-                    CodEmpresa = "1"
-                });
-            }
-            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa);
-            formBaixaEtapa.ShowDialog();
-        }
-
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             LimparCampos();
@@ -104,6 +84,7 @@ namespace Movtech_Workflow_Pedidos
             txtNomeCliente.Text = string.Empty;
             txtPedido.Text = string.Empty;
             txtProduto.Text = string.Empty;
+            dtgDadosPedidos.Rows.Clear();
         }
 
         public void InitializeTable(DataGridView dataGridView)
@@ -131,6 +112,7 @@ namespace Movtech_Workflow_Pedidos
                     row.Cells[colDataEntrega.Index].Value = pedido.DataEntrega.Substring(0, 10);
                     row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
                 }
+                dataGridView.Columns[colValorTotal.Index].Frozen = true;
             }
         }
 
@@ -160,6 +142,26 @@ namespace Movtech_Workflow_Pedidos
         private void btnConsultar_Click(object sender, EventArgs e)
         {
             InitializeTable(dtgDadosPedidos);
+        }
+
+        private void btnBaixarEtapa_Click(object sender, EventArgs e)
+        {
+            CarregaFormBaixaEtapa();
+        }
+
+        public void CarregaFormBaixaEtapa()
+        {
+            pedido = txtPedido.Text;
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                WorkflowDAO dao = new WorkflowDAO(connection);
+                empresa = dao.GetNomeEmpresa(new WorkflowPedidosModel()
+                {
+                    CodEmpresa = "1"
+                });
+            }
+            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa);
+            formBaixaEtapa.ShowDialog();
         }
 
         private void dtgDadosPedidos_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)

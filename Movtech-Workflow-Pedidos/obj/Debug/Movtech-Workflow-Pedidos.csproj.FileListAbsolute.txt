@@ -39,3 +39,5 @@ C:\Users\Gustavo\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Wo
 C:\Users\Gustavo\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech-Workflow-Pedidos.pdb
 C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBaixaEtapa.resources
 C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBuscarOperador.resources
+C:\Users\Gustavo\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBaixaEtapa.resources
+C:\Users\Gustavo\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBuscarOperador.resources

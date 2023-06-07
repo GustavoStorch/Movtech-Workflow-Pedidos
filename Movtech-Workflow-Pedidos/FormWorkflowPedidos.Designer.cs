@@ -371,7 +371,7 @@
         private System.Windows.Forms.TextBox txtProduto;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnConsultar;
-        private System.Windows.Forms.DataGridView dtgDadosPedidos;
+        public System.Windows.Forms.DataGridView dtgDadosPedidos;
         private System.Windows.Forms.Button btnBaixarEtapa;
         private System.Windows.Forms.Button btnBuscarProduto;
         private System.Windows.Forms.Button btnBuscarCliente;
