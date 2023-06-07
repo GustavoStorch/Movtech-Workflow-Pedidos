@@ -18,6 +18,10 @@ namespace Movtech_Workflow_Pedidos
         public string codCliente { get; private set; }
 
         public string codProduto { get; private set; }
+
+        public string pedido { get; set; }
+
+        public string empresa { get; set; }
     
         public FormWorkflowPedidos()
         {
@@ -75,7 +79,16 @@ namespace Movtech_Workflow_Pedidos
 
         public void CarregaFormBaixaEtapa()
         {
-            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa();
+            pedido = txtPedido.Text;
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                WorkflowDAO dao = new WorkflowDAO(connection);
+                empresa = dao.GetNomeEmpresa(new WorkflowPedidosModel()
+                {
+                    CodEmpresa = "1"
+                });
+            }
+            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa);
             formBaixaEtapa.ShowDialog();
         }
 
@@ -116,6 +129,7 @@ namespace Movtech_Workflow_Pedidos
                     row.Cells[colValorTotal.Index].Value = pedido.ValorTotal;
                     row.Cells[colValorUnit.Index].Value = pedido.ValorUnitario;
                     row.Cells[colDataEntrega.Index].Value = pedido.DataEntrega.Substring(0, 10);
+                    row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
                 }
             }
         }
@@ -148,14 +162,9 @@ namespace Movtech_Workflow_Pedidos
             InitializeTable(dtgDadosPedidos);
         }
 
-        private void dtgDadosPedidos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        /*private void dtgDadosPedidos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dtgDadosPedidos_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             CarregaFormBaixaEtapa();
-        }*/
+        }
     }
 }

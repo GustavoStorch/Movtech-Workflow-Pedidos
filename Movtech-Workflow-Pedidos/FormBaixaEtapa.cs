@@ -14,20 +14,21 @@ namespace Movtech_Workflow_Pedidos
     {
         public string codOperador { get; private set; }
 
-        public FormBaixaEtapa()
+        public string pedido { get; set; }
+
+        public string empresa { get; set; }
+
+        public FormBaixaEtapa(string Pedido, string Empresa)
         {
             InitializeComponent();
-        }
-
-        public void CarregarTextBox()
-        {
-            FormWorkflowPedidos formWorkflowPedidos = new FormWorkflowPedidos();
-            txtPedido.Text = formWorkflowPedidos.pedido;
+            pedido = Pedido;
+            empresa = Empresa;
         }
 
         private void FormBaixaEtapa_Load(object sender, EventArgs e)
         {
-
+            txtPedido.Text = pedido;
+            txtNomeEmpresa.Text = empresa;
         }
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)

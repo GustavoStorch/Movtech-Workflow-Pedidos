@@ -17,6 +17,24 @@ namespace Movtech_Workflow_Pedidos
             Connection = connection;
         }
 
+        public string GetNomeEmpresa (WorkflowPedidosModel workflow)
+        {
+            using (SqlCommand command = Connection.CreateCommand())
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine($"SELECT nome FROM MvtMenuEmpresa WHERE codEmpresa = @codEmpresa");
+                command.CommandText = sql.ToString();
+                command.Parameters.AddWithValue("@codEmpresa", workflow.CodEmpresa);
+                string result = Convert.ToString(command.ExecuteScalar());
+
+                if (result != null)
+                {
+                    return result.ToString();
+                }
+            }
+            return string.Empty;
+        }
+
         //realizar uma função para fazer uma consulta sql e gerar o leadTime para calcular a data de entrega do pedido e jogar na datagridview.
         /*public int RecuperaLeadTime()
         {
@@ -39,7 +57,7 @@ namespace Movtech_Workflow_Pedidos
                 StringBuilder sql = new StringBuilder();
                 sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado/pd.qtde) AS valorUnit,");
                 //sql.AppendLine("DATEADD(day, @prazoEntrega, pd.dataEmissao) AS dataEntrega FROM MvtCadCliente c");
-                sql.AppendLine("pd.dataProjecao FROM MvtCadCliente c");
+                sql.AppendLine("pd.dataProjecao, pd.codEmpresa FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
                 sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
                 sql.AppendLine("WHERE c.nomeCliente = @cliente AND p.nomeProduto = @produto AND pd.documento = @documento");command.Parameters.Add(new SqlParameter("@cliente", workflow.NomeCliente));
@@ -90,6 +108,11 @@ namespace Movtech_Workflow_Pedidos
             {
                 model.DataEntrega = dr["dataProjecao"].ToString();
             }
+            if (DBNull.Value != dr["codEmpresa"])
+            {
+                model.CodEmpresa = dr["codEmpresa"].ToString();
+            }
+
             return model;
         }
     }

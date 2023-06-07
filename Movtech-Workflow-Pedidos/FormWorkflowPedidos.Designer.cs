@@ -47,6 +47,7 @@
             this.colQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCodEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBaixarEtapa = new System.Windows.Forms.Button();
             this.txtPedido = new System.Windows.Forms.TextBox();
             this.lblPedido = new System.Windows.Forms.Label();
@@ -180,7 +181,8 @@
             this.colDataEntrega,
             this.colQuantidade,
             this.colValorUnit,
-            this.colValorTotal});
+            this.colValorTotal,
+            this.colCodEmpresa});
             this.dtgDadosPedidos.Location = new System.Drawing.Point(16, 208);
             this.dtgDadosPedidos.Name = "dtgDadosPedidos";
             this.dtgDadosPedidos.ReadOnly = true;
@@ -188,7 +190,7 @@
             this.dtgDadosPedidos.RowTemplate.Height = 28;
             this.dtgDadosPedidos.Size = new System.Drawing.Size(1180, 482);
             this.dtgDadosPedidos.TabIndex = 18;
-            this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick);
+            this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick_1);
             // 
             // colPedido
             // 
@@ -239,6 +241,15 @@
             this.colValorTotal.Name = "colValorTotal";
             this.colValorTotal.ReadOnly = true;
             this.colValorTotal.Width = 121;
+            // 
+            // colCodEmpresa
+            // 
+            this.colCodEmpresa.HeaderText = "CodEmpresa";
+            this.colCodEmpresa.MinimumWidth = 8;
+            this.colCodEmpresa.Name = "colCodEmpresa";
+            this.colCodEmpresa.ReadOnly = true;
+            this.colCodEmpresa.Visible = false;
+            this.colCodEmpresa.Width = 138;
             // 
             // btnBaixarEtapa
             // 
@@ -373,6 +384,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCodEmpresa;
     }
 }
 

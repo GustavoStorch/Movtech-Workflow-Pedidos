@@ -35,5 +35,7 @@ namespace Movtech_Workflow_Pedidos
         public string CodOperador { get; set; }
 
         public string NomeOperador { get; set; }
+
+        public string CodEmpresa { get; set; }
     }
 }
