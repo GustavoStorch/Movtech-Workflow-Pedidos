@@ -22,7 +22,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT codProduto, nomeProduto FROM MvtCadProduto WHERE nomeProduto LIKE '%' + @nomeProduto + '%' ORDER BY codProduto");
+                sql.AppendLine("SELECT codProduto, nomeProduto FROM vwMvtCadProduto WHERE nomeProduto LIKE '%' + @nomeProduto + '%' ORDER BY codProduto");
                 command.Parameters.AddWithValue("@nomeProduto", workflow.NomeProduto);
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())

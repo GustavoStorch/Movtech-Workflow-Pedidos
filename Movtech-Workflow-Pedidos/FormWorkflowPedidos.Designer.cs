@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormWorkflowPedidos));
             this.lblDateDe = new System.Windows.Forms.Label();
             this.lblDataAte = new System.Windows.Forms.Label();
@@ -41,6 +42,12 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dtgDadosPedidos = new System.Windows.Forms.DataGridView();
+            this.btnBaixarEtapa = new System.Windows.Forms.Button();
+            this.txtPedido = new System.Windows.Forms.TextBox();
+            this.lblPedido = new System.Windows.Forms.Label();
+            this.btnBuscarPedidos = new System.Windows.Forms.Button();
+            this.btnBuscarProduto = new System.Windows.Forms.Button();
+            this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.colPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDataEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,12 +55,6 @@
             this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCodEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBaixarEtapa = new System.Windows.Forms.Button();
-            this.txtPedido = new System.Windows.Forms.TextBox();
-            this.lblPedido = new System.Windows.Forms.Label();
-            this.btnBuscarPedidos = new System.Windows.Forms.Button();
-            this.btnBuscarProduto = new System.Windows.Forms.Button();
-            this.btnBuscarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -192,65 +193,6 @@
             this.dtgDadosPedidos.TabIndex = 18;
             this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick_1);
             // 
-            // colPedido
-            // 
-            this.colPedido.FillWeight = 40F;
-            this.colPedido.HeaderText = "Pedido";
-            this.colPedido.MinimumWidth = 8;
-            this.colPedido.Name = "colPedido";
-            this.colPedido.ReadOnly = true;
-            this.colPedido.Width = 94;
-            // 
-            // colNomeCliente
-            // 
-            this.colNomeCliente.HeaderText = "Cliente";
-            this.colNomeCliente.MinimumWidth = 8;
-            this.colNomeCliente.Name = "colNomeCliente";
-            this.colNomeCliente.ReadOnly = true;
-            this.colNomeCliente.Width = 94;
-            // 
-            // colDataEntrega
-            // 
-            this.colDataEntrega.HeaderText = "Data Entrega";
-            this.colDataEntrega.MinimumWidth = 8;
-            this.colDataEntrega.Name = "colDataEntrega";
-            this.colDataEntrega.ReadOnly = true;
-            this.colDataEntrega.Width = 141;
-            // 
-            // colQuantidade
-            // 
-            this.colQuantidade.FillWeight = 40F;
-            this.colQuantidade.HeaderText = "Qtd";
-            this.colQuantidade.MinimumWidth = 8;
-            this.colQuantidade.Name = "colQuantidade";
-            this.colQuantidade.ReadOnly = true;
-            this.colQuantidade.Width = 71;
-            // 
-            // colValorUnit
-            // 
-            this.colValorUnit.HeaderText = "Valor Unit";
-            this.colValorUnit.MinimumWidth = 8;
-            this.colValorUnit.Name = "colValorUnit";
-            this.colValorUnit.ReadOnly = true;
-            this.colValorUnit.Width = 115;
-            // 
-            // colValorTotal
-            // 
-            this.colValorTotal.HeaderText = "Valor Total";
-            this.colValorTotal.MinimumWidth = 8;
-            this.colValorTotal.Name = "colValorTotal";
-            this.colValorTotal.ReadOnly = true;
-            this.colValorTotal.Width = 121;
-            // 
-            // colCodEmpresa
-            // 
-            this.colCodEmpresa.HeaderText = "CodEmpresa";
-            this.colCodEmpresa.MinimumWidth = 8;
-            this.colCodEmpresa.Name = "colCodEmpresa";
-            this.colCodEmpresa.ReadOnly = true;
-            this.colCodEmpresa.Visible = false;
-            this.colCodEmpresa.Width = 138;
-            // 
             // btnBaixarEtapa
             // 
             this.btnBaixarEtapa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -323,6 +265,68 @@
             this.btnBuscarCliente.TabIndex = 20;
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
             this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
+            // 
+            // colPedido
+            // 
+            this.colPedido.FillWeight = 40F;
+            this.colPedido.HeaderText = "Pedido";
+            this.colPedido.MinimumWidth = 8;
+            this.colPedido.Name = "colPedido";
+            this.colPedido.ReadOnly = true;
+            this.colPedido.Width = 94;
+            // 
+            // colNomeCliente
+            // 
+            this.colNomeCliente.HeaderText = "Cliente";
+            this.colNomeCliente.MinimumWidth = 8;
+            this.colNomeCliente.Name = "colNomeCliente";
+            this.colNomeCliente.ReadOnly = true;
+            this.colNomeCliente.Width = 94;
+            // 
+            // colDataEntrega
+            // 
+            this.colDataEntrega.HeaderText = "Data Entrega";
+            this.colDataEntrega.MinimumWidth = 8;
+            this.colDataEntrega.Name = "colDataEntrega";
+            this.colDataEntrega.ReadOnly = true;
+            this.colDataEntrega.Width = 141;
+            // 
+            // colQuantidade
+            // 
+            this.colQuantidade.FillWeight = 40F;
+            this.colQuantidade.HeaderText = "Qtd";
+            this.colQuantidade.MinimumWidth = 8;
+            this.colQuantidade.Name = "colQuantidade";
+            this.colQuantidade.ReadOnly = true;
+            this.colQuantidade.Width = 71;
+            // 
+            // colValorUnit
+            // 
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colValorUnit.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colValorUnit.HeaderText = "Valor Unit";
+            this.colValorUnit.MinimumWidth = 8;
+            this.colValorUnit.Name = "colValorUnit";
+            this.colValorUnit.ReadOnly = true;
+            this.colValorUnit.Width = 115;
+            // 
+            // colValorTotal
+            // 
+            this.colValorTotal.HeaderText = "Valor Total";
+            this.colValorTotal.MinimumWidth = 8;
+            this.colValorTotal.Name = "colValorTotal";
+            this.colValorTotal.ReadOnly = true;
+            this.colValorTotal.Width = 121;
+            // 
+            // colCodEmpresa
+            // 
+            this.colCodEmpresa.HeaderText = "CodEmpresa";
+            this.colCodEmpresa.MinimumWidth = 8;
+            this.colCodEmpresa.Name = "colCodEmpresa";
+            this.colCodEmpresa.ReadOnly = true;
+            this.colCodEmpresa.Visible = false;
+            this.colCodEmpresa.Width = 138;
             // 
             // FormWorkflowPedidos
             // 

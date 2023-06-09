@@ -57,10 +57,11 @@ namespace Movtech_Workflow_Pedidos
                 StringBuilder sql = new StringBuilder();
                 sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado/pd.qtde) AS valorUnit,");
                 //sql.AppendLine("DATEADD(day, @prazoEntrega, pd.dataEmissao) AS dataEntrega FROM MvtCadCliente c");
-                sql.AppendLine("pd.dataProjecao, pd.codEmpresa FROM MvtCadCliente c");
-                sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
-                sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
-                sql.AppendLine("WHERE c.nomeCliente = @cliente AND p.nomeProduto = @produto AND pd.documento = @documento");command.Parameters.Add(new SqlParameter("@cliente", workflow.NomeCliente));
+                sql.AppendLine("pd.dataProjecao, pd.codEmpresa FROM vwMvtCadCliente c");
+                sql.AppendLine("JOIN vwMvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
+                sql.AppendLine("JOIN vwMvtCadProduto p ON pd.codProduto = p.codProduto");
+                sql.AppendLine("WHERE c.nomeCliente = @cliente AND p.nomeProduto = @produto AND pd.documento = @documento");
+                command.Parameters.Add(new SqlParameter("@cliente", workflow.NomeCliente));
                 command.Parameters.Add(new SqlParameter("@produto", workflow.NomeProduto));
                 command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
                 //command.Parameters.Add(new SqlParameter("@prazoEntrega", prazoEntrega));

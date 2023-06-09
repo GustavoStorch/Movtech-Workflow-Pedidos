@@ -21,7 +21,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine($"SELECT data FROM MvtVendasEstruturaFaturamento WHERE documento = @documento AND codProduto = @codProduto");
+                sql.AppendLine($"SELECT data FROM vwMvtVendasEstruturaFaturamento WHERE documento = @documento AND codProduto = @codProduto");
                 command.CommandText = sql.ToString();
                 command.Parameters.AddWithValue("@documento", workflow.Documento);
                 command.Parameters.Add(new SqlParameter("@codProduto", workflow.CodProduto));
@@ -70,7 +70,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine($"SELECT codProduto FROM MvtCadProduto WHERE nomeProduto = @nomeProduto");
+                sql.AppendLine($"SELECT codProduto FROM vwMvtCadProduto WHERE nomeProduto = @nomeProduto");
                 command.CommandText = sql.ToString();
                 command.Parameters.AddWithValue("@nomeProduto", workflow.NomeProduto);
                 string result = Convert.ToString(command.ExecuteScalar());

@@ -22,7 +22,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT DISTINCT(documento) FROM MvtVendasEstruturaFaturamento WHERE codEmpresa = 1 AND tipo = 'F' AND documento LIKE '%' + @documento + '%'");
+                sql.AppendLine("SELECT DISTINCT(documento) FROM vwMvtVendasEstruturaFaturamento WHERE codEmpresa = 1 AND tipo = 'F' AND documento LIKE '%' + @documento + '%'");
                 command.Parameters.AddWithValue("@documento", workflow.Documento);
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())

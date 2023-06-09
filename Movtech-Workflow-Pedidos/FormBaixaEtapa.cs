@@ -70,10 +70,10 @@ namespace Movtech_Workflow_Pedidos
                     formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Value = dataBaixa.ToShortDateString();
                     if (duracaoEtapa <= prazoEtapa)
                     {
-                        formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.Green;
+                        formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.ForestGreen;
                     } else
                     {
-                        formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.Red;
+                        formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.IndianRed;
                     }
 
                     dao.AtualizaDataEtapa(new WorkflowPedidosModel()
