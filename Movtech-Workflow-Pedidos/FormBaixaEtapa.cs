@@ -19,11 +19,14 @@ namespace Movtech_Workflow_Pedidos
 
         public string empresa { get; set; }
 
-        public FormBaixaEtapa(string Pedido, string Empresa)
+        public string nomeProduto { get; set; }
+
+        public FormBaixaEtapa(string Pedido, string Empresa, string NomeProduto)
         {
             InitializeComponent();
             pedido = Pedido;
             empresa = Empresa;
+            nomeProduto = NomeProduto;
         }
 
         private void FormBaixaEtapa_Load(object sender, EventArgs e)
@@ -46,9 +49,16 @@ namespace Movtech_Workflow_Pedidos
                 using (SqlConnection connection = DaoConnection.GetConexao())
                 {
                     BaixaEtapaDAO dao = new BaixaEtapaDAO(connection);
+
+                    string auxiliarCodProduto = dao.GetCodProduto(new WorkflowPedidosModel()
+                    {
+                        NomeProduto = nomeProduto
+                    });
+
                     dataEmissaoPedido = dao.GetDataEmissao(new WorkflowPedidosModel()
                     {
-                        Documento = pedido
+                        Documento = pedido,
+                        CodProduto = auxiliarCodProduto
                     });
 
                     int prazoEtapa = dao.GetLeadTime(new WorkflowPedidosModel()
@@ -57,7 +67,7 @@ namespace Movtech_Workflow_Pedidos
                     });
 
                     int duracaoEtapa = (dataBaixa - dataEmissaoPedido).Days;
-                    formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Value = dataBaixa;
+                    formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Value = dataBaixa.ToShortDateString();
                     if (duracaoEtapa <= prazoEtapa)
                     {
                         formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.Green;
@@ -65,6 +75,13 @@ namespace Movtech_Workflow_Pedidos
                     {
                         formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.Red;
                     }
+
+                    dao.AtualizaDataEtapa(new WorkflowPedidosModel()
+                    {
+                        Documento = txtPedido.Text,
+                        CodProduto = auxiliarCodProduto,
+                        LeadTime = prazoEtapa
+                    });
                 }
             }
             this.Close();

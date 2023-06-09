@@ -37,5 +37,9 @@ namespace Movtech_Workflow_Pedidos
         public string NomeOperador { get; set; }
 
         public string CodEmpresa { get; set; }
+
+        public int LeadTime { get; set; }
+
+        public string Date { get; set;  }
     }
 }

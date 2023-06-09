@@ -22,6 +22,8 @@ namespace Movtech_Workflow_Pedidos
         public string pedido { get; set; }
 
         public string empresa { get; set; }
+
+        public string nomeProduco { get; set; }
     
         public FormWorkflowPedidos()
         {
@@ -152,6 +154,7 @@ namespace Movtech_Workflow_Pedidos
         public void CarregaFormBaixaEtapa()
         {
             pedido = txtPedido.Text;
+            nomeProduco = txtProduto.Text;
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
                 WorkflowDAO dao = new WorkflowDAO(connection);
@@ -160,7 +163,7 @@ namespace Movtech_Workflow_Pedidos
                     CodEmpresa = "1"
                 });
             }
-            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa);
+            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeProduco);
             formBaixaEtapa.ShowDialog();
         }
 
