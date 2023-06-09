@@ -141,10 +141,43 @@ namespace Movtech_Workflow_Pedidos
             }
         }
 
-        private void btnConsultar_Click(object sender, EventArgs e)
+       private void btnConsultar_Click(object sender, EventArgs e)
+{
+    InitializeTable(dtgDadosPedidos);
+
+    using (SqlConnection connection = DaoConnection.GetConexao())
+    {
+        WorkflowDAO dao = new WorkflowDAO(connection);
+
+        List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
+
+        // Percorrer os registros e atribuir as datas e cores às células correspondentes
+        foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
         {
-            InitializeTable(dtgDadosPedidos);
+            string columnName = etapaBaixa.Etapas;
+
+            // Verificar se a coluna existe na tabela
+            if (dtgDadosPedidos.Columns.Contains(columnName))
+            {
+                // Encontrar a célula correspondente com base no documento
+                DataGridViewCell cell = dtgDadosPedidos.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
+                    .Select(row => row.Cells[columnName])
+                    .FirstOrDefault();
+
+                if (cell != null)
+                {
+                    // Atribuir a data e a cor à célula
+                    cell.Value = etapaBaixa.Date.ToString().Substring(0,10);
+                    cell.Style.BackColor = ColorTranslator.FromHtml(etapaBaixa.CorCelula);
+                }
+            }
         }
+    }
+}
+
+
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
         {

@@ -116,5 +116,34 @@ namespace Movtech_Workflow_Pedidos
 
             return model;
         }
+
+        public List<WorkflowPedidosModel> GetEtapasBaixas()
+        {
+            List<WorkflowPedidosModel> etapasBaixas = new List<WorkflowPedidosModel>();
+
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT documento, nomeEtapa, dataBaixa, corCelula FROM MvtEtapasBaixas";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            WorkflowPedidosModel etapaBaixa = new WorkflowPedidosModel();
+                            etapaBaixa.Documento = reader["documento"].ToString();
+                            etapaBaixa.Etapas = reader["nomeEtapa"].ToString();
+                            etapaBaixa.Date = Convert.ToString(reader["dataBaixa"]);
+                            etapaBaixa.CorCelula = reader["corCelula"].ToString();
+
+                            etapasBaixas.Add(etapaBaixa);
+                        }
+                    }
+                }
+            }
+
+            return etapasBaixas;
+        }
     }
 }

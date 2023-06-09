@@ -21,6 +21,10 @@ namespace Movtech_Workflow_Pedidos
 
         public string nomeProduto { get; set; }
 
+        public string etapa { get; set; }
+
+        public Color corCelula { get; set; }
+
         public FormBaixaEtapa(string Pedido, string Empresa, string NomeProduto)
         {
             InitializeComponent();
@@ -31,8 +35,14 @@ namespace Movtech_Workflow_Pedidos
 
         private void FormBaixaEtapa_Load(object sender, EventArgs e)
         {
+            FormWorkflowPedidos formWorkflowPedidos2 = Application.OpenForms["FormWorkflowPedidos"] as FormWorkflowPedidos;
+            DataGridViewCell selectedCell2 = formWorkflowPedidos2.dtgDadosPedidos.CurrentCell;
+            int columnIndex2 = selectedCell2.ColumnIndex;
+            string columnName2 = formWorkflowPedidos2.dtgDadosPedidos.Columns[columnIndex2].Name;
+            etapa = columnName2;
             txtPedido.Text = pedido;
             txtNomeEmpresa.Text = empresa;
+            txtNomeEtapa.Text = columnName2;
         }
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
@@ -45,6 +55,9 @@ namespace Movtech_Workflow_Pedidos
                 int rowIndex = selectedCell.RowIndex;
                 int columnIndex = selectedCell.ColumnIndex;
                 string columnName = formWorkflowPedidos.dtgDadosPedidos.Columns[columnIndex].Name;
+
+                
+
                 DateTime dataEmissaoPedido;
                 using (SqlConnection connection = DaoConnection.GetConexao())
                 {
@@ -71,9 +84,11 @@ namespace Movtech_Workflow_Pedidos
                     if (duracaoEtapa <= prazoEtapa)
                     {
                         formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.ForestGreen;
+                        corCelula = Color.ForestGreen;
                     } else
                     {
                         formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.IndianRed;
+                        corCelula = Color.IndianRed;
                     }
 
                     dao.AtualizaDataEtapa(new WorkflowPedidosModel()
@@ -81,6 +96,21 @@ namespace Movtech_Workflow_Pedidos
                         Documento = txtPedido.Text,
                         CodProduto = auxiliarCodProduto,
                         LeadTime = prazoEtapa
+                    });
+
+                    dao.SalvarEtapas(new WorkflowPedidosModel() { 
+                        CodEmpresa = "1",
+                        NomeEmpresa = txtNomeEmpresa.Text,
+                        Documento = txtPedido.Text,
+                        Date = dtpDataDaBaixa.Text,
+                        CodOperador = codOperador,
+                        NomeOperador = txtNomeOperador.Text,
+                        Etapas = txtNomeEtapa.Text,
+                        CodEtapa = dao.GetCodEtapa(new WorkflowPedidosModel()
+                        {
+                            Etapas = txtNomeEtapa.Text
+                        }),
+                        CorCelula = ColorTranslator.ToHtml(corCelula)
                     });
                 }
             }

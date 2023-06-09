@@ -38,8 +38,14 @@ namespace Movtech_Workflow_Pedidos
 
         public string CodEmpresa { get; set; }
 
+        public string NomeEmpresa { get; set; }
+
         public int LeadTime { get; set; }
 
         public string Date { get; set;  }
+    
+        public string CodEtapa { get; set; }
+
+        public string CorCelula { get; set; }
     }
 }
