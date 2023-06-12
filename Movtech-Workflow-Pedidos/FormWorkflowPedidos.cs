@@ -94,7 +94,9 @@ namespace Movtech_Workflow_Pedidos
                 {
                     NomeCliente = txtNomeCliente.Text,
                     NomeProduto = txtProduto.Text,
-                    Documento = txtPedido.Text
+                    Documento = txtPedido.Text,
+                    DataDe = dtpDataDe.Text,
+                    DataAte = dtpDataAte.Text
                 });
 
                 foreach (WorkflowPedidosModel pedido in pedidos)

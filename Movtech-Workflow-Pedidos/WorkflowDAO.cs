@@ -38,19 +38,11 @@ namespace Movtech_Workflow_Pedidos
 
         public bool VerificaCampos(WorkflowPedidosModel workflow)
         {
-            if (string.IsNullOrEmpty(workflow.NomeCliente) || string.IsNullOrWhiteSpace(workflow.NomeCliente))
+           /* if (string.IsNullOrEmpty(workflow.NomeCliente) && string.IsNullOrEmpty(workflow.NomeProduto) && string.IsNullOrEmpty(workflow.Documento))
             {
-                MessageBox.Show("Informe o campo do Nome do Cliente");
+                MessageBox.Show("Por favor, preencha algum campo acima!");
                 return false;
-            } else if (string.IsNullOrEmpty(workflow.NomeProduto) || string.IsNullOrWhiteSpace(workflow.NomeProduto)) 
-            {
-                MessageBox.Show("Informe o campo do nome do Produto");
-                return false;
-            } else if (string.IsNullOrEmpty(workflow.Documento) || string.IsNullOrWhiteSpace(workflow.Documento))
-            {
-                MessageBox.Show("Informe o campo do numero do Documento");
-                return false;
-            }
+            } */
             return true;
         }
 
@@ -69,21 +61,37 @@ namespace Movtech_Workflow_Pedidos
 
         public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
         {
-            //int prazoEntrega = RecuperaLeadTime();
             List<WorkflowPedidosModel> pedidos = new List<WorkflowPedidosModel>();
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
                 sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado/pd.qtde) AS valorUnit,");
-                //sql.AppendLine("DATEADD(day, @prazoEntrega, pd.dataEmissao) AS dataEntrega FROM MvtCadCliente c");
-                sql.AppendLine("pd.dataProjecao, pd.codEmpresa FROM vwMvtCadCliente c");
-                sql.AppendLine("JOIN vwMvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
-                sql.AppendLine("JOIN vwMvtCadProduto p ON pd.codProduto = p.codProduto");
-                sql.AppendLine("WHERE c.nomeCliente = @cliente AND p.nomeProduto = @produto AND pd.documento = @documento");
-                command.Parameters.Add(new SqlParameter("@cliente", workflow.NomeCliente));
-                command.Parameters.Add(new SqlParameter("@produto", workflow.NomeProduto));
-                command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
-                //command.Parameters.Add(new SqlParameter("@prazoEntrega", prazoEntrega));
+                sql.AppendLine("pd.dataProjecao, pd.codEmpresa FROM MvtCadCliente c");
+                sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
+                sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
+                sql.AppendLine("WHERE 1 = 1");
+                if (!string.IsNullOrEmpty(workflow.NomeCliente))
+                {
+                    sql.AppendLine($"AND c.nomeCLiente = @cliente");
+                    command.Parameters.AddWithValue("@cliente", workflow.NomeCliente);
+                }
+                if (!string.IsNullOrEmpty(workflow.NomeProduto))
+                {
+                    sql.AppendLine($"AND p.nomeProduto = @produto");
+                    command.Parameters.AddWithValue("@produto", workflow.NomeProduto);
+                }
+                if (!string.IsNullOrEmpty(workflow.Documento))
+                {
+                    sql.AppendLine($"AND pd.documento = @documento");
+                    command.Parameters.AddWithValue("@documento", workflow.Documento);
+                }
+                if (!string.IsNullOrEmpty(workflow.DataDe) && !string.IsNullOrEmpty(workflow.DataAte))
+                {
+                    sql.AppendLine($"AND pd.dataEmissao BETWEEN @dataDe AND @dataAte");
+                    command.Parameters.AddWithValue("@dataDe", workflow.DataDe);
+                    command.Parameters.AddWithValue("@dataAte", workflow.DataAte);
+                }
+
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())
                 {
