@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Movtech_Workflow_Pedidos
 {
@@ -14,6 +15,16 @@ namespace Movtech_Workflow_Pedidos
         public ProdutoDAO(SqlConnection connection)
         {
             Connection = connection;
+        }
+
+        public bool VerificaCampos(WorkflowPedidosModel workflow)
+        {
+            if (string.IsNullOrEmpty(workflow.NomeProduto) || string.IsNullOrWhiteSpace(workflow.NomeProduto))
+            {
+                MessageBox.Show("Por favor, preencha o campo de pesquisa!");
+                return false;
+            }
+            return true;
         }
 
         public List<WorkflowPedidosModel> GetProdutos(WorkflowPedidosModel workflow)

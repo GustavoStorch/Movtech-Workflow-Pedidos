@@ -15,22 +15,37 @@ namespace Movtech_Workflow_Pedidos
     {
         public string nomeProduto { get; private set; }
 
-        public string codProduto { get; private set; }
-
         public FormBuscarProdutos()
         {
             InitializeComponent();
         }
 
+        private void FormBuscarProdutos_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            InitializeTable();
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                ProdutoDAO dao = new ProdutoDAO(connection);
+
+                bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
+                {
+                    NomeProduto = txtNomeProduto.Text
+                });
+
+                if (verificaCampos)
+                {
+                    InitializeTable();
+                }
+            }
         }
 
         public void CarregaTextBox()
         {
             nomeProduto = txtNomeProduto.Text;
-            codProduto = txtCodProduto.Text;
             this.Close();
         }
 
@@ -62,11 +77,6 @@ namespace Movtech_Workflow_Pedidos
                 txtNomeProduto.Text = dtgDadosProduto.Rows[e.RowIndex].Cells[colNomeProduto.Index].Value + "";
             }
             CarregaTextBox();
-        }
-
-        private void FormBuscarProdutos_Load(object sender, EventArgs e)
-        {
-
-        }
+        }   
     }
 }

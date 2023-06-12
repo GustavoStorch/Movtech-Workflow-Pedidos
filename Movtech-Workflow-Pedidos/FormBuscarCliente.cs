@@ -15,8 +15,6 @@ namespace Movtech_Workflow_Pedidos
     {
         public string nomeCliente { get; private set; }
 
-        public string codCliente { get; private set; }
-
         public FormBuscarCliente()
         {
             InitializeComponent();
@@ -30,7 +28,6 @@ namespace Movtech_Workflow_Pedidos
         public void CarregaTextBox()
         {
             nomeCliente = txtNomeCliente.Text;
-            codCliente = txtCodCliente.Text;
             this.Close();
         }
 
@@ -66,7 +63,20 @@ namespace Movtech_Workflow_Pedidos
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            InitializeTable();
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                ClienteDAO dao = new ClienteDAO(connection);
+
+                bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
+                {
+                    NomeCliente = txtNomeCliente.Text
+                });
+
+                if (verificaCampos)
+                {
+                    InitializeTable();
+                }
+            }
         }
     }
 }

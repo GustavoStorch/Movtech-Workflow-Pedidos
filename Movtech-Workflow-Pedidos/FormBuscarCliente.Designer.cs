@@ -53,6 +53,7 @@
             this.txtNomeCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNomeCliente.Location = new System.Drawing.Point(80, 12);
+            this.txtNomeCliente.MaxLength = 50;
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(613, 26);
             this.txtNomeCliente.TabIndex = 1;

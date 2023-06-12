@@ -66,7 +66,20 @@ namespace Movtech_Workflow_Pedidos
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            InitializeTable();
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                OperadorDAO dao = new OperadorDAO(connection);
+
+                bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
+                {
+                    NomeOperador = txtNomeOperador.Text
+                });
+
+                if (verificaCampos)
+                {
+                    InitializeTable();
+                }
+            }
         }
     }
 }

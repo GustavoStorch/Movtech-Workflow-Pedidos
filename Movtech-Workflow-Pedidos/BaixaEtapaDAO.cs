@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Movtech_Workflow_Pedidos
 {
@@ -14,6 +15,16 @@ namespace Movtech_Workflow_Pedidos
         public BaixaEtapaDAO(SqlConnection connection)
         {
             Connection = connection;
+        }
+
+        public bool VerificaCampos(WorkflowPedidosModel workflow)
+        {
+            if (string.IsNullOrEmpty(workflow.NomeOperador) || string.IsNullOrWhiteSpace(workflow.NomeOperador))
+            {
+                MessageBox.Show("Por favor, preencha o campo de pesquisa!");
+                return false;
+            }
+            return true;
         }
 
         public void SalvarEtapas(WorkflowPedidosModel workflow)
@@ -29,7 +40,7 @@ namespace Movtech_Workflow_Pedidos
                     command.Parameters.Add(new SqlParameter("@codEmpresa", workflow.CodEmpresa));
                     command.Parameters.Add(new SqlParameter("@nomeEmpresa", workflow.NomeEmpresa));
                     command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
-                    command.Parameters.Add(new SqlParameter("@dataBaixa", workflow.Date));
+                    command.Parameters.Add(new SqlParameter("@dataBaixa", workflow.DataBaixa));
                     command.Parameters.Add(new SqlParameter("@codFuncionario", workflow.CodOperador));
                     command.Parameters.Add(new SqlParameter("@nomeFuncionario", workflow.NomeOperador));
                     command.Parameters.Add(new SqlParameter("@codEtapas", workflow.CodEtapa));
@@ -78,7 +89,7 @@ namespace Movtech_Workflow_Pedidos
                 try
                 {
                     StringBuilder sql = new StringBuilder();
-                    sql.AppendLine($"UPDATE MvtVendasEstruturaFaturamento SET data =  DATEADD(dd, @dataNova, data) WHERE documento = @documento AND codProduto = @codProduto");
+                    sql.AppendLine($"UPDATE MvtVendasEstruturaFaturamento SET data =  DATEADD(day, @dataNova, data) WHERE documento = @documento AND codProduto = @codProduto");
                     command.Parameters.Add(new SqlParameter("@dataNova", workflow.LeadTime));
                     command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
                     command.Parameters.Add(new SqlParameter("@codProduto", workflow.CodProduto));

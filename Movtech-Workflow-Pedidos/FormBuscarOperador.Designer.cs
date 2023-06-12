@@ -41,6 +41,8 @@
             // 
             // txtNomeOperador
             // 
+            this.txtNomeOperador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNomeOperador.Location = new System.Drawing.Point(98, 12);
             this.txtNomeOperador.Name = "txtNomeOperador";
             this.txtNomeOperador.Size = new System.Drawing.Size(613, 26);
@@ -71,6 +73,9 @@
             // 
             this.dtgDadosOperador.AllowUserToAddRows = false;
             this.dtgDadosOperador.AllowUserToDeleteRows = false;
+            this.dtgDadosOperador.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosOperador.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgDadosOperador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgDadosOperador.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

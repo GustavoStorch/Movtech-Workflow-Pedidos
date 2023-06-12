@@ -27,7 +27,20 @@ namespace Movtech_Workflow_Pedidos
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            InitializeTable();
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                PedidosDAO dao = new PedidosDAO(connection);
+
+                bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
+                {
+                    Documento = txtPedido.Text
+                });
+
+                if (verificaCampos)
+                {
+                    InitializeTable();
+                }
+            }
         }
 
         public void CarregaTextBox()

@@ -21,8 +21,6 @@ namespace Movtech_Workflow_Pedidos
 
         public string nomeProduto { get; set; }
 
-        public string etapa { get; set; }
-
         public Color corCelula { get; set; }
 
         public FormBaixaEtapa(string Pedido, string Empresa, string NomeProduto)
@@ -39,11 +37,15 @@ namespace Movtech_Workflow_Pedidos
             DataGridViewCell selectedCell2 = formWorkflowPedidos2.dtgDadosPedidos.CurrentCell;
             int columnIndex2 = selectedCell2.ColumnIndex;
             string columnName2 = formWorkflowPedidos2.dtgDadosPedidos.Columns[columnIndex2].Name;
-            etapa = columnName2;
             txtPedido.Text = pedido;
             txtNomeEmpresa.Text = empresa;
             txtNomeEtapa.Text = columnName2;
         }
+
+
+        //02/06/2020 - 22/06/2020 (20 dias) = 15/06/2020 (sobrou 7 dias) 
+        //22/06/2020 - 28/06/2020 (06 dias) = 30/06/2020 (Utilizou 2 dias da etapa anterior, Fica em amarelo pois está dentro do prazo ainda )
+
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
         {
@@ -56,62 +58,70 @@ namespace Movtech_Workflow_Pedidos
                 int columnIndex = selectedCell.ColumnIndex;
                 string columnName = formWorkflowPedidos.dtgDadosPedidos.Columns[columnIndex].Name;
 
-                
-
-                DateTime dataEmissaoPedido;
                 using (SqlConnection connection = DaoConnection.GetConexao())
                 {
                     BaixaEtapaDAO dao = new BaixaEtapaDAO(connection);
 
-                    string auxiliarCodProduto = dao.GetCodProduto(new WorkflowPedidosModel()
+                    bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
                     {
-                        NomeProduto = nomeProduto
+                        NomeOperador = txtNomeOperador.Text
                     });
 
-                    dataEmissaoPedido = dao.GetDataEmissao(new WorkflowPedidosModel()
+                    if (verificaCampos)
                     {
-                        Documento = pedido,
-                        CodProduto = auxiliarCodProduto
-                    });
-
-                    int prazoEtapa = dao.GetLeadTime(new WorkflowPedidosModel()
-                    {
-                        Etapas = columnName
-                    });
-
-                    int duracaoEtapa = (dataBaixa - dataEmissaoPedido).Days;
-                    formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Value = dataBaixa.ToShortDateString();
-                    if (duracaoEtapa <= prazoEtapa)
-                    {
-                        formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.ForestGreen;
-                        corCelula = Color.ForestGreen;
-                    } else
-                    {
-                        formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.IndianRed;
-                        corCelula = Color.IndianRed;
-                    }
-
-                    dao.AtualizaDataEtapa(new WorkflowPedidosModel()
-                    {
-                        Documento = txtPedido.Text,
-                        CodProduto = auxiliarCodProduto,
-                        LeadTime = prazoEtapa
-                    });
-
-                    dao.SalvarEtapas(new WorkflowPedidosModel() { 
-                        CodEmpresa = "1",
-                        NomeEmpresa = txtNomeEmpresa.Text,
-                        Documento = txtPedido.Text,
-                        Date = dtpDataDaBaixa.Text,
-                        CodOperador = codOperador,
-                        NomeOperador = txtNomeOperador.Text,
-                        Etapas = txtNomeEtapa.Text,
-                        CodEtapa = dao.GetCodEtapa(new WorkflowPedidosModel()
+                        string auxiliarCodProduto = dao.GetCodProduto(new WorkflowPedidosModel()
                         {
-                            Etapas = txtNomeEtapa.Text
-                        }),
-                        CorCelula = ColorTranslator.ToHtml(corCelula)
-                    });
+                            NomeProduto = nomeProduto
+                        });
+
+                        DateTime dataEmissaoPedido = dao.GetDataEmissao(new WorkflowPedidosModel()
+                        {
+                            Documento = pedido,
+                            CodProduto = auxiliarCodProduto
+                        });
+
+                        int prazoEtapa = dao.GetLeadTime(new WorkflowPedidosModel()
+                        {
+                            Etapas = columnName
+                        });
+
+                        int duracaoEtapa = (dataBaixa - dataEmissaoPedido).Days;
+                        formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Value = dataBaixa.ToShortDateString();
+
+                        if (duracaoEtapa <= prazoEtapa)
+                        {
+                            formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.ForestGreen;
+                            corCelula = Color.ForestGreen;
+                        }
+                        else
+                        {
+                            formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.IndianRed;
+                            corCelula = Color.IndianRed;
+                        }
+
+                        dao.AtualizaDataEtapa(new WorkflowPedidosModel()
+                        {
+                            Documento = txtPedido.Text,
+                            CodProduto = auxiliarCodProduto,
+                            LeadTime = prazoEtapa
+                        });
+
+                        dao.SalvarEtapas(new WorkflowPedidosModel()
+                        {
+                            CodEmpresa = "1",
+                            NomeEmpresa = txtNomeEmpresa.Text,
+                            Documento = txtPedido.Text,
+                            DataBaixa = dtpDataDaBaixa.Text,
+                            CodOperador = codOperador,
+                            NomeOperador = txtNomeOperador.Text,
+                            Etapas = txtNomeEtapa.Text,
+                            CodEtapa = dao.GetCodEtapa(new WorkflowPedidosModel()
+                            {
+                                Etapas = txtNomeEtapa.Text
+                            }),
+                            CorCelula = ColorTranslator.ToHtml(corCelula)
+                        });
+                    }
                 }
             }
             this.Close();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,6 +34,24 @@ namespace Movtech_Workflow_Pedidos
                 }
             }
             return string.Empty;
+        }
+
+        public bool VerificaCampos(WorkflowPedidosModel workflow)
+        {
+            if (string.IsNullOrEmpty(workflow.NomeCliente) || string.IsNullOrWhiteSpace(workflow.NomeCliente))
+            {
+                MessageBox.Show("Informe o campo do Nome do Cliente");
+                return false;
+            } else if (string.IsNullOrEmpty(workflow.NomeProduto) || string.IsNullOrWhiteSpace(workflow.NomeProduto)) 
+            {
+                MessageBox.Show("Informe o campo do nome do Produto");
+                return false;
+            } else if (string.IsNullOrEmpty(workflow.Documento) || string.IsNullOrWhiteSpace(workflow.Documento))
+            {
+                MessageBox.Show("Informe o campo do numero do Documento");
+                return false;
+            }
+            return true;
         }
 
         //realizar uma função para fazer uma consulta sql e gerar o leadTime para calcular a data de entrega do pedido e jogar na datagridview.
@@ -125,8 +144,9 @@ namespace Movtech_Workflow_Pedidos
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT documento, nomeEtapa, dataBaixa, corCelula FROM MvtEtapasBaixas";
-
+                    StringBuilder sql = new StringBuilder();
+                    sql.AppendLine("SELECT documento, nomeEtapa, dataBaixa, corCelula FROM MvtEtapasBaixas");
+                    command.CommandText = sql.ToString();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -134,7 +154,7 @@ namespace Movtech_Workflow_Pedidos
                             WorkflowPedidosModel etapaBaixa = new WorkflowPedidosModel();
                             etapaBaixa.Documento = reader["documento"].ToString();
                             etapaBaixa.Etapas = reader["nomeEtapa"].ToString();
-                            etapaBaixa.Date = Convert.ToString(reader["dataBaixa"]);
+                            etapaBaixa.DataBaixa = Convert.ToString(reader["dataBaixa"]);
                             etapaBaixa.CorCelula = reader["corCelula"].ToString();
 
                             etapasBaixas.Add(etapaBaixa);
@@ -142,7 +162,6 @@ namespace Movtech_Workflow_Pedidos
                     }
                 }
             }
-
             return etapasBaixas;
         }
     }
