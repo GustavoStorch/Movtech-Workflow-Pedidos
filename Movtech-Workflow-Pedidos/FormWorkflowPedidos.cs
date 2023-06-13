@@ -98,6 +98,12 @@ namespace Movtech_Workflow_Pedidos
         public void InitializeTable(DataGridView dataGridView)
         {
             dataGridView.Rows.Clear();
+            dataGridView.Columns["colDataEntrega"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dataGridView.Columns["colValorTotal"].DefaultCellStyle.Format = "C2";
+            dataGridView.Columns["colValorUnit"].DefaultCellStyle.Format = "C2";
+            dataGridView.Columns["colQuantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["colValorTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["colValorUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
@@ -120,7 +126,7 @@ namespace Movtech_Workflow_Pedidos
                     row.Cells[colQuantidade.Index].Value = pedido.Quantidade;
                     row.Cells[colValorTotal.Index].Value = pedido.ValorTotal;
                     row.Cells[colValorUnit.Index].Value = pedido.ValorUnitario;
-                    row.Cells[colDataEntrega.Index].Value = pedido.DataEntrega.Substring(0, 10);
+                    row.Cells[colDataEntrega.Index].Value = pedido.DataEntrega;
                     row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
                 }
                 dataGridView.Columns[colValorTotal.Index].Frozen = true;
@@ -279,6 +285,11 @@ namespace Movtech_Workflow_Pedidos
             }
             
 
+        }
+
+        private void dtgDadosPedidos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            dtgDadosPedidos.Columns["colDataEntrega"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Movtech_Workflow_Pedidos
 {
+
     [Table("MvtVendasEstruturaFaturamento")]
     public class WorkflowPedidosModel
     {
@@ -18,11 +19,11 @@ namespace Movtech_Workflow_Pedidos
 
         public string Quantidade { get; set; }
 
-        public string ValorTotal { get; set; }
+        public double ValorTotal { get; set; }
 
-        public string ValorUnitario { get; set; }
+        public double ValorUnitario { get; set; }
 
-        public string DataEntrega { get; set; }
+        public DateTime DataEntrega { get; set; }
 
         [ForeignKey("MvtCadCliente")]
         [Column("codCliente")]

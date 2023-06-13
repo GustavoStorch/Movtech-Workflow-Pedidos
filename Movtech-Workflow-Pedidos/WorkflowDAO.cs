@@ -59,6 +59,70 @@ namespace Movtech_Workflow_Pedidos
             }
         }*/
 
+        /*public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
+        {
+            List<WorkflowPedidosModel> pedidos = new List<WorkflowPedidosModel>();
+            using (SqlCommand command = Connection.CreateCommand())
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine("SELECT pd.documento, c.nomeCliente, p.nomeProduto, pd.qtde, pd.valorFaturado,");
+                sql.AppendLine("pd.valorFaturado / NULLIF(pd.qtde, 0) AS valorUnit, pd.dataProjecao, pd.codEmpresa");
+                sql.AppendLine("FROM MvtCadCliente c");
+                sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
+                sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
+                sql.AppendLine("WHERE 1 = 1");
+                if (!string.IsNullOrEmpty(workflow.NomeCliente))
+                {
+                    sql.AppendLine($"AND c.nomeCliente = @cliente");
+                    command.Parameters.AddWithValue("@cliente", workflow.NomeCliente);
+                }
+                if (!string.IsNullOrEmpty(workflow.NomeProduto))
+                {
+                    sql.AppendLine($"AND p.nomeProduto = @produto");
+                    command.Parameters.AddWithValue("@produto", workflow.NomeProduto);
+                }
+                if (!string.IsNullOrEmpty(workflow.Documento))
+                {
+                    sql.AppendLine($"AND pd.documento = @documento");
+                    command.Parameters.AddWithValue("@documento", workflow.Documento);
+                }
+                if (!string.IsNullOrEmpty(workflow.DataDe) && !string.IsNullOrEmpty(workflow.DataAte))
+                {
+                    sql.AppendLine($"AND pd.dataEmissao BETWEEN @dataDe AND @dataAte");
+                    command.Parameters.AddWithValue("@dataDe", workflow.DataDe);
+                    command.Parameters.AddWithValue("@dataAte", workflow.DataAte);
+                }
+
+                command.CommandText = sql.ToString();
+                using (SqlDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        WorkflowPedidosModel pedido = PopulateDrPedidos(dr);
+
+                        // Verifica se o pedido já existe na lista
+                        WorkflowPedidosModel pedidoExistente = pedidos.FirstOrDefault(p => p.Documento == pedido.Documento);
+                        if (pedidoExistente != null)
+                        {
+                            // Se o pedido já existe, adiciona os valores do produto ao pedido existente
+                            pedidoExistente.NomeProduto += $", {pedido.NomeProduto}";
+                            pedidoExistente.Quantidade += pedido.Quantidade;
+                            pedidoExistente.ValorTotal += pedido.ValorTotal;
+                        }
+                        else
+                        {
+                            // Se o pedido não existe, adiciona o pedido à lista
+                            pedidos.Add(pedido);
+                        }
+                    }
+                }
+            }
+            return pedidos;
+        }*/
+
+
+
+
         public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
         {
             List<WorkflowPedidosModel> pedidos = new List<WorkflowPedidosModel>();
@@ -104,6 +168,7 @@ namespace Movtech_Workflow_Pedidos
             return pedidos;
         }
 
+
         public WorkflowPedidosModel PopulateDrPedidos(SqlDataReader dr)
         {
             WorkflowPedidosModel model = new WorkflowPedidosModel();
@@ -126,15 +191,15 @@ namespace Movtech_Workflow_Pedidos
             }
             if (DBNull.Value != dr["valorFaturado"])
             {
-                model.ValorTotal = dr["valorFaturado"].ToString();
+                model.ValorTotal = Convert.ToDouble(dr["valorFaturado"]);
             }
             if (DBNull.Value != dr["valorUnit"])
             {
-                model.ValorUnitario = dr["valorUnit"].ToString();
+                model.ValorUnitario = Convert.ToDouble(dr["valorUnit"]);
             }
             if (DBNull.Value != dr["dataProjecao"])
             {
-                model.DataEntrega = dr["dataProjecao"].ToString();
+                model.DataEntrega = Convert.ToDateTime(dr["dataProjecao"]);
             }
             if (DBNull.Value != dr["codEmpresa"])
             {
