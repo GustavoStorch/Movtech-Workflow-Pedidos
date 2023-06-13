@@ -24,7 +24,7 @@ namespace Movtech_Workflow_Pedidos
 
         private void FormBuscarOperador_Load(object sender, EventArgs e)
         {
-
+            InitializeTable(); 
         }
 
         public void CarregaTextBox()
@@ -79,6 +79,22 @@ namespace Movtech_Workflow_Pedidos
                 {
                     InitializeTable();
                 }
+            }
+        }
+
+        private void txtNomeOperador_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtNomeOperador.Text.Trim();
+
+            foreach (DataGridViewRow row in dtgDadosOperador.Rows)
+            {
+                string nomeAutor = row.Cells[colNomeOperador.Index].Value.ToString().Trim();
+
+                // Verifica se o nome do autor contém o filtro
+                bool exibir = nomeAutor.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                // Define a visibilidade da linha com base no resultado do filtro
+                row.Visible = exibir;
             }
         }
     }

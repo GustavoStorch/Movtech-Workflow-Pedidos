@@ -13,13 +13,23 @@ namespace Movtech_Workflow_Pedidos
 {
     public partial class FormWorkflowPedidos : Form
     {
-        public string dataFake { get; } = "02/02/2020";
+        public string dataFake { get; } = "05/01/2020";
 
         public string pedido { get; set; }
 
         public string empresa { get; set; }
 
         public string nomeProduto { get; set; }
+
+        public string dtEntrega { get; set; }
+
+        public string qtd { get; set; }
+
+        public string valorUnit { get; set; }
+
+        public string valorTotal { get; set; }
+
+        public string nomeCliente { get ; set; }
     
         public FormWorkflowPedidos()
         {
@@ -30,6 +40,7 @@ namespace Movtech_Workflow_Pedidos
         {
             lblDataAtual.Text = "Data: " + DateTime.Now.ToString(dataFake);
             InitializaColumnsTable();
+            btnBaixarEtapa.Enabled = false;   
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -75,12 +86,13 @@ namespace Movtech_Workflow_Pedidos
 
         public void LimparCampos()
         {
-            dtpDataDe.Text = string.Empty;
+            dtpDataDe.Text = "2020-01-01";
             dtpDataAte.Text = string.Empty;
             txtNomeCliente.Text = string.Empty;
             txtPedido.Text = string.Empty;
             txtProduto.Text = string.Empty;
             dtgDadosPedidos.Rows.Clear();
+            btnBaixarEtapa.Enabled = false;
         }
 
         public void InitializeTable(DataGridView dataGridView)
@@ -103,6 +115,7 @@ namespace Movtech_Workflow_Pedidos
                 {
                     DataGridViewRow row = dataGridView.Rows[dataGridView.Rows.Add()];
                     row.Cells[colNomeCliente.Index].Value = pedido.NomeCliente;
+                    row.Cells[colNomeProduto.Index].Value = pedido.NomeProduto;
                     row.Cells[colPedido.Index].Value = pedido.Documento;
                     row.Cells[colQuantidade.Index].Value = pedido.Quantidade;
                     row.Cells[colValorTotal.Index].Value = pedido.ValorTotal;
@@ -180,16 +193,57 @@ namespace Movtech_Workflow_Pedidos
                     }
                 }   
             }
+            btnBaixarEtapa.Enabled = true;
         }
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
         {
-            CarregaFormBaixaEtapa();
+            if (dtgDadosPedidos.CurrentCell != null)
+            {
+                DataGridViewCell selectedCell = dtgDadosPedidos.CurrentCell;
+
+                if (selectedCell.Value == null)
+                {
+                    CarregaFormBaixaEtapa();
+                }
+                else
+                {
+                    MessageBox.Show("Célula inválida, por favor selecione uma etapa!");
+                }
+            }
         }
 
         private void dtgDadosPedidos_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            CarregaFormBaixaEtapa();
+            if (e.RowIndex > -1 && e.ColumnIndex > -1)
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    pedido = dtgDadosPedidos.Rows[e.RowIndex].Cells[colPedido.Index].Value + "";
+                    nomeProduto = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeProduto.Index].Value + "";
+                    nomeCliente = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeCliente.Index].Value + "";
+                    dtEntrega = dtgDadosPedidos.Rows[e.RowIndex].Cells[colDataEntrega.Index].Value + "";
+                    qtd = dtgDadosPedidos.Rows[e.RowIndex].Cells[colQuantidade.Index].Value + "";
+                    valorUnit = dtgDadosPedidos.Rows[e.RowIndex].Cells[colValorUnit.Index].Value + "";
+                    valorTotal = dtgDadosPedidos.Rows[e.RowIndex].Cells[colValorTotal.Index].Value + "";
+
+                    FormDetalhaPedidos formDetalhaPedidos = new FormDetalhaPedidos(pedido, nomeCliente, dtEntrega, nomeProduto, qtd, valorUnit, valorTotal);
+                    formDetalhaPedidos.ShowDialog();
+                }
+                else
+                {
+
+                    DataGridViewCell selectedCell = dtgDadosPedidos.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    if (selectedCell.Value == null)
+                    {
+                        CarregaFormBaixaEtapa();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Célula inválida, por favor selecione uma etapa!");
+                    }
+                }
+            }
         }
 
         public void CarregaFormBaixaEtapa()
@@ -208,6 +262,23 @@ namespace Movtech_Workflow_Pedidos
             formBaixaEtapa.ShowDialog();
         }
 
-        
+        private void dtgDadosPedidos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                pedido = dtgDadosPedidos.Rows[e.RowIndex].Cells[colPedido.Index].Value + "";
+                nomeProduto = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeProduto.Index].Value + "";
+                nomeCliente = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeCliente.Index].Value + "";
+                dtEntrega = dtgDadosPedidos.Rows[e.RowIndex].Cells[colDataEntrega.Index].Value + "";
+                qtd = dtgDadosPedidos.Rows[e.RowIndex].Cells[colQuantidade.Index].Value + "";
+                valorUnit = dtgDadosPedidos.Rows[e.RowIndex].Cells[colValorUnit.Index].Value + "";
+                valorTotal = dtgDadosPedidos.Rows[e.RowIndex].Cells[colValorTotal.Index].Value + "";
+
+                FormDetalhaPedidos formDetalhaPedidos = new FormDetalhaPedidos(pedido, nomeCliente, dtEntrega, nomeProduto, qtd, valorUnit, valorTotal);
+                formDetalhaPedidos.ShowDialog();
+            }
+            
+
+        }
     }
 }

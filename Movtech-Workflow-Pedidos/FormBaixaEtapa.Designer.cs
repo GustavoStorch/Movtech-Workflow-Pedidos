@@ -47,10 +47,9 @@
             // lblNomeEmpresa
             // 
             this.lblNomeEmpresa.AutoSize = true;
-            this.lblNomeEmpresa.Location = new System.Drawing.Point(8, 10);
-            this.lblNomeEmpresa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNomeEmpresa.Location = new System.Drawing.Point(12, 15);
             this.lblNomeEmpresa.Name = "lblNomeEmpresa";
-            this.lblNomeEmpresa.Size = new System.Drawing.Size(51, 13);
+            this.lblNomeEmpresa.Size = new System.Drawing.Size(77, 20);
             this.lblNomeEmpresa.TabIndex = 0;
             this.lblNomeEmpresa.Text = "Empresa:";
             // 
@@ -58,30 +57,27 @@
             // 
             this.lblPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPedido.AutoSize = true;
-            this.lblPedido.Location = new System.Drawing.Point(339, 10);
-            this.lblPedido.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPedido.Location = new System.Drawing.Point(508, 15);
             this.lblPedido.Name = "lblPedido";
-            this.lblPedido.Size = new System.Drawing.Size(43, 13);
+            this.lblPedido.Size = new System.Drawing.Size(62, 20);
             this.lblPedido.TabIndex = 1;
             this.lblPedido.Text = "Pedido:";
             // 
             // lblDataDaBaixa
             // 
             this.lblDataDaBaixa.AutoSize = true;
-            this.lblDataDaBaixa.Location = new System.Drawing.Point(8, 40);
-            this.lblDataDaBaixa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDataDaBaixa.Location = new System.Drawing.Point(12, 62);
             this.lblDataDaBaixa.Name = "lblDataDaBaixa";
-            this.lblDataDaBaixa.Size = new System.Drawing.Size(76, 13);
+            this.lblDataDaBaixa.Size = new System.Drawing.Size(111, 20);
             this.lblDataDaBaixa.TabIndex = 2;
             this.lblDataDaBaixa.Text = "Data da baixa:";
             // 
             // lblNomeOperador
             // 
             this.lblNomeOperador.AutoSize = true;
-            this.lblNomeOperador.Location = new System.Drawing.Point(185, 40);
-            this.lblNomeOperador.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNomeOperador.Location = new System.Drawing.Point(278, 62);
             this.lblNomeOperador.Name = "lblNomeOperador";
-            this.lblNomeOperador.Size = new System.Drawing.Size(54, 13);
+            this.lblNomeOperador.Size = new System.Drawing.Size(80, 20);
             this.lblNomeOperador.TabIndex = 3;
             this.lblNomeOperador.Text = "Operador:";
             // 
@@ -89,41 +85,40 @@
             // 
             this.txtNomeEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNomeEmpresa.Location = new System.Drawing.Point(86, 8);
-            this.txtNomeEmpresa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNomeEmpresa.Location = new System.Drawing.Point(129, 12);
             this.txtNomeEmpresa.MaxLength = 50;
             this.txtNomeEmpresa.Name = "txtNomeEmpresa";
             this.txtNomeEmpresa.ReadOnly = true;
-            this.txtNomeEmpresa.Size = new System.Drawing.Size(250, 20);
+            this.txtNomeEmpresa.Size = new System.Drawing.Size(373, 26);
             this.txtNomeEmpresa.TabIndex = 5;
             // 
             // txtPedido
             // 
             this.txtPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPedido.Location = new System.Drawing.Point(384, 8);
-            this.txtPedido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPedido.Location = new System.Drawing.Point(576, 12);
             this.txtPedido.Name = "txtPedido";
             this.txtPedido.ReadOnly = true;
-            this.txtPedido.Size = new System.Drawing.Size(104, 20);
+            this.txtPedido.Size = new System.Drawing.Size(154, 26);
             this.txtPedido.TabIndex = 6;
             // 
             // dtpDataDaBaixa
             // 
             this.dtpDataDaBaixa.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataDaBaixa.Location = new System.Drawing.Point(86, 37);
-            this.dtpDataDaBaixa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpDataDaBaixa.Location = new System.Drawing.Point(129, 57);
+            this.dtpDataDaBaixa.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpDataDaBaixa.Name = "dtpDataDaBaixa";
-            this.dtpDataDaBaixa.Size = new System.Drawing.Size(97, 20);
+            this.dtpDataDaBaixa.Size = new System.Drawing.Size(144, 26);
             this.dtpDataDaBaixa.TabIndex = 8;
+            this.dtpDataDaBaixa.Value = new System.DateTime(2020, 1, 5, 0, 0, 0, 0);
             // 
             // txtNomeOperador
             // 
             this.txtNomeOperador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNomeOperador.Location = new System.Drawing.Point(243, 38);
-            this.txtNomeOperador.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNomeOperador.Location = new System.Drawing.Point(364, 58);
             this.txtNomeOperador.Name = "txtNomeOperador";
-            this.txtNomeOperador.Size = new System.Drawing.Size(203, 20);
+            this.txtNomeOperador.ReadOnly = true;
+            this.txtNomeOperador.Size = new System.Drawing.Size(302, 26);
             this.txtNomeOperador.TabIndex = 9;
             // 
             // btnBuscarPedidos
@@ -133,10 +128,9 @@
             this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarPedidos.Location = new System.Drawing.Point(448, 37);
-            this.btnBuscarPedidos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscarPedidos.Location = new System.Drawing.Point(672, 57);
             this.btnBuscarPedidos.Name = "btnBuscarPedidos";
-            this.btnBuscarPedidos.Size = new System.Drawing.Size(39, 17);
+            this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
             this.btnBuscarPedidos.TabIndex = 25;
             this.btnBuscarPedidos.UseVisualStyleBackColor = true;
             this.btnBuscarPedidos.Click += new System.EventHandler(this.btnBuscarPedidos_Click);
@@ -144,9 +138,10 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(326, 60);
+            this.btnCancelar.Location = new System.Drawing.Point(489, 92);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(77, 22);
+            this.btnCancelar.Size = new System.Drawing.Size(116, 34);
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -155,9 +150,10 @@
             // btnBaixarEtapa
             // 
             this.btnBaixarEtapa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBaixarEtapa.Location = new System.Drawing.Point(409, 60);
+            this.btnBaixarEtapa.Location = new System.Drawing.Point(614, 92);
+            this.btnBaixarEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBaixarEtapa.Name = "btnBaixarEtapa";
-            this.btnBaixarEtapa.Size = new System.Drawing.Size(77, 22);
+            this.btnBaixarEtapa.Size = new System.Drawing.Size(116, 34);
             this.btnBaixarEtapa.TabIndex = 27;
             this.btnBaixarEtapa.Text = "Baixar Etapa";
             this.btnBaixarEtapa.UseVisualStyleBackColor = true;
@@ -166,25 +162,27 @@
             // lblNomeEtapa
             // 
             this.lblNomeEtapa.AutoSize = true;
-            this.lblNomeEtapa.Location = new System.Drawing.Point(8, 68);
+            this.lblNomeEtapa.Location = new System.Drawing.Point(12, 105);
+            this.lblNomeEtapa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeEtapa.Name = "lblNomeEtapa";
-            this.lblNomeEtapa.Size = new System.Drawing.Size(38, 13);
+            this.lblNomeEtapa.Size = new System.Drawing.Size(56, 20);
             this.lblNomeEtapa.TabIndex = 28;
             this.lblNomeEtapa.Text = "Etapa:";
             // 
             // txtNomeEtapa
             // 
-            this.txtNomeEtapa.Location = new System.Drawing.Point(86, 65);
+            this.txtNomeEtapa.Location = new System.Drawing.Point(129, 100);
+            this.txtNomeEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNomeEtapa.Name = "txtNomeEtapa";
             this.txtNomeEtapa.ReadOnly = true;
-            this.txtNomeEtapa.Size = new System.Drawing.Size(100, 20);
+            this.txtNomeEtapa.Size = new System.Drawing.Size(148, 26);
             this.txtNomeEtapa.TabIndex = 29;
             // 
             // FormBaixaEtapa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 90);
+            this.ClientSize = new System.Drawing.Size(742, 138);
             this.Controls.Add(this.txtNomeEtapa);
             this.Controls.Add(this.lblNomeEtapa);
             this.Controls.Add(this.btnCancelar);
@@ -199,7 +197,6 @@
             this.Controls.Add(this.lblPedido);
             this.Controls.Add(this.lblNomeEmpresa);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormBaixaEtapa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Baixar Etapa";

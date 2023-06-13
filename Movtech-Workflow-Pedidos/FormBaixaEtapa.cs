@@ -42,11 +42,6 @@ namespace Movtech_Workflow_Pedidos
             txtNomeEtapa.Text = columnName2;
         }
 
-
-        //02/06/2020 - 22/06/2020 (20 dias) = 15/06/2020 (sobrou 7 dias) 
-        //22/06/2020 - 28/06/2020 (06 dias) = 30/06/2020 (Utilizou 2 dias da etapa anterior, Fica em amarelo pois está dentro do prazo ainda )
-
-
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
         {
             DateTime dataBaixa = dtpDataDaBaixa.Value;

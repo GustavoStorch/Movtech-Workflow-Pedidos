@@ -47,6 +47,7 @@
             this.txtNomeOperador.Name = "txtNomeOperador";
             this.txtNomeOperador.Size = new System.Drawing.Size(613, 26);
             this.txtNomeOperador.TabIndex = 3;
+            this.txtNomeOperador.TextChanged += new System.EventHandler(this.txtNomeOperador_TextChanged);
             // 
             // lblOperador
             // 

@@ -65,7 +65,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado/pd.qtde) AS valorUnit,");
+                sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit,");
                 sql.AppendLine("pd.dataProjecao, pd.codEmpresa FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
                 sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");

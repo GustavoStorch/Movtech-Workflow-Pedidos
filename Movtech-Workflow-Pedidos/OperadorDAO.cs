@@ -33,7 +33,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT codFuncionario, nomeFuncionario FROM MvtCadFuncionario WHERE nomeFuncionario LIKE '%' + @nomeFuncionario + '%' AND situacao = 'Trabalhando' ORDER BY codFuncionario");
+                sql.AppendLine("SELECT usuario FROM MvtAcessoUsuario WHERE usuario LIKE '%' + @nomeFuncionario + '%' ORDER BY usuario");
                 command.Parameters.AddWithValue("@nomeFuncionario", workflow.NomeOperador);
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())
@@ -49,22 +49,16 @@ namespace Movtech_Workflow_Pedidos
 
         public WorkflowPedidosModel PopulateDrOperador(SqlDataReader dr)
         {
-            string codFuncionario = "";
-            string nomeFuncionario = "";
+            string usuario = "";
 
-            if (DBNull.Value != dr["codFuncionario"])
+            if (DBNull.Value != dr["usuario"])
             {
-                codFuncionario = dr["codFuncionario"] + "";
-            }
-            if (DBNull.Value != dr["nomeFuncionario"])
-            {
-                nomeFuncionario = dr["nomeFuncionario"] + "";
+                usuario = dr["usuario"] + "";
             }
 
             return new WorkflowPedidosModel()
             {
-                CodOperador = codFuncionario,
-                NomeOperador = nomeFuncionario
+                NomeOperador = usuario
             };
         }
     }
