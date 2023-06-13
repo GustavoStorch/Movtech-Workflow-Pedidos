@@ -242,7 +242,18 @@ namespace Movtech_Workflow_Pedidos
                     DataGridViewCell selectedCell = dtgDadosPedidos.Rows[e.RowIndex].Cells[e.ColumnIndex];
                     if (selectedCell.Value == null)
                     {
-                        CarregaFormBaixaEtapa();
+                        pedido = dtgDadosPedidos.Rows[e.RowIndex].Cells[colPedido.Index].Value + "";
+                        nomeProduto = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeProduto.Index].Value + "";
+                        using (SqlConnection connection = DaoConnection.GetConexao())
+                        {
+                            WorkflowDAO dao = new WorkflowDAO(connection);
+                            empresa = dao.GetNomeEmpresa(new WorkflowPedidosModel()
+                            {
+                                CodEmpresa = "1"
+                            });
+                        }
+                        FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeProduto);
+                        formBaixaEtapa.ShowDialog();
                     }
                     else
                     {
@@ -254,8 +265,12 @@ namespace Movtech_Workflow_Pedidos
 
         public void CarregaFormBaixaEtapa()
         {
-            pedido = txtPedido.Text;
-            nomeProduto = txtProduto.Text;
+            if (dtgDadosPedidos.SelectedCells.Count > 0)
+            {
+                int rowIndex = dtgDadosPedidos.SelectedCells[0].RowIndex;
+                pedido = dtgDadosPedidos.Rows[rowIndex].Cells[colPedido.Index].Value + "";
+                nomeProduto = dtgDadosPedidos.Rows[rowIndex].Cells[colNomeProduto.Index].Value + "";
+            }
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
                 WorkflowDAO dao = new WorkflowDAO(connection);
@@ -283,13 +298,6 @@ namespace Movtech_Workflow_Pedidos
                 FormDetalhaPedidos formDetalhaPedidos = new FormDetalhaPedidos(pedido, nomeCliente, dtEntrega, nomeProduto, qtd, valorUnit, valorTotal);
                 formDetalhaPedidos.ShowDialog();
             }
-            
-
-        }
-
-        private void dtgDadosPedidos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            dtgDadosPedidos.Columns["colDataEntrega"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
     }
 }

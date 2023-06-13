@@ -201,7 +201,6 @@
             this.dtgDadosPedidos.Size = new System.Drawing.Size(892, 337);
             this.dtgDadosPedidos.TabIndex = 11;
             this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick_1);
-            this.dtgDadosPedidos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtgDadosPedidos_CellFormatting);
             this.dtgDadosPedidos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgDadosPedidos_CellMouseDoubleClick);
             // 
             // colPedido
