@@ -60,24 +60,10 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine($"SELECT data FROM vwMvtVendasEstruturaFaturamento WHERE documento = @documento AND codProduto = @codProduto");
+                sql.AppendLine($"SELECT data FROM MvtVendasEstruturaFaturamento WHERE documento = @documento AND codCliente = @codCliente");
                 command.CommandText = sql.ToString();
                 command.Parameters.AddWithValue("@documento", workflow.Documento);
-                command.Parameters.Add(new SqlParameter("@codProduto", workflow.CodProduto));
-                DateTime result = Convert.ToDateTime(command.ExecuteScalar());
-                return result;
-            }
-        }
-
-        public DateTime GetDataPedido(WorkflowPedidosModel workflow)
-        {
-            using (SqlCommand command = Connection.CreateCommand())
-            {
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine($"SELECT dataEmissao FROM MvtVendasEstruturaFaturamento WHERE documento = @documento AND codProduto = @codProduto");
-                command.CommandText = sql.ToString();
-                command.Parameters.AddWithValue("@documento", workflow.Documento);
-                command.Parameters.Add(new SqlParameter("@codProduto", workflow.CodProduto));
+                command.Parameters.Add(new SqlParameter("@codCliente", workflow.CodCliente));
                 DateTime result = Convert.ToDateTime(command.ExecuteScalar());
                 return result;
             }
@@ -103,10 +89,10 @@ namespace Movtech_Workflow_Pedidos
                 try
                 {
                     StringBuilder sql = new StringBuilder();
-                    sql.AppendLine($"UPDATE MvtVendasEstruturaFaturamento SET data =  DATEADD(day, @dataNova, data) WHERE documento = @documento AND codProduto = @codProduto");
+                    sql.AppendLine($"UPDATE MvtVendasEstruturaFaturamento SET data =  DATEADD(day, @dataNova, data) WHERE documento = @documento AND codCliente = @codCliente");
                     command.Parameters.Add(new SqlParameter("@dataNova", workflow.LeadTime));
                     command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
-                    command.Parameters.Add(new SqlParameter("@codProduto", workflow.CodProduto));
+                    command.Parameters.Add(new SqlParameter("@codCliente", workflow.CodCliente));
                     command.CommandText = sql.ToString();
 
                     command.ExecuteNonQuery();
@@ -118,14 +104,14 @@ namespace Movtech_Workflow_Pedidos
             }
         }
 
-        public string GetCodProduto(WorkflowPedidosModel workflow)
+        public string GetCodCliente(WorkflowPedidosModel workflow)
         {
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine($"SELECT codProduto FROM vwMvtCadProduto WHERE nomeProduto = @nomeProduto");
+                sql.AppendLine($"SELECT codCliente FROM vwMvtCadCliente WHERE nomeCliente = @nomeCliente");
                 command.CommandText = sql.ToString();
-                command.Parameters.AddWithValue("@nomeProduto", workflow.NomeProduto);
+                command.Parameters.AddWithValue("@nomeCliente", workflow.NomeCliente);
                 string result = Convert.ToString(command.ExecuteScalar());
                 return result;
             }

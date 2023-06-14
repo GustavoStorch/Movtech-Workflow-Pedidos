@@ -106,6 +106,7 @@ namespace Movtech_Workflow_Pedidos
             dataGridView.Columns["colQuantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["colValorTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["colValorUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["colQtdTipos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
@@ -134,6 +135,7 @@ namespace Movtech_Workflow_Pedidos
                     row.Cells[colDataEntrega.Index].Value = pedido.DataEmissao.AddDays(LeadTime);
                     row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
                     row.Cells[colDataEmissao.Index].Value = pedido.DataEmissao;
+                    row.Cells[colQtdTipos.Index].Value = pedido.QuantidadeTipoProduto;
                 }
                 dataGridView.Columns[colValorTotal.Index].Frozen = true;
             }
@@ -250,7 +252,7 @@ namespace Movtech_Workflow_Pedidos
                     if (selectedCell.Value == null)
                     {
                         pedido = dtgDadosPedidos.Rows[e.RowIndex].Cells[colPedido.Index].Value + "";
-                        nomeProduto = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeProduto.Index].Value + "";
+                        nomeCliente = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeCliente.Index].Value + "";
                         using (SqlConnection connection = DaoConnection.GetConexao())
                         {
                             WorkflowDAO dao = new WorkflowDAO(connection);
@@ -259,7 +261,7 @@ namespace Movtech_Workflow_Pedidos
                                 CodEmpresa = "1"
                             });
                         }
-                        FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeProduto);
+                        FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente);
                         formBaixaEtapa.ShowDialog();
                     }
                     else
@@ -276,7 +278,7 @@ namespace Movtech_Workflow_Pedidos
             {
                 int rowIndex = dtgDadosPedidos.SelectedCells[0].RowIndex;
                 pedido = dtgDadosPedidos.Rows[rowIndex].Cells[colPedido.Index].Value + "";
-                nomeProduto = dtgDadosPedidos.Rows[rowIndex].Cells[colNomeProduto.Index].Value + "";
+                nomeCliente = dtgDadosPedidos.Rows[rowIndex].Cells[colNomeCliente.Index].Value + "";
             }
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
@@ -286,7 +288,7 @@ namespace Movtech_Workflow_Pedidos
                     CodEmpresa = "1"
                 });
             }
-            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeProduto);
+            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente);
             formBaixaEtapa.ShowDialog();
         }
 

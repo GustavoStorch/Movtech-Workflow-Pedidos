@@ -19,16 +19,16 @@ namespace Movtech_Workflow_Pedidos
 
         public string empresa { get; set; }
 
-        public string nomeProduto { get; set; }
+        public string nomeCliente { get; set; }
 
         public Color corCelula { get; set; }
 
-        public FormBaixaEtapa(string Pedido, string Empresa, string NomeProduto)
+        public FormBaixaEtapa(string Pedido, string Empresa, string NomeCliente)
         {
             InitializeComponent();
             pedido = Pedido;
             empresa = Empresa;
-            nomeProduto = NomeProduto;
+            nomeCliente = NomeCliente;
         }
 
         private void FormBaixaEtapa_Load(object sender, EventArgs e)
@@ -64,15 +64,15 @@ namespace Movtech_Workflow_Pedidos
 
                     if (verificaCampos)
                     {
-                        string auxiliarCodProduto = dao.GetCodProduto(new WorkflowPedidosModel()
+                        string auxiliarCodCliente = dao.GetCodCliente(new WorkflowPedidosModel()
                         {
-                            NomeProduto = nomeProduto
+                            NomeCliente = nomeCliente
                         });
 
                         DateTime dataEmissaoPedido = dao.GetDataEmissao(new WorkflowPedidosModel()
                         {
                             Documento = pedido,
-                            CodProduto = auxiliarCodProduto
+                            CodCliente = auxiliarCodCliente
                         });
 
                         int prazoEtapa = dao.GetLeadTime(new WorkflowPedidosModel()
@@ -97,7 +97,7 @@ namespace Movtech_Workflow_Pedidos
                         dao.AtualizaDataEtapa(new WorkflowPedidosModel()
                         {
                             Documento = txtPedido.Text,
-                            CodProduto = auxiliarCodProduto,
+                            CodCliente = auxiliarCodCliente,
                             LeadTime = prazoEtapa
                         });
 

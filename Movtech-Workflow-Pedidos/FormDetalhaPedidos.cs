@@ -37,6 +37,11 @@ namespace Movtech_Workflow_Pedidos
         private void InitializeTable()
         {
             dtgDadosDetalhados.Rows.Clear();
+            dtgDadosDetalhados.Columns["colValorTotal"].DefaultCellStyle.Format = "C2";
+            dtgDadosDetalhados.Columns["colValorUnit"].DefaultCellStyle.Format = "C2";
+            dtgDadosDetalhados.Columns["colQuantidadeProduto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dtgDadosDetalhados.Columns["colValorTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dtgDadosDetalhados.Columns["colValorUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             using (SqlConnection connection = DaoConnection.GetConexao())
             {

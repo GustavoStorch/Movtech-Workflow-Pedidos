@@ -54,6 +54,7 @@
             this.colNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQtdTipos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCodEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,7 +82,7 @@
             // lblNomeCliente
             // 
             this.lblNomeCliente.AutoSize = true;
-            this.lblNomeCliente.Location = new System.Drawing.Point(12, 57);
+            this.lblNomeCliente.Location = new System.Drawing.Point(12, 108);
             this.lblNomeCliente.Name = "lblNomeCliente";
             this.lblNomeCliente.Size = new System.Drawing.Size(62, 20);
             this.lblNomeCliente.TabIndex = 2;
@@ -90,7 +91,7 @@
             // lblProduto
             // 
             this.lblProduto.AutoSize = true;
-            this.lblProduto.Location = new System.Drawing.Point(664, 54);
+            this.lblProduto.Location = new System.Drawing.Point(664, 105);
             this.lblProduto.Name = "lblProduto";
             this.lblProduto.Size = new System.Drawing.Size(69, 20);
             this.lblProduto.TabIndex = 3;
@@ -100,7 +101,7 @@
             // 
             this.lblDataAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDataAtual.AutoSize = true;
-            this.lblDataAtual.Location = new System.Drawing.Point(1222, 9);
+            this.lblDataAtual.Location = new System.Drawing.Point(1222, 17);
             this.lblDataAtual.Name = "lblDataAtual";
             this.lblDataAtual.Size = new System.Drawing.Size(132, 20);
             this.lblDataAtual.TabIndex = 4;
@@ -127,7 +128,7 @@
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(88, 51);
+            this.txtNomeCliente.Location = new System.Drawing.Point(88, 102);
             this.txtNomeCliente.MaxLength = 100;
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(506, 26);
@@ -137,7 +138,7 @@
             // 
             this.txtProduto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtProduto.Location = new System.Drawing.Point(740, 51);
+            this.txtProduto.Location = new System.Drawing.Point(740, 102);
             this.txtProduto.MaxLength = 100;
             this.txtProduto.Name = "txtProduto";
             this.txtProduto.Size = new System.Drawing.Size(550, 26);
@@ -147,7 +148,7 @@
             // 
             this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLimpar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnLimpar.Location = new System.Drawing.Point(1114, 85);
+            this.btnLimpar.Location = new System.Drawing.Point(1114, 136);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(116, 34);
@@ -159,7 +160,7 @@
             // btnConsultar
             // 
             this.btnConsultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConsultar.Location = new System.Drawing.Point(1238, 85);
+            this.btnConsultar.Location = new System.Drawing.Point(1238, 136);
             this.btnConsultar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(116, 34);
@@ -172,9 +173,6 @@
             // 
             this.dtgDadosPedidos.AllowUserToAddRows = false;
             this.dtgDadosPedidos.AllowUserToDeleteRows = false;
-            this.dtgDadosPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosPedidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtgDadosPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgDadosPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -184,10 +182,11 @@
             this.colNomeCliente,
             this.colNomeProduto,
             this.colQuantidade,
+            this.colQtdTipos,
             this.colValorUnit,
             this.colValorTotal,
             this.colCodEmpresa});
-            this.dtgDadosPedidos.Location = new System.Drawing.Point(16, 128);
+            this.dtgDadosPedidos.Location = new System.Drawing.Point(16, 178);
             this.dtgDadosPedidos.Name = "dtgDadosPedidos";
             this.dtgDadosPedidos.ReadOnly = true;
             this.dtgDadosPedidos.RowHeadersWidth = 62;
@@ -199,8 +198,7 @@
             // 
             // btnBaixarEtapa
             // 
-            this.btnBaixarEtapa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBaixarEtapa.Location = new System.Drawing.Point(1210, 654);
+            this.btnBaixarEtapa.Location = new System.Drawing.Point(1210, 704);
             this.btnBaixarEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBaixarEtapa.Name = "btnBaixarEtapa";
             this.btnBaixarEtapa.Size = new System.Drawing.Size(144, 34);
@@ -213,16 +211,16 @@
             // 
             this.txtPedido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPedido.Location = new System.Drawing.Point(490, 14);
+            this.txtPedido.Location = new System.Drawing.Point(88, 58);
             this.txtPedido.MaxLength = 100;
             this.txtPedido.Name = "txtPedido";
-            this.txtPedido.Size = new System.Drawing.Size(168, 26);
+            this.txtPedido.Size = new System.Drawing.Size(265, 26);
             this.txtPedido.TabIndex = 3;
             // 
             // lblPedido
             // 
             this.lblPedido.AutoSize = true;
-            this.lblPedido.Location = new System.Drawing.Point(423, 17);
+            this.lblPedido.Location = new System.Drawing.Point(12, 58);
             this.lblPedido.Name = "lblPedido";
             this.lblPedido.Size = new System.Drawing.Size(62, 20);
             this.lblPedido.TabIndex = 22;
@@ -235,7 +233,7 @@
             this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarPedidos.Location = new System.Drawing.Point(669, 14);
+            this.btnBuscarPedidos.Location = new System.Drawing.Point(359, 58);
             this.btnBuscarPedidos.Name = "btnBuscarPedidos";
             this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
             this.btnBuscarPedidos.TabIndex = 4;
@@ -249,7 +247,7 @@
             this.btnBuscarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarProduto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBuscarProduto.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarProduto.Location = new System.Drawing.Point(1296, 51);
+            this.btnBuscarProduto.Location = new System.Drawing.Point(1296, 102);
             this.btnBuscarProduto.Name = "btnBuscarProduto";
             this.btnBuscarProduto.Size = new System.Drawing.Size(58, 26);
             this.btnBuscarProduto.TabIndex = 8;
@@ -262,7 +260,7 @@
             this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarCliente.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBuscarCliente.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarCliente.Location = new System.Drawing.Point(602, 51);
+            this.btnBuscarCliente.Location = new System.Drawing.Point(602, 102);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
             this.btnBuscarCliente.Size = new System.Drawing.Size(58, 26);
             this.btnBuscarCliente.TabIndex = 6;
@@ -321,6 +319,14 @@
             this.colQuantidade.ReadOnly = true;
             this.colQuantidade.Width = 71;
             // 
+            // colQtdTipos
+            // 
+            this.colQtdTipos.HeaderText = "Qtde. Tipos";
+            this.colQtdTipos.MinimumWidth = 8;
+            this.colQtdTipos.Name = "colQtdTipos";
+            this.colQtdTipos.ReadOnly = true;
+            this.colQtdTipos.Width = 126;
+            // 
             // colValorUnit
             // 
             dataGridViewCellStyle1.Format = "C2";
@@ -355,7 +361,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnLimpar;
-            this.ClientSize = new System.Drawing.Size(1366, 694);
+            this.ClientSize = new System.Drawing.Size(1366, 751);
             this.Controls.Add(this.btnBuscarPedidos);
             this.Controls.Add(this.txtPedido);
             this.Controls.Add(this.lblPedido);
@@ -411,6 +417,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNomeCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNomeProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQtdTipos;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodEmpresa;

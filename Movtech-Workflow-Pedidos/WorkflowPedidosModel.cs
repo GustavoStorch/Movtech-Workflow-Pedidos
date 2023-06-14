@@ -27,6 +27,8 @@ namespace Movtech_Workflow_Pedidos
 
         public DateTime DataEmissao { get; set; }
 
+        public int QuantidadeTipoProduto { get; set; }
+
         [ForeignKey("MvtCadCliente")]
         [Column("codCliente")]
         public string NomeCliente { get; set; }

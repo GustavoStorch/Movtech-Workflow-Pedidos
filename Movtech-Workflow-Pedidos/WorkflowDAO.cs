@@ -64,7 +64,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT pd.documento, c.nomeCliente, p.nomeProduto, SUM(pd.qtde) AS qtdeTotal, pd.valorFaturado,");
+                sql.AppendLine("SELECT pd.documento, c.nomeCliente, p.nomeProduto, SUM(pd.qtde) AS qtdeTotal,COUNT(p.nomeProduto) AS qtdeTeste, pd.valorFaturado,");
                 sql.AppendLine("AVG(pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
                 sql.AppendLine("FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
@@ -72,17 +72,17 @@ namespace Movtech_Workflow_Pedidos
                 sql.AppendLine("WHERE 1 = 1");
                 if (!string.IsNullOrEmpty(workflow.NomeCliente))
                 {
-                    sql.AppendLine($"AND c.nomeCliente = @cliente");
+                    sql.AppendLine($"AND c.nomeCliente LIKE '%' + @cliente + '%'");
                     command.Parameters.AddWithValue("@cliente", workflow.NomeCliente);
                 }
                 if (!string.IsNullOrEmpty(workflow.NomeProduto))
                 {
-                    sql.AppendLine($"AND p.nomeProduto = @produto");
+                    sql.AppendLine($"AND p.nomeProduto LIKE '%' + @produto + '%'");
                     command.Parameters.AddWithValue("@produto", workflow.NomeProduto);
                 }
                 if (!string.IsNullOrEmpty(workflow.Documento))
                 {
-                    sql.AppendLine($"AND pd.documento = @documento");
+                    sql.AppendLine($"AND pd.documento LIKE '%' + @documento + '%'");
                     command.Parameters.AddWithValue("@documento", workflow.Documento);
                 }
                 if (!string.IsNullOrEmpty(workflow.DataDe) && !string.IsNullOrEmpty(workflow.DataAte))
@@ -107,6 +107,7 @@ namespace Movtech_Workflow_Pedidos
                             pedidoExistente.NomeProduto += $", {pedido.NomeProduto}";
                             pedidoExistente.Quantidade += pedido.Quantidade;
                             pedidoExistente.ValorTotal += pedido.ValorTotal;
+                            pedidoExistente.QuantidadeTipoProduto += pedido.QuantidadeTipoProduto;
                         }
                         else
                         {
@@ -207,6 +208,10 @@ namespace Movtech_Workflow_Pedidos
             if (DBNull.Value != dr["dataEmissao"])
             {
                 model.DataEmissao = Convert.ToDateTime(dr["dataEmissao"]);
+            }
+            if (DBNull.Value != dr["qtdeTeste"])
+            {
+                model.QuantidadeTipoProduto = Convert.ToInt32(dr["qtdeTeste"]);
             }
 
             return model;
