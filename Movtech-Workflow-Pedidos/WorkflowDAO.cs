@@ -64,7 +64,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT pd.documento, c.nomeCliente, p.nomeProduto, SUM(pd.qtde) AS qtdeTotal,COUNT(p.nomeProduto) AS qtdeTeste, pd.valorFaturado,");
+                sql.AppendLine("SELECT pd.documento, c.nomeCliente, p.nomeProduto, SUM(pd.qtde) AS qtdeTotal,COUNT(p.nomeProduto) AS qtdeTipoProd, pd.valorFaturado,");
                 sql.AppendLine("AVG(pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
                 sql.AppendLine("FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
@@ -209,9 +209,9 @@ namespace Movtech_Workflow_Pedidos
             {
                 model.DataEmissao = Convert.ToDateTime(dr["dataEmissao"]);
             }
-            if (DBNull.Value != dr["qtdeTeste"])
+            if (DBNull.Value != dr["qtdeTipoProd"])
             {
-                model.QuantidadeTipoProduto = Convert.ToInt32(dr["qtdeTeste"]);
+                model.QuantidadeTipoProduto = Convert.ToInt32(dr["qtdeTipoProd"]);
             }
 
             return model;
