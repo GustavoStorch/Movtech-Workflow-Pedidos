@@ -33,9 +33,9 @@
             this.lblOperador = new System.Windows.Forms.Label();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dtgDadosOperador = new System.Windows.Forms.DataGridView();
+            this.txtCodOperador = new System.Windows.Forms.TextBox();
             this.colCodOperador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNomeOperador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtCodOperador = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosOperador)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,21 +92,6 @@
             this.dtgDadosOperador.TabIndex = 16;
             this.dtgDadosOperador.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosOperador_CellDoubleClick);
             // 
-            // colCodOperador
-            // 
-            this.colCodOperador.FillWeight = 15F;
-            this.colCodOperador.HeaderText = "Código";
-            this.colCodOperador.MinimumWidth = 8;
-            this.colCodOperador.Name = "colCodOperador";
-            this.colCodOperador.ReadOnly = true;
-            // 
-            // colNomeOperador
-            // 
-            this.colNomeOperador.HeaderText = "Operador";
-            this.colNomeOperador.MinimumWidth = 8;
-            this.colNomeOperador.Name = "colNomeOperador";
-            this.colNomeOperador.ReadOnly = true;
-            // 
             // txtCodOperador
             // 
             this.txtCodOperador.Enabled = false;
@@ -116,6 +101,22 @@
             this.txtCodOperador.Size = new System.Drawing.Size(10, 26);
             this.txtCodOperador.TabIndex = 17;
             this.txtCodOperador.Visible = false;
+            // 
+            // colCodOperador
+            // 
+            this.colCodOperador.FillWeight = 15F;
+            this.colCodOperador.HeaderText = "Código";
+            this.colCodOperador.MinimumWidth = 8;
+            this.colCodOperador.Name = "colCodOperador";
+            this.colCodOperador.ReadOnly = true;
+            this.colCodOperador.Visible = false;
+            // 
+            // colNomeOperador
+            // 
+            this.colNomeOperador.HeaderText = "Operador";
+            this.colNomeOperador.MinimumWidth = 8;
+            this.colNomeOperador.Name = "colNomeOperador";
+            this.colNomeOperador.ReadOnly = true;
             // 
             // FormBuscarOperador
             // 
@@ -145,8 +146,8 @@
         private System.Windows.Forms.Label lblOperador;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.DataGridView dtgDadosOperador;
+        private System.Windows.Forms.TextBox txtCodOperador;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodOperador;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNomeOperador;
-        private System.Windows.Forms.TextBox txtCodOperador;
     }
 }

@@ -23,6 +23,8 @@ namespace Movtech_Workflow_Pedidos
 
         public string dtEntrega { get; set; }
 
+        public string dtEmissao { get; set; }
+
         public string qtd { get; set; }
 
         public string valorUnit { get; set; }
@@ -108,6 +110,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
                 WorkflowDAO dao = new WorkflowDAO(connection);
+                BaixaEtapaDAO baixadao = new BaixaEtapaDAO(connection);
                 List<WorkflowPedidosModel> pedidos = dao.GetPedidos(new WorkflowPedidosModel()
                 {
                     NomeCliente = txtNomeCliente.Text,
@@ -116,6 +119,8 @@ namespace Movtech_Workflow_Pedidos
                     DataDe = dtpDataDe.Text,
                     DataAte = dtpDataAte.Text
                 });
+
+                int LeadTime = dao.RecuperaLeadTime();
 
                 foreach (WorkflowPedidosModel pedido in pedidos)
                 {
@@ -126,8 +131,9 @@ namespace Movtech_Workflow_Pedidos
                     row.Cells[colQuantidade.Index].Value = pedido.Quantidade;
                     row.Cells[colValorTotal.Index].Value = pedido.ValorTotal;
                     row.Cells[colValorUnit.Index].Value = pedido.ValorUnitario;
-                    row.Cells[colDataEntrega.Index].Value = pedido.DataEntrega;
+                    row.Cells[colDataEntrega.Index].Value = pedido.DataEmissao.AddDays(LeadTime);
                     row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
+                    row.Cells[colDataEmissao.Index].Value = pedido.DataEmissao;
                 }
                 dataGridView.Columns[colValorTotal.Index].Frozen = true;
             }
@@ -232,8 +238,9 @@ namespace Movtech_Workflow_Pedidos
                     qtd = dtgDadosPedidos.Rows[e.RowIndex].Cells[colQuantidade.Index].Value + "";
                     valorUnit = dtgDadosPedidos.Rows[e.RowIndex].Cells[colValorUnit.Index].Value + "";
                     valorTotal = dtgDadosPedidos.Rows[e.RowIndex].Cells[colValorTotal.Index].Value + "";
+                    dtEmissao = dtgDadosPedidos.Rows[e.RowIndex].Cells[colDataEmissao.Index].Value + "";
 
-                    FormDetalhaPedidos formDetalhaPedidos = new FormDetalhaPedidos(pedido, nomeCliente, dtEntrega, nomeProduto, qtd, valorUnit, valorTotal);
+                    FormDetalhaPedidos formDetalhaPedidos = new FormDetalhaPedidos(pedido, nomeCliente, dtEmissao, dtEntrega, qtd, valorUnit, valorTotal);
                     formDetalhaPedidos.ShowDialog();
                 }
                 else
@@ -294,8 +301,9 @@ namespace Movtech_Workflow_Pedidos
                 qtd = dtgDadosPedidos.Rows[e.RowIndex].Cells[colQuantidade.Index].Value + "";
                 valorUnit = dtgDadosPedidos.Rows[e.RowIndex].Cells[colValorUnit.Index].Value + "";
                 valorTotal = dtgDadosPedidos.Rows[e.RowIndex].Cells[colValorTotal.Index].Value + "";
+                dtEmissao = dtgDadosPedidos.Rows[e.RowIndex].Cells[colDataEmissao.Index].Value + "";
 
-                FormDetalhaPedidos formDetalhaPedidos = new FormDetalhaPedidos(pedido, nomeCliente, dtEntrega, nomeProduto, qtd, valorUnit, valorTotal);
+                FormDetalhaPedidos formDetalhaPedidos = new FormDetalhaPedidos(pedido, nomeCliente, dtEmissao, dtEntrega, qtd, valorUnit, valorTotal);
                 formDetalhaPedidos.ShowDialog();
             }
         }

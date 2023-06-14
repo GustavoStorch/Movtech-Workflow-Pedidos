@@ -69,6 +69,20 @@ namespace Movtech_Workflow_Pedidos
             }
         }
 
+        public DateTime GetDataPedido(WorkflowPedidosModel workflow)
+        {
+            using (SqlCommand command = Connection.CreateCommand())
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine($"SELECT dataEmissao FROM MvtVendasEstruturaFaturamento WHERE documento = @documento AND codProduto = @codProduto");
+                command.CommandText = sql.ToString();
+                command.Parameters.AddWithValue("@documento", workflow.Documento);
+                command.Parameters.Add(new SqlParameter("@codProduto", workflow.CodProduto));
+                DateTime result = Convert.ToDateTime(command.ExecuteScalar());
+                return result;
+            }
+        }
+
         public int GetLeadTime(WorkflowPedidosModel workflow)
         {
             using (SqlCommand command = Connection.CreateCommand())

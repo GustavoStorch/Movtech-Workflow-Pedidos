@@ -38,16 +38,15 @@ namespace Movtech_Workflow_Pedidos
 
         public bool VerificaCampos(WorkflowPedidosModel workflow)
         {
-           /* if (string.IsNullOrEmpty(workflow.NomeCliente) && string.IsNullOrEmpty(workflow.NomeProduto) && string.IsNullOrEmpty(workflow.Documento))
+           /*if (string.IsNullOrEmpty(workflow.NomeCliente) && string.IsNullOrEmpty(workflow.NomeProduto) && string.IsNullOrEmpty(workflow.Documento) && string.IsNullOrEmpty(workflow.DataDe) && string.IsNullOrEmpty(workflow.DataAte))
             {
                 MessageBox.Show("Por favor, preencha algum campo acima!");
                 return false;
-            } */
+            }*/
             return true;
         }
 
-        //realizar uma função para fazer uma consulta sql e gerar o leadTime para calcular a data de entrega do pedido e jogar na datagridview.
-        /*public int RecuperaLeadTime()
+        public int RecuperaLeadTime()
         {
             using (SqlCommand command = Connection.CreateCommand())
             {
@@ -57,16 +56,16 @@ namespace Movtech_Workflow_Pedidos
                 int prazoEntrega = Convert.ToInt32(command.ExecuteScalar());
                 return prazoEntrega;
             }
-        }*/
+        }
 
-        /*public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
+        public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
         {
             List<WorkflowPedidosModel> pedidos = new List<WorkflowPedidosModel>();
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT pd.documento, c.nomeCliente, p.nomeProduto, pd.qtde, pd.valorFaturado,");
-                sql.AppendLine("pd.valorFaturado / NULLIF(pd.qtde, 0) AS valorUnit, pd.dataProjecao, pd.codEmpresa");
+                sql.AppendLine("SELECT pd.documento, c.nomeCliente, p.nomeProduto, SUM(pd.qtde) AS qtdeTotal, pd.valorFaturado,");
+                sql.AppendLine("AVG(pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
                 sql.AppendLine("FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
                 sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
@@ -92,7 +91,7 @@ namespace Movtech_Workflow_Pedidos
                     command.Parameters.AddWithValue("@dataDe", workflow.DataDe);
                     command.Parameters.AddWithValue("@dataAte", workflow.DataAte);
                 }
-
+                sql.AppendLine($"GROUP BY pd.documento, c.nomeCliente, p.nomeProduto, pd.valorFaturado, pd.qtde, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())
                 {
@@ -118,19 +117,19 @@ namespace Movtech_Workflow_Pedidos
                 }
             }
             return pedidos;
-        }*/
+        }
 
 
 
 
-        public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
+        /*public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
         {
             List<WorkflowPedidosModel> pedidos = new List<WorkflowPedidosModel>();
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
                 sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit,");
-                sql.AppendLine("pd.dataProjecao, pd.codEmpresa FROM MvtCadCliente c");
+                sql.AppendLine("pd.dataProjecao, pd.codEmpresa, pd.dataEmissao FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
                 sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
                 sql.AppendLine("WHERE 1 = 1");
@@ -166,7 +165,7 @@ namespace Movtech_Workflow_Pedidos
                 }
             }
             return pedidos;
-        }
+        }*/
 
 
         public WorkflowPedidosModel PopulateDrPedidos(SqlDataReader dr)
@@ -185,9 +184,9 @@ namespace Movtech_Workflow_Pedidos
             {
                 model.Documento = dr["documento"].ToString();
             }
-            if (DBNull.Value != dr["qtde"])
+            if (DBNull.Value != dr["qtdeTotal"])
             {
-                model.Quantidade = dr["qtde"].ToString();
+                model.Quantidade = Convert.ToInt32(dr["qtdeTotal"]);
             }
             if (DBNull.Value != dr["valorFaturado"])
             {
@@ -204,6 +203,10 @@ namespace Movtech_Workflow_Pedidos
             if (DBNull.Value != dr["codEmpresa"])
             {
                 model.CodEmpresa = dr["codEmpresa"].ToString();
+            }
+            if (DBNull.Value != dr["dataEmissao"])
+            {
+                model.DataEmissao = Convert.ToDateTime(dr["dataEmissao"]);
             }
 
             return model;

@@ -17,13 +17,15 @@ namespace Movtech_Workflow_Pedidos
 
         public string Documento { get; set; }
 
-        public string Quantidade { get; set; }
+        public int Quantidade { get; set; }
 
         public double ValorTotal { get; set; }
 
         public double ValorUnitario { get; set; }
 
         public DateTime DataEntrega { get; set; }
+
+        public DateTime DataEmissao { get; set; }
 
         [ForeignKey("MvtCadCliente")]
         [Column("codCliente")]
