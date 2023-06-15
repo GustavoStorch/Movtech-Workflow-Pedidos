@@ -178,6 +178,9 @@
             // 
             this.dtgDadosPedidos.AllowUserToAddRows = false;
             this.dtgDadosPedidos.AllowUserToDeleteRows = false;
+            this.dtgDadosPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosPedidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtgDadosPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgDadosPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -291,6 +294,7 @@
             // 
             // btnBaixarEtapa
             // 
+            this.btnBaixarEtapa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBaixarEtapa.Location = new System.Drawing.Point(1210, 704);
             this.btnBaixarEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBaixarEtapa.Name = "btnBaixarEtapa";
