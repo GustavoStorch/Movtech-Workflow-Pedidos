@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormWorkflowPedidos));
             this.lblDateDe = new System.Windows.Forms.Label();
@@ -42,12 +43,6 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dtgDadosPedidos = new System.Windows.Forms.DataGridView();
-            this.btnBaixarEtapa = new System.Windows.Forms.Button();
-            this.txtPedido = new System.Windows.Forms.TextBox();
-            this.lblPedido = new System.Windows.Forms.Label();
-            this.btnBuscarPedidos = new System.Windows.Forms.Button();
-            this.btnBuscarProduto = new System.Windows.Forms.Button();
-            this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.colPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDataEmissao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDataEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +53,17 @@
             this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCodEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBaixarEtapa = new System.Windows.Forms.Button();
+            this.txtPedido = new System.Windows.Forms.TextBox();
+            this.lblPedido = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.imgCarregamento = new System.Windows.Forms.PictureBox();
+            this.btnBuscarPedidos = new System.Windows.Forms.Button();
+            this.btnBuscarProduto = new System.Windows.Forms.Button();
+            this.btnBuscarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCarregamento)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDateDe
@@ -196,77 +201,6 @@
             this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick_1);
             this.dtgDadosPedidos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgDadosPedidos_CellMouseDoubleClick);
             // 
-            // btnBaixarEtapa
-            // 
-            this.btnBaixarEtapa.Location = new System.Drawing.Point(1210, 704);
-            this.btnBaixarEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnBaixarEtapa.Name = "btnBaixarEtapa";
-            this.btnBaixarEtapa.Size = new System.Drawing.Size(144, 34);
-            this.btnBaixarEtapa.TabIndex = 12;
-            this.btnBaixarEtapa.Text = "Baixar Etapa";
-            this.btnBaixarEtapa.UseVisualStyleBackColor = true;
-            this.btnBaixarEtapa.Click += new System.EventHandler(this.btnBaixarEtapa_Click);
-            // 
-            // txtPedido
-            // 
-            this.txtPedido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPedido.Location = new System.Drawing.Point(88, 58);
-            this.txtPedido.MaxLength = 100;
-            this.txtPedido.Name = "txtPedido";
-            this.txtPedido.Size = new System.Drawing.Size(265, 26);
-            this.txtPedido.TabIndex = 3;
-            // 
-            // lblPedido
-            // 
-            this.lblPedido.AutoSize = true;
-            this.lblPedido.Location = new System.Drawing.Point(12, 58);
-            this.lblPedido.Name = "lblPedido";
-            this.lblPedido.Size = new System.Drawing.Size(62, 20);
-            this.lblPedido.TabIndex = 22;
-            this.lblPedido.Text = "Pedido:";
-            // 
-            // btnBuscarPedidos
-            // 
-            this.btnBuscarPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuscarPedidos.FlatAppearance.BorderSize = 0;
-            this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarPedidos.Location = new System.Drawing.Point(359, 58);
-            this.btnBuscarPedidos.Name = "btnBuscarPedidos";
-            this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
-            this.btnBuscarPedidos.TabIndex = 4;
-            this.btnBuscarPedidos.UseVisualStyleBackColor = true;
-            this.btnBuscarPedidos.Click += new System.EventHandler(this.btnBuscarPedidos_Click);
-            // 
-            // btnBuscarProduto
-            // 
-            this.btnBuscarProduto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuscarProduto.FlatAppearance.BorderSize = 0;
-            this.btnBuscarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarProduto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscarProduto.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarProduto.Location = new System.Drawing.Point(1296, 102);
-            this.btnBuscarProduto.Name = "btnBuscarProduto";
-            this.btnBuscarProduto.Size = new System.Drawing.Size(58, 26);
-            this.btnBuscarProduto.TabIndex = 8;
-            this.btnBuscarProduto.UseVisualStyleBackColor = true;
-            this.btnBuscarProduto.Click += new System.EventHandler(this.btnBuscarProduto_Click);
-            // 
-            // btnBuscarCliente
-            // 
-            this.btnBuscarCliente.FlatAppearance.BorderSize = 0;
-            this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarCliente.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscarCliente.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarCliente.Location = new System.Drawing.Point(602, 102);
-            this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(58, 26);
-            this.btnBuscarCliente.TabIndex = 6;
-            this.btnBuscarCliente.UseVisualStyleBackColor = true;
-            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
-            // 
             // colPedido
             // 
             this.colPedido.FillWeight = 40F;
@@ -355,6 +289,91 @@
             this.colCodEmpresa.Visible = false;
             this.colCodEmpresa.Width = 138;
             // 
+            // btnBaixarEtapa
+            // 
+            this.btnBaixarEtapa.Location = new System.Drawing.Point(1210, 704);
+            this.btnBaixarEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBaixarEtapa.Name = "btnBaixarEtapa";
+            this.btnBaixarEtapa.Size = new System.Drawing.Size(144, 34);
+            this.btnBaixarEtapa.TabIndex = 12;
+            this.btnBaixarEtapa.Text = "Baixar Etapa";
+            this.btnBaixarEtapa.UseVisualStyleBackColor = true;
+            this.btnBaixarEtapa.Click += new System.EventHandler(this.btnBaixarEtapa_Click);
+            // 
+            // txtPedido
+            // 
+            this.txtPedido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPedido.Location = new System.Drawing.Point(88, 58);
+            this.txtPedido.MaxLength = 100;
+            this.txtPedido.Name = "txtPedido";
+            this.txtPedido.Size = new System.Drawing.Size(265, 26);
+            this.txtPedido.TabIndex = 3;
+            // 
+            // lblPedido
+            // 
+            this.lblPedido.AutoSize = true;
+            this.lblPedido.Location = new System.Drawing.Point(12, 58);
+            this.lblPedido.Name = "lblPedido";
+            this.lblPedido.Size = new System.Drawing.Size(62, 20);
+            this.lblPedido.TabIndex = 22;
+            this.lblPedido.Text = "Pedido:";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // imgCarregamento
+            // 
+            this.imgCarregamento.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.ZZ5H;
+            this.imgCarregamento.Location = new System.Drawing.Point(529, 241);
+            this.imgCarregamento.Name = "imgCarregamento";
+            this.imgCarregamento.Size = new System.Drawing.Size(256, 256);
+            this.imgCarregamento.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.imgCarregamento.TabIndex = 23;
+            this.imgCarregamento.TabStop = false;
+            // 
+            // btnBuscarPedidos
+            // 
+            this.btnBuscarPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscarPedidos.FlatAppearance.BorderSize = 0;
+            this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
+            this.btnBuscarPedidos.Location = new System.Drawing.Point(359, 58);
+            this.btnBuscarPedidos.Name = "btnBuscarPedidos";
+            this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
+            this.btnBuscarPedidos.TabIndex = 4;
+            this.btnBuscarPedidos.UseVisualStyleBackColor = true;
+            this.btnBuscarPedidos.Click += new System.EventHandler(this.btnBuscarPedidos_Click);
+            // 
+            // btnBuscarProduto
+            // 
+            this.btnBuscarProduto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscarProduto.FlatAppearance.BorderSize = 0;
+            this.btnBuscarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarProduto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBuscarProduto.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
+            this.btnBuscarProduto.Location = new System.Drawing.Point(1296, 102);
+            this.btnBuscarProduto.Name = "btnBuscarProduto";
+            this.btnBuscarProduto.Size = new System.Drawing.Size(58, 26);
+            this.btnBuscarProduto.TabIndex = 8;
+            this.btnBuscarProduto.UseVisualStyleBackColor = true;
+            this.btnBuscarProduto.Click += new System.EventHandler(this.btnBuscarProduto_Click);
+            // 
+            // btnBuscarCliente
+            // 
+            this.btnBuscarCliente.FlatAppearance.BorderSize = 0;
+            this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarCliente.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBuscarCliente.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
+            this.btnBuscarCliente.Location = new System.Drawing.Point(602, 102);
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(58, 26);
+            this.btnBuscarCliente.TabIndex = 6;
+            this.btnBuscarCliente.UseVisualStyleBackColor = true;
+            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
+            // 
             // FormWorkflowPedidos
             // 
             this.AcceptButton = this.btnConsultar;
@@ -362,6 +381,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnLimpar;
             this.ClientSize = new System.Drawing.Size(1366, 751);
+            this.Controls.Add(this.imgCarregamento);
             this.Controls.Add(this.btnBuscarPedidos);
             this.Controls.Add(this.txtPedido);
             this.Controls.Add(this.lblPedido);
@@ -386,6 +406,8 @@
             this.Text = "WorkFlow - Pedidos";
             this.Load += new System.EventHandler(this.FormWorkflowPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCarregamento)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,6 +443,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodEmpresa;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.PictureBox imgCarregamento;
     }
 }
 

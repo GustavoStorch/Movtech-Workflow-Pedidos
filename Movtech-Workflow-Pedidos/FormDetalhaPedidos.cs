@@ -20,8 +20,8 @@ namespace Movtech_Workflow_Pedidos
             txtNomeCliente.Text = NomeCliente;
             dtpDataEntrega.Text = DtEntrega;
             txtQuantidade.Text = Qtd;
-            txtValorUnitario.Text = ValorUnit;
-            txtValorTotal.Text = ValorTotal;
+            txtValorUnitario.Text = Convert.ToDouble(ValorUnit).ToString("C2");
+            txtValorTotal.Text = Convert.ToDouble(ValorTotal).ToString("C2");
             dtpDataPedido.Text = DtEmissao;
         }
 

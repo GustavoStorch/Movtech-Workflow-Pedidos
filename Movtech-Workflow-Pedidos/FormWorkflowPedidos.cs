@@ -42,7 +42,8 @@ namespace Movtech_Workflow_Pedidos
         {
             lblDataAtual.Text = "Data: " + DateTime.Now.ToString(dataFake);
             InitializaColumnsTable();
-            btnBaixarEtapa.Enabled = false;   
+            btnBaixarEtapa.Enabled = false;
+            imgCarregamento.Visible = false;
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -131,7 +132,7 @@ namespace Movtech_Workflow_Pedidos
                     row.Cells[colPedido.Index].Value = pedido.Documento;
                     row.Cells[colQuantidade.Index].Value = pedido.Quantidade;
                     row.Cells[colValorTotal.Index].Value = pedido.ValorTotal;
-                    row.Cells[colValorUnit.Index].Value = pedido.ValorUnitario;
+                    row.Cells[colValorUnit.Index].Value = pedido.ValorTotal / pedido.Quantidade;
                     row.Cells[colDataEntrega.Index].Value = pedido.DataEmissao.AddDays(LeadTime);
                     row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
                     row.Cells[colDataEmissao.Index].Value = pedido.DataEmissao;
@@ -166,6 +167,7 @@ namespace Movtech_Workflow_Pedidos
 
        private void btnConsultar_Click(object sender, EventArgs e)
         {
+            imgCarregamento.Enabled = true;
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
                 WorkflowDAO dao = new WorkflowDAO(connection);
@@ -208,6 +210,7 @@ namespace Movtech_Workflow_Pedidos
                 }   
             }
             btnBaixarEtapa.Enabled = true;
+            imgCarregamento.Enabled = false;
         }
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)

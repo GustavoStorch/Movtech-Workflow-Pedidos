@@ -64,8 +64,8 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT pd.documento, c.nomeCliente, p.nomeProduto, SUM(pd.qtde) AS qtdeTotal,COUNT(p.nomeProduto) AS qtdeTipoProd, pd.valorFaturado,");
-                sql.AppendLine("AVG(pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
+                sql.AppendLine("SELECT pd.documento, c.nomeCliente, SUM(pd.qtde) AS qtdeTotal,COUNT(p.nomeProduto) AS qtdeTipoProd,");
+                sql.AppendLine("SUM(pd.valorFaturado) AS valorTotal, AVG(pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
                 sql.AppendLine("FROM MvtCadCliente c");
                 sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
                 sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
@@ -77,7 +77,7 @@ namespace Movtech_Workflow_Pedidos
                 }
                 if (!string.IsNullOrEmpty(workflow.NomeProduto))
                 {
-                    sql.AppendLine($"AND p.nomeProduto LIKE '%' + @produto + '%'");
+                    sql.AppendLine($"AND EXISTS (SELECT 1 FROM MvtVendasEstruturaFaturamento pd2 JOIN MvtCadProduto p2 ON pd2.codProduto = p2.codProduto WHERE pd2.documento = pd.documento AND p2.nomeProduto LIKE '%' + @produto + '%')");
                     command.Parameters.AddWithValue("@produto", workflow.NomeProduto);
                 }
                 if (!string.IsNullOrEmpty(workflow.Documento))
@@ -91,7 +91,7 @@ namespace Movtech_Workflow_Pedidos
                     command.Parameters.AddWithValue("@dataDe", workflow.DataDe);
                     command.Parameters.AddWithValue("@dataAte", workflow.DataAte);
                 }
-                sql.AppendLine($"GROUP BY pd.documento, c.nomeCliente, p.nomeProduto, pd.valorFaturado, pd.qtde, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
+                sql.AppendLine($"GROUP BY pd.documento, c.nomeCliente, pd.valorFaturado, pd.qtde, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())
                 {
@@ -104,9 +104,9 @@ namespace Movtech_Workflow_Pedidos
                         if (pedidoExistente != null)
                         {
                             // Se o pedido já existe, adiciona os valores do produto ao pedido existente
-                            pedidoExistente.NomeProduto += $", {pedido.NomeProduto}";
                             pedidoExistente.Quantidade += pedido.Quantidade;
                             pedidoExistente.ValorTotal += pedido.ValorTotal;
+                            pedidoExistente.ValorUnitario = pedido.ValorUnitario;
                             pedidoExistente.QuantidadeTipoProduto += pedido.QuantidadeTipoProduto;
                         }
                         else
@@ -119,9 +119,6 @@ namespace Movtech_Workflow_Pedidos
             }
             return pedidos;
         }
-
-
-
 
         /*public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
         {
@@ -177,10 +174,10 @@ namespace Movtech_Workflow_Pedidos
             {
                 model.NomeCliente = dr["nomeCliente"].ToString();
             }
-            if (DBNull.Value != dr["nomeProduto"])
+            /*if (DBNull.Value != dr["nomeProduto"])
             {
                 model.NomeProduto = dr["nomeProduto"].ToString();
-            }
+            }*/
             if (DBNull.Value != dr["documento"])
             {
                 model.Documento = dr["documento"].ToString();
@@ -189,9 +186,9 @@ namespace Movtech_Workflow_Pedidos
             {
                 model.Quantidade = Convert.ToInt32(dr["qtdeTotal"]);
             }
-            if (DBNull.Value != dr["valorFaturado"])
+            if (DBNull.Value != dr["valorTotal"])
             {
-                model.ValorTotal = Convert.ToDouble(dr["valorFaturado"]);
+                model.ValorTotal = Convert.ToDouble(dr["valorTotal"]);
             }
             if (DBNull.Value != dr["valorUnit"])
             {

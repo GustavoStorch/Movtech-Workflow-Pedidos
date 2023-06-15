@@ -44,11 +44,11 @@
             this.btnFechar = new System.Windows.Forms.Button();
             this.lblDataPedido = new System.Windows.Forms.Label();
             this.dtgDadosDetalhados = new System.Windows.Forms.DataGridView();
-            this.dtpDataPedido = new System.Windows.Forms.DateTimePicker();
             this.colNomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuantidadeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtpDataPedido = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosDetalhados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,6 +133,7 @@
             this.txtQuantidade.ReadOnly = true;
             this.txtQuantidade.Size = new System.Drawing.Size(100, 26);
             this.txtQuantidade.TabIndex = 5;
+            this.txtQuantidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtValorUnitario
             // 
@@ -141,6 +142,7 @@
             this.txtValorUnitario.ReadOnly = true;
             this.txtValorUnitario.Size = new System.Drawing.Size(153, 26);
             this.txtValorUnitario.TabIndex = 6;
+            this.txtValorUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtValorTotal
             // 
@@ -151,6 +153,7 @@
             this.txtValorTotal.ReadOnly = true;
             this.txtValorTotal.Size = new System.Drawing.Size(153, 26);
             this.txtValorTotal.TabIndex = 7;
+            this.txtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // dtpDataEntrega
             // 
@@ -204,15 +207,6 @@
             this.dtgDadosDetalhados.Size = new System.Drawing.Size(701, 322);
             this.dtgDadosDetalhados.TabIndex = 11;
             // 
-            // dtpDataPedido
-            // 
-            this.dtpDataPedido.Enabled = false;
-            this.dtpDataPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataPedido.Location = new System.Drawing.Point(141, 13);
-            this.dtpDataPedido.Name = "dtpDataPedido";
-            this.dtpDataPedido.Size = new System.Drawing.Size(151, 26);
-            this.dtpDataPedido.TabIndex = 10;
-            // 
             // colNomeProduto
             // 
             this.colNomeProduto.HeaderText = "Produto";
@@ -243,6 +237,15 @@
             this.colValorTotal.MinimumWidth = 8;
             this.colValorTotal.Name = "colValorTotal";
             this.colValorTotal.ReadOnly = true;
+            // 
+            // dtpDataPedido
+            // 
+            this.dtpDataPedido.Enabled = false;
+            this.dtpDataPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataPedido.Location = new System.Drawing.Point(141, 13);
+            this.dtpDataPedido.Name = "dtpDataPedido";
+            this.dtpDataPedido.Size = new System.Drawing.Size(151, 26);
+            this.dtpDataPedido.TabIndex = 10;
             // 
             // FormDetalhaPedidos
             // 
