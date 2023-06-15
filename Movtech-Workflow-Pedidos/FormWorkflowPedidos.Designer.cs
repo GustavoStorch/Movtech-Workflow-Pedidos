@@ -57,10 +57,10 @@
             this.txtPedido = new System.Windows.Forms.TextBox();
             this.lblPedido = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnBuscarPedidos = new System.Windows.Forms.Button();
             this.btnBuscarProduto = new System.Windows.Forms.Button();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -323,23 +323,13 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.ezgif1;
-            this.pictureBox1.Location = new System.Drawing.Point(625, 314);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 67);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 23;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnBuscarPedidos
             // 
             this.btnBuscarPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscarPedidos.FlatAppearance.BorderSize = 0;
             this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
             this.btnBuscarPedidos.Location = new System.Drawing.Point(359, 58);
             this.btnBuscarPedidos.Name = "btnBuscarPedidos";
             this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
@@ -353,6 +343,7 @@
             this.btnBuscarProduto.FlatAppearance.BorderSize = 0;
             this.btnBuscarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarProduto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBuscarProduto.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
             this.btnBuscarProduto.Location = new System.Drawing.Point(1296, 102);
             this.btnBuscarProduto.Name = "btnBuscarProduto";
             this.btnBuscarProduto.Size = new System.Drawing.Size(58, 26);
@@ -365,12 +356,24 @@
             this.btnBuscarCliente.FlatAppearance.BorderSize = 0;
             this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarCliente.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnBuscarCliente.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
             this.btnBuscarCliente.Location = new System.Drawing.Point(602, 102);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
             this.btnBuscarCliente.Size = new System.Drawing.Size(58, 26);
             this.btnBuscarCliente.TabIndex = 6;
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
             this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.ezgif1;
+            this.pictureBox1.Location = new System.Drawing.Point(625, 314);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 67);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 23;
+            this.pictureBox1.TabStop = false;
             // 
             // FormWorkflowPedidos
             // 
