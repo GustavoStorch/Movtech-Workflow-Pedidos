@@ -63,6 +63,36 @@ namespace Movtech_Workflow_Pedidos.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ezgif_com_crop {
+            get {
+                object obj = ResourceManager.GetObject("ezgif.com-crop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ezgif1 {
+            get {
+                object obj = ResourceManager.GetObject("ezgif1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap load2 {
+            get {
+                object obj = ResourceManager.GetObject("load2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lupa {
             get {
                 object obj = ResourceManager.GetObject("lupa", resourceCulture);
@@ -93,6 +123,26 @@ namespace Movtech_Workflow_Pedidos.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap New_Project {
+            get {
+                object obj = ResourceManager.GetObject("New Project", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap output {
+            get {
+                object obj = ResourceManager.GetObject("output", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ZKZg {
             get {
                 object obj = ResourceManager.GetObject("ZKZg", resourceCulture);
@@ -106,6 +156,16 @@ namespace Movtech_Workflow_Pedidos.Properties {
         internal static System.Drawing.Bitmap ZZ5H {
             get {
                 object obj = ResourceManager.GetObject("ZZ5H", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ZZ5H_unscreen {
+            get {
+                object obj = ResourceManager.GetObject("ZZ5H-unscreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -57,11 +57,13 @@
             this.txtPedido = new System.Windows.Forms.TextBox();
             this.lblPedido = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnBuscarPedidos = new System.Windows.Forms.Button();
             this.btnBuscarProduto = new System.Windows.Forms.Button();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDateDe
@@ -321,13 +323,23 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.ezgif1;
+            this.pictureBox1.Location = new System.Drawing.Point(625, 314);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 67);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 23;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnBuscarPedidos
             // 
             this.btnBuscarPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscarPedidos.FlatAppearance.BorderSize = 0;
             this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
             this.btnBuscarPedidos.Location = new System.Drawing.Point(359, 58);
             this.btnBuscarPedidos.Name = "btnBuscarPedidos";
             this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
@@ -341,7 +353,6 @@
             this.btnBuscarProduto.FlatAppearance.BorderSize = 0;
             this.btnBuscarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarProduto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscarProduto.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
             this.btnBuscarProduto.Location = new System.Drawing.Point(1296, 102);
             this.btnBuscarProduto.Name = "btnBuscarProduto";
             this.btnBuscarProduto.Size = new System.Drawing.Size(58, 26);
@@ -354,7 +365,6 @@
             this.btnBuscarCliente.FlatAppearance.BorderSize = 0;
             this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarCliente.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscarCliente.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
             this.btnBuscarCliente.Location = new System.Drawing.Point(602, 102);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
             this.btnBuscarCliente.Size = new System.Drawing.Size(58, 26);
@@ -369,6 +379,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnLimpar;
             this.ClientSize = new System.Drawing.Size(1366, 751);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnBuscarPedidos);
             this.Controls.Add(this.txtPedido);
             this.Controls.Add(this.lblPedido);
@@ -394,6 +405,7 @@
             this.Load += new System.EventHandler(this.FormWorkflowPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,6 +442,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodEmpresa;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -44,6 +44,7 @@ namespace Movtech_Workflow_Pedidos
             lblDataAtual.Text = "Data: " + DateTime.Now.ToString(dataFake);
             InitializaColumnsTable();
             btnBaixarEtapa.Enabled = false;
+            pictureBox1.Visible = false;
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -126,19 +127,25 @@ namespace Movtech_Workflow_Pedidos
 
                 foreach (WorkflowPedidosModel pedido in pedidos)
                 {
-                    DataGridViewRow row = dataGridView.Rows[dataGridView.Rows.Add()];
-                    row.Cells[colNomeCliente.Index].Value = pedido.NomeCliente;
-                    row.Cells[colNomeProduto.Index].Value = pedido.NomeProduto;
-                    row.Cells[colPedido.Index].Value = pedido.Documento;
-                    row.Cells[colQuantidade.Index].Value = pedido.Quantidade;
-                    row.Cells[colValorTotal.Index].Value = pedido.ValorTotal;
-                    row.Cells[colValorUnit.Index].Value = pedido.ValorTotal / pedido.Quantidade;
-                    row.Cells[colDataEntrega.Index].Value = pedido.DataEmissao.AddDays(LeadTime);
-                    row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
-                    row.Cells[colDataEmissao.Index].Value = pedido.DataEmissao;
-                    row.Cells[colQtdTipos.Index].Value = pedido.QuantidadeTipoProduto;
+                    dataGridView.Invoke((MethodInvoker)delegate
+                    {
+                        DataGridViewRow row = dataGridView.Rows[dataGridView.Rows.Add()];
+                        row.Cells[colNomeCliente.Index].Value = pedido.NomeCliente;
+                        row.Cells[colNomeProduto.Index].Value = pedido.NomeProduto;
+                        row.Cells[colPedido.Index].Value = pedido.Documento;
+                        row.Cells[colQuantidade.Index].Value = pedido.Quantidade;
+                        row.Cells[colValorTotal.Index].Value = pedido.ValorTotal;
+                        row.Cells[colValorUnit.Index].Value = pedido.ValorTotal / pedido.Quantidade;
+                        row.Cells[colDataEntrega.Index].Value = pedido.DataEmissao.AddDays(LeadTime);
+                        row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
+                        row.Cells[colDataEmissao.Index].Value = pedido.DataEmissao;
+                        row.Cells[colQtdTipos.Index].Value = pedido.QuantidadeTipoProduto;
+                    });
                 }
-                dataGridView.Columns[colValorTotal.Index].Frozen = true;
+                dataGridView.Invoke((MethodInvoker)delegate
+                {
+                    dataGridView.Columns[colValorTotal.Index].Frozen = true;
+                });
             }
         }
 
@@ -165,51 +172,124 @@ namespace Movtech_Workflow_Pedidos
             }
         }
 
-       private void btnConsultar_Click(object sender, EventArgs e)
+        /*private void btnConsultar_Click(object sender, EventArgs e)
+         {
+             pictureBox1.Visible = true;
+             using (SqlConnection connection = DaoConnection.GetConexao())
+             {
+                 WorkflowDAO dao = new WorkflowDAO(connection);
+
+                 bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
+                 {
+                     NomeCliente = txtNomeCliente.Text,
+                     NomeProduto = txtProduto.Text,
+                     Documento = txtPedido.Text
+                 });
+
+                 if (verificaCampos)
+                 {
+                     InitializeTable(dtgDadosPedidos);
+                     List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
+
+                     // Percorre os registros e atribui as datas e cores às células correspondentes
+                     foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
+                     {
+                         string columnName = etapaBaixa.Etapas;
+
+                         // Verifica se a coluna existe na tabela
+                         if (dtgDadosPedidos.Columns.Contains(columnName))
+                         {
+                             // Encontra a célula correspondente com base no documento
+                             DataGridViewCell cell = dtgDadosPedidos.Rows
+                         .Cast<DataGridViewRow>()
+                         .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
+                         .Select(row => row.Cells[columnName])
+                         .FirstOrDefault();
+
+                             if (cell != null)
+                             {
+                                 // Atribui a data e a cor à célula correspondente
+                                 cell.Value = etapaBaixa.DataBaixa.ToString().Substring(0, 10);
+                                 cell.Style.BackColor = ColorTranslator.FromHtml(etapaBaixa.CorCelula);
+                             }
+                         }
+                     }
+                 }   
+             }
+             pictureBox1.Visible = false;
+             btnBaixarEtapa.Enabled = true;
+         }*/
+
+        private async void btnConsultar_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = DaoConnection.GetConexao())
+            pictureBox1.Visible = true;
+            btnConsultar.Enabled = false;
+
+            try
             {
-                WorkflowDAO dao = new WorkflowDAO(connection);
-
-                bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
+                List<WorkflowPedidosModel> pedidos = await Task.Run(() =>
                 {
-                    NomeCliente = txtNomeCliente.Text,
-                    NomeProduto = txtProduto.Text,
-                    Documento = txtPedido.Text
-                });
-
-                if (verificaCampos)
-                {
-                    InitializeTable(dtgDadosPedidos);
-                    List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
-
-                    // Percorre os registros e atribui as datas e cores às células correspondentes
-                    foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
+                    using (SqlConnection connection = DaoConnection.GetConexao())
                     {
-                        string columnName = etapaBaixa.Etapas;
-
-                        // Verifica se a coluna existe na tabela
-                        if (dtgDadosPedidos.Columns.Contains(columnName))
+                        WorkflowDAO dao = new WorkflowDAO(connection);
+                        bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
                         {
-                            // Encontra a célula correspondente com base no documento
-                            DataGridViewCell cell = dtgDadosPedidos.Rows
-                        .Cast<DataGridViewRow>()
-                        .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
-                        .Select(row => row.Cells[columnName])
-                        .FirstOrDefault();
+                            NomeCliente = txtNomeCliente.Text,
+                            NomeProduto = txtProduto.Text,
+                            Documento = txtPedido.Text
+                        });
 
-                            if (cell != null)
+                        if (verificaCampos)
+                        {
+                            InitializeTable(dtgDadosPedidos);
+                            List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
+
+                            foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
                             {
-                                // Atribui a data e a cor à célula correspondente
-                                cell.Value = etapaBaixa.DataBaixa.ToString().Substring(0, 10);
-                                cell.Style.BackColor = ColorTranslator.FromHtml(etapaBaixa.CorCelula);
+                                string columnName = etapaBaixa.Etapas;
+
+                                if (dtgDadosPedidos.Columns.Contains(columnName))
+                                {
+                                    DataGridViewCell cell = dtgDadosPedidos.Rows
+                                        .Cast<DataGridViewRow>()
+                                        .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
+                                        .Select(row => row.Cells[columnName])
+                                        .FirstOrDefault();
+
+                                    if (cell != null)
+                                    {
+                                        string dataBaixa = etapaBaixa.DataBaixa.ToString().Substring(0,10);
+                                        dtgDadosPedidos.Invoke((MethodInvoker)delegate
+                                        {
+                                            cell.Value = dataBaixa;
+                                            cell.Style.BackColor = ColorTranslator.FromHtml(etapaBaixa.CorCelula);
+                                        });
+                                    }
+                                }
                             }
+                            return dao.GetPedidos(new WorkflowPedidosModel()
+                            {
+                                NomeCliente = txtNomeCliente.Text,
+                                NomeProduto = txtProduto.Text,
+                                Documento = txtPedido.Text,
+                                DataDe = dtpDataDe.Text,
+                                DataAte = dtpDataAte.Text
+                            });
+                        }
+                        else
+                        {
+                            return new List<WorkflowPedidosModel>();
                         }
                     }
-                }   
+                });
             }
-            btnBaixarEtapa.Enabled = true;
+            finally
+            {
+                pictureBox1.Visible = false;
+                btnConsultar.Enabled = true;
+            }
         }
+
 
 
 
