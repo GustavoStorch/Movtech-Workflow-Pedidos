@@ -162,7 +162,7 @@
             // lblNomeEtapa
             // 
             this.lblNomeEtapa.AutoSize = true;
-            this.lblNomeEtapa.Location = new System.Drawing.Point(12, 105);
+            this.lblNomeEtapa.Location = new System.Drawing.Point(12, 99);
             this.lblNomeEtapa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeEtapa.Name = "lblNomeEtapa";
             this.lblNomeEtapa.Size = new System.Drawing.Size(56, 20);
@@ -171,7 +171,7 @@
             // 
             // txtNomeEtapa
             // 
-            this.txtNomeEtapa.Location = new System.Drawing.Point(129, 100);
+            this.txtNomeEtapa.Location = new System.Drawing.Point(129, 96);
             this.txtNomeEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNomeEtapa.Name = "txtNomeEtapa";
             this.txtNomeEtapa.ReadOnly = true;

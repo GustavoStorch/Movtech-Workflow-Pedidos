@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -43,7 +44,6 @@ namespace Movtech_Workflow_Pedidos
             lblDataAtual.Text = "Data: " + DateTime.Now.ToString(dataFake);
             InitializaColumnsTable();
             btnBaixarEtapa.Enabled = false;
-            imgCarregamento.Visible = false;
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -167,7 +167,6 @@ namespace Movtech_Workflow_Pedidos
 
        private void btnConsultar_Click(object sender, EventArgs e)
         {
-            imgCarregamento.Enabled = true;
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
                 WorkflowDAO dao = new WorkflowDAO(connection);
@@ -210,8 +209,9 @@ namespace Movtech_Workflow_Pedidos
                 }   
             }
             btnBaixarEtapa.Enabled = true;
-            imgCarregamento.Enabled = false;
         }
+
+
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
         {

@@ -55,7 +55,7 @@
             // lblPedido
             // 
             this.lblPedido.AutoSize = true;
-            this.lblPedido.Location = new System.Drawing.Point(12, 54);
+            this.lblPedido.Location = new System.Drawing.Point(12, 51);
             this.lblPedido.Name = "lblPedido";
             this.lblPedido.Size = new System.Drawing.Size(62, 20);
             this.lblPedido.TabIndex = 0;
@@ -64,7 +64,7 @@
             // lblDatePrevEntrega
             // 
             this.lblDatePrevEntrega.AutoSize = true;
-            this.lblDatePrevEntrega.Location = new System.Drawing.Point(298, 18);
+            this.lblDatePrevEntrega.Location = new System.Drawing.Point(298, 17);
             this.lblDatePrevEntrega.Name = "lblDatePrevEntrega";
             this.lblDatePrevEntrega.Size = new System.Drawing.Size(154, 20);
             this.lblDatePrevEntrega.TabIndex = 1;
@@ -73,7 +73,7 @@
             // lblNomeCliente
             // 
             this.lblNomeCliente.AutoSize = true;
-            this.lblNomeCliente.Location = new System.Drawing.Point(252, 54);
+            this.lblNomeCliente.Location = new System.Drawing.Point(252, 51);
             this.lblNomeCliente.Name = "lblNomeCliente";
             this.lblNomeCliente.Size = new System.Drawing.Size(62, 20);
             this.lblNomeCliente.TabIndex = 2;
@@ -82,7 +82,7 @@
             // lblQuantidade
             // 
             this.lblQuantidade.AutoSize = true;
-            this.lblQuantidade.Location = new System.Drawing.Point(12, 100);
+            this.lblQuantidade.Location = new System.Drawing.Point(12, 97);
             this.lblQuantidade.Name = "lblQuantidade";
             this.lblQuantidade.Size = new System.Drawing.Size(96, 20);
             this.lblQuantidade.TabIndex = 4;
@@ -91,7 +91,7 @@
             // lblValorUnitario
             // 
             this.lblValorUnitario.AutoSize = true;
-            this.lblValorUnitario.Location = new System.Drawing.Point(219, 100);
+            this.lblValorUnitario.Location = new System.Drawing.Point(219, 97);
             this.lblValorUnitario.Name = "lblValorUnitario";
             this.lblValorUnitario.Size = new System.Drawing.Size(83, 20);
             this.lblValorUnitario.TabIndex = 5;
@@ -110,7 +110,7 @@
             // 
             // txtPedido
             // 
-            this.txtPedido.Location = new System.Drawing.Point(113, 51);
+            this.txtPedido.Location = new System.Drawing.Point(113, 48);
             this.txtPedido.Name = "txtPedido";
             this.txtPedido.ReadOnly = true;
             this.txtPedido.Size = new System.Drawing.Size(133, 26);
@@ -120,15 +120,15 @@
             // 
             this.txtNomeCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNomeCliente.Location = new System.Drawing.Point(353, 51);
+            this.txtNomeCliente.Location = new System.Drawing.Point(320, 48);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.ReadOnly = true;
-            this.txtNomeCliente.Size = new System.Drawing.Size(360, 26);
+            this.txtNomeCliente.Size = new System.Drawing.Size(418, 26);
             this.txtNomeCliente.TabIndex = 3;
             // 
             // txtQuantidade
             // 
-            this.txtQuantidade.Location = new System.Drawing.Point(113, 97);
+            this.txtQuantidade.Location = new System.Drawing.Point(113, 94);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.ReadOnly = true;
             this.txtQuantidade.Size = new System.Drawing.Size(100, 26);
@@ -137,10 +137,10 @@
             // 
             // txtValorUnitario
             // 
-            this.txtValorUnitario.Location = new System.Drawing.Point(306, 97);
+            this.txtValorUnitario.Location = new System.Drawing.Point(320, 97);
             this.txtValorUnitario.Name = "txtValorUnitario";
             this.txtValorUnitario.ReadOnly = true;
-            this.txtValorUnitario.Size = new System.Drawing.Size(153, 26);
+            this.txtValorUnitario.Size = new System.Drawing.Size(132, 26);
             this.txtValorUnitario.TabIndex = 6;
             this.txtValorUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -148,10 +148,10 @@
             // 
             this.txtValorTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValorTotal.Location = new System.Drawing.Point(560, 97);
+            this.txtValorTotal.Location = new System.Drawing.Point(560, 94);
             this.txtValorTotal.Name = "txtValorTotal";
             this.txtValorTotal.ReadOnly = true;
-            this.txtValorTotal.Size = new System.Drawing.Size(153, 26);
+            this.txtValorTotal.Size = new System.Drawing.Size(178, 26);
             this.txtValorTotal.TabIndex = 7;
             this.txtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -159,16 +159,16 @@
             // 
             this.dtpDataEntrega.Enabled = false;
             this.dtpDataEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEntrega.Location = new System.Drawing.Point(458, 15);
+            this.dtpDataEntrega.Location = new System.Drawing.Point(458, 12);
             this.dtpDataEntrega.Name = "dtpDataEntrega";
             this.dtpDataEntrega.Size = new System.Drawing.Size(151, 26);
             this.dtpDataEntrega.TabIndex = 2;
             // 
             // btnFechar
             // 
-            this.btnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFechar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnFechar.Location = new System.Drawing.Point(568, 457);
+            this.btnFechar.Location = new System.Drawing.Point(593, 473);
             this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(145, 35);
             this.btnFechar.TabIndex = 8;
@@ -179,7 +179,7 @@
             // lblDataPedido
             // 
             this.lblDataPedido.AutoSize = true;
-            this.lblDataPedido.Location = new System.Drawing.Point(12, 18);
+            this.lblDataPedido.Location = new System.Drawing.Point(12, 17);
             this.lblDataPedido.Name = "lblDataPedido";
             this.lblDataPedido.Size = new System.Drawing.Size(123, 20);
             this.lblDataPedido.TabIndex = 9;
@@ -204,7 +204,7 @@
             this.dtgDadosDetalhados.ReadOnly = true;
             this.dtgDadosDetalhados.RowHeadersWidth = 62;
             this.dtgDadosDetalhados.RowTemplate.Height = 28;
-            this.dtgDadosDetalhados.Size = new System.Drawing.Size(701, 322);
+            this.dtgDadosDetalhados.Size = new System.Drawing.Size(726, 338);
             this.dtgDadosDetalhados.TabIndex = 11;
             // 
             // colNomeProduto
@@ -242,7 +242,7 @@
             // 
             this.dtpDataPedido.Enabled = false;
             this.dtpDataPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataPedido.Location = new System.Drawing.Point(141, 13);
+            this.dtpDataPedido.Location = new System.Drawing.Point(141, 12);
             this.dtpDataPedido.Name = "dtpDataPedido";
             this.dtpDataPedido.Size = new System.Drawing.Size(151, 26);
             this.dtpDataPedido.TabIndex = 10;
@@ -252,7 +252,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnFechar;
-            this.ClientSize = new System.Drawing.Size(724, 504);
+            this.ClientSize = new System.Drawing.Size(749, 520);
             this.Controls.Add(this.dtgDadosDetalhados);
             this.Controls.Add(this.dtpDataPedido);
             this.Controls.Add(this.lblDataPedido);

@@ -57,13 +57,11 @@
             this.txtPedido = new System.Windows.Forms.TextBox();
             this.lblPedido = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.imgCarregamento = new System.Windows.Forms.PictureBox();
             this.btnBuscarPedidos = new System.Windows.Forms.Button();
             this.btnBuscarProduto = new System.Windows.Forms.Button();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgCarregamento)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDateDe
@@ -323,16 +321,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // imgCarregamento
-            // 
-            this.imgCarregamento.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.ZZ5H;
-            this.imgCarregamento.Location = new System.Drawing.Point(529, 241);
-            this.imgCarregamento.Name = "imgCarregamento";
-            this.imgCarregamento.Size = new System.Drawing.Size(256, 256);
-            this.imgCarregamento.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.imgCarregamento.TabIndex = 23;
-            this.imgCarregamento.TabStop = false;
-            // 
             // btnBuscarPedidos
             // 
             this.btnBuscarPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -381,7 +369,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnLimpar;
             this.ClientSize = new System.Drawing.Size(1366, 751);
-            this.Controls.Add(this.imgCarregamento);
             this.Controls.Add(this.btnBuscarPedidos);
             this.Controls.Add(this.txtPedido);
             this.Controls.Add(this.lblPedido);
@@ -407,7 +394,6 @@
             this.Load += new System.EventHandler(this.FormWorkflowPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgCarregamento)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,7 +430,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodEmpresa;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.PictureBox imgCarregamento;
     }
 }
 
