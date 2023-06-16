@@ -64,7 +64,7 @@
             // lblDatePrevEntrega
             // 
             this.lblDatePrevEntrega.AutoSize = true;
-            this.lblDatePrevEntrega.Location = new System.Drawing.Point(298, 17);
+            this.lblDatePrevEntrega.Location = new System.Drawing.Point(300, 17);
             this.lblDatePrevEntrega.Name = "lblDatePrevEntrega";
             this.lblDatePrevEntrega.Size = new System.Drawing.Size(154, 20);
             this.lblDatePrevEntrega.TabIndex = 1;
@@ -159,7 +159,7 @@
             // 
             this.dtpDataEntrega.Enabled = false;
             this.dtpDataEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEntrega.Location = new System.Drawing.Point(458, 12);
+            this.dtpDataEntrega.Location = new System.Drawing.Point(460, 12);
             this.dtpDataEntrega.Name = "dtpDataEntrega";
             this.dtpDataEntrega.Size = new System.Drawing.Size(151, 26);
             this.dtpDataEntrega.TabIndex = 2;
@@ -181,9 +181,9 @@
             this.lblDataPedido.AutoSize = true;
             this.lblDataPedido.Location = new System.Drawing.Point(12, 17);
             this.lblDataPedido.Name = "lblDataPedido";
-            this.lblDataPedido.Size = new System.Drawing.Size(123, 20);
+            this.lblDataPedido.Size = new System.Drawing.Size(125, 20);
             this.lblDataPedido.TabIndex = 9;
-            this.lblDataPedido.Text = "Data do Pedido:";
+            this.lblDataPedido.Text = "Início do Pedido:";
             // 
             // dtgDadosDetalhados
             // 
@@ -242,7 +242,7 @@
             // 
             this.dtpDataPedido.Enabled = false;
             this.dtpDataPedido.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataPedido.Location = new System.Drawing.Point(141, 12);
+            this.dtpDataPedido.Location = new System.Drawing.Point(143, 12);
             this.dtpDataPedido.Name = "dtpDataPedido";
             this.dtpDataPedido.Size = new System.Drawing.Size(151, 26);
             this.dtpDataPedido.TabIndex = 10;

@@ -35,11 +35,13 @@ namespace Movtech_Workflow_Pedidos
         public string nomeCliente { get ; set; }
 
         public string nomeUsuario { get; set; }
-    
+
         public FormWorkflowPedidos(string NomeUsuario)
         {
             InitializeComponent();
             nomeUsuario = NomeUsuario;
+
+            
         }
 
         private void FormWorkflowPedidos_Load(object sender, EventArgs e)
@@ -230,7 +232,6 @@ namespace Movtech_Workflow_Pedidos
             pictureBox1.Visible = true;
             btnConsultar.Enabled = false;
             btnBaixarEtapa.Enabled = true;
-
             try
             {
                 List<WorkflowPedidosModel> pedidos = await Task.Run(() =>

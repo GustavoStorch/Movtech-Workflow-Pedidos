@@ -83,6 +83,16 @@ namespace Movtech_Workflow_Pedidos.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ezgif2 {
+            get {
+                object obj = ResourceManager.GetObject("ezgif2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap load2 {
             get {
                 object obj = ResourceManager.GetObject("load2", resourceCulture);
