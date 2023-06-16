@@ -16,7 +16,7 @@ namespace Movtech_Workflow_Pedidos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormWorkflowPedidos());
+            Application.Run(new FormWorkflowPedidos(null));
         }
     }
 }

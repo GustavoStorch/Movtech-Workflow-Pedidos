@@ -33,10 +33,13 @@ namespace Movtech_Workflow_Pedidos
         public string valorTotal { get; set; }
 
         public string nomeCliente { get ; set; }
+
+        public string nomeUsuario { get; set; }
     
-        public FormWorkflowPedidos()
+        public FormWorkflowPedidos(string NomeUsuario)
         {
             InitializeComponent();
+            nomeUsuario = NomeUsuario;
         }
 
         private void FormWorkflowPedidos_Load(object sender, EventArgs e)
@@ -101,15 +104,17 @@ namespace Movtech_Workflow_Pedidos
 
         public void InitializeTable(DataGridView dataGridView)
         {
-            dataGridView.Rows.Clear();
-            dataGridView.Columns["colDataEntrega"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            dataGridView.Columns["colValorTotal"].DefaultCellStyle.Format = "C2";
-            dataGridView.Columns["colValorUnit"].DefaultCellStyle.Format = "C2";
-            dataGridView.Columns["colQuantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView.Columns["colValorTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView.Columns["colValorUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView.Columns["colQtdTipos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
+            dataGridView.Invoke((MethodInvoker)delegate
+            {
+                dataGridView.Rows.Clear();
+                dataGridView.Columns["colDataEntrega"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridView.Columns["colValorTotal"].DefaultCellStyle.Format = "C2";
+                dataGridView.Columns["colValorUnit"].DefaultCellStyle.Format = "C2";
+                dataGridView.Columns["colQuantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dataGridView.Columns["colValorTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dataGridView.Columns["colValorUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dataGridView.Columns["colQtdTipos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            });
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
                 WorkflowDAO dao = new WorkflowDAO(connection);
@@ -224,6 +229,7 @@ namespace Movtech_Workflow_Pedidos
         {
             pictureBox1.Visible = true;
             btnConsultar.Enabled = false;
+            btnBaixarEtapa.Enabled = true;
 
             try
             {
@@ -344,7 +350,7 @@ namespace Movtech_Workflow_Pedidos
                                 CodEmpresa = "1"
                             });
                         }
-                        FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente);
+                        FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente, nomeUsuario);
                         formBaixaEtapa.ShowDialog();
                     }
                     else
@@ -371,7 +377,7 @@ namespace Movtech_Workflow_Pedidos
                     CodEmpresa = "1"
                 });
             }
-            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente);
+            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente, nomeUsuario);
             formBaixaEtapa.ShowDialog();
         }
 

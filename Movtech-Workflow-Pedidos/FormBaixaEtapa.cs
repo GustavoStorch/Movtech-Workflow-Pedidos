@@ -23,12 +23,15 @@ namespace Movtech_Workflow_Pedidos
 
         public Color corCelula { get; set; }
 
-        public FormBaixaEtapa(string Pedido, string Empresa, string NomeCliente)
+        public string nomeUsuario { get; set; }
+
+        public FormBaixaEtapa(string Pedido, string Empresa, string NomeCliente, string NomeUsuario)
         {
             InitializeComponent();
             pedido = Pedido;
             empresa = Empresa;
             nomeCliente = NomeCliente;
+            nomeUsuario = NomeUsuario;
         }
 
         private void FormBaixaEtapa_Load(object sender, EventArgs e)
@@ -40,6 +43,7 @@ namespace Movtech_Workflow_Pedidos
             txtPedido.Text = pedido;
             txtNomeEmpresa.Text = empresa;
             txtNomeEtapa.Text = columnName2;
+            txtNomeOperador.Text = nomeUsuario;
         }
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
@@ -127,7 +131,7 @@ namespace Movtech_Workflow_Pedidos
             this.Close();
         }
 
-        private void btnBuscarPedidos_Click(object sender, EventArgs e)
+        /*private void btnBuscarPedidos_Click(object sender, EventArgs e)
         {
             CarregaFormBuscarOperadores();
         }
@@ -138,6 +142,6 @@ namespace Movtech_Workflow_Pedidos
             formBuscarOperador.ShowDialog();
             txtNomeOperador.Text = formBuscarOperador.nomeOperador;
             codOperador = formBuscarOperador.codOperador;
-        }
+        }*/
     }
 }

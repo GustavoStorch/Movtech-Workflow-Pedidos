@@ -152,7 +152,6 @@
             // btnLimpar
             // 
             this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLimpar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnLimpar.Location = new System.Drawing.Point(1114, 136);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLimpar.Name = "btnLimpar";
@@ -384,7 +383,6 @@
             this.AcceptButton = this.btnConsultar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnLimpar;
             this.ClientSize = new System.Drawing.Size(1366, 751);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnBuscarPedidos);

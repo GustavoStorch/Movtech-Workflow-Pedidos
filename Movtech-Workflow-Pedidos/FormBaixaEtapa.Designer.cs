@@ -37,7 +37,6 @@
             this.txtPedido = new System.Windows.Forms.TextBox();
             this.dtpDataDaBaixa = new System.Windows.Forms.DateTimePicker();
             this.txtNomeOperador = new System.Windows.Forms.TextBox();
-            this.btnBuscarPedidos = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBaixarEtapa = new System.Windows.Forms.Button();
             this.lblNomeEtapa = new System.Windows.Forms.Label();
@@ -118,22 +117,8 @@
             this.txtNomeOperador.Location = new System.Drawing.Point(364, 58);
             this.txtNomeOperador.Name = "txtNomeOperador";
             this.txtNomeOperador.ReadOnly = true;
-            this.txtNomeOperador.Size = new System.Drawing.Size(302, 26);
+            this.txtNomeOperador.Size = new System.Drawing.Size(366, 26);
             this.txtNomeOperador.TabIndex = 9;
-            // 
-            // btnBuscarPedidos
-            // 
-            this.btnBuscarPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuscarPedidos.FlatAppearance.BorderSize = 0;
-            this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarPedidos.Location = new System.Drawing.Point(672, 57);
-            this.btnBuscarPedidos.Name = "btnBuscarPedidos";
-            this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
-            this.btnBuscarPedidos.TabIndex = 25;
-            this.btnBuscarPedidos.UseVisualStyleBackColor = true;
-            this.btnBuscarPedidos.Click += new System.EventHandler(this.btnBuscarPedidos_Click);
             // 
             // btnCancelar
             // 
@@ -187,7 +172,6 @@
             this.Controls.Add(this.lblNomeEtapa);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnBaixarEtapa);
-            this.Controls.Add(this.btnBuscarPedidos);
             this.Controls.Add(this.txtNomeOperador);
             this.Controls.Add(this.dtpDataDaBaixa);
             this.Controls.Add(this.txtPedido);
@@ -216,7 +200,6 @@
         private System.Windows.Forms.TextBox txtPedido;
         private System.Windows.Forms.DateTimePicker dtpDataDaBaixa;
         private System.Windows.Forms.TextBox txtNomeOperador;
-        private System.Windows.Forms.Button btnBuscarPedidos;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnBaixarEtapa;
         private System.Windows.Forms.Label lblNomeEtapa;

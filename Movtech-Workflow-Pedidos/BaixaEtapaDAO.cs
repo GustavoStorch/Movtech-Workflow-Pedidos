@@ -34,15 +34,14 @@ namespace Movtech_Workflow_Pedidos
                 try
                 {
                     StringBuilder sql = new StringBuilder();
-                    sql.AppendLine($"INSERT INTO MvtEtapasBaixas(codEmpresa, nomeEmpresa, documento, dataBaixa, codFuncionario, nomeFuncionario, codEtapas, nomeEtapa, corCelula) "); 
-                    sql.AppendLine($"VALUES(@codEmpresa, @nomeEmpresa, @documento, @dataBaixa, @codFuncionario, @nomeFuncionario, @codEtapas, @nomeEtapa, @corCelula)");
+                    sql.AppendLine($"INSERT INTO MvtEtapasBaixas(codEmpresa, nomeEmpresa, documento, dataBaixa, usuario, codEtapas, nomeEtapa, corCelula) "); 
+                    sql.AppendLine($"VALUES(@codEmpresa, @nomeEmpresa, @documento, @dataBaixa, @usuario, @codEtapas, @nomeEtapa, @corCelula)");
                     command.CommandText = sql.ToString();
                     command.Parameters.Add(new SqlParameter("@codEmpresa", workflow.CodEmpresa));
                     command.Parameters.Add(new SqlParameter("@nomeEmpresa", workflow.NomeEmpresa));
                     command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
                     command.Parameters.Add(new SqlParameter("@dataBaixa", workflow.DataBaixa));
-                    command.Parameters.Add(new SqlParameter("@codFuncionario", workflow.CodOperador));
-                    command.Parameters.Add(new SqlParameter("@nomeFuncionario", workflow.NomeOperador));
+                    command.Parameters.Add(new SqlParameter("@usuario", workflow.NomeOperador));
                     command.Parameters.Add(new SqlParameter("@codEtapas", workflow.CodEtapa));
                     command.Parameters.Add(new SqlParameter("@nomeEtapa", workflow.Etapas));
                     command.Parameters.Add(new SqlParameter("@corCelula", workflow.CorCelula));
