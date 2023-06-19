@@ -36,16 +36,6 @@ namespace Movtech_Workflow_Pedidos
             return string.Empty;
         }
 
-        public bool VerificaCampos(WorkflowPedidosModel workflow)
-        {
-           /*if (string.IsNullOrEmpty(workflow.NomeCliente) && string.IsNullOrEmpty(workflow.NomeProduto) && string.IsNullOrEmpty(workflow.Documento) && string.IsNullOrEmpty(workflow.DataDe) && string.IsNullOrEmpty(workflow.DataAte))
-            {
-                MessageBox.Show("Por favor, preencha algum campo acima!");
-                return false;
-            }*/
-            return true;
-        }
-
         public int RecuperaLeadTime()
         {
             using (SqlCommand command = Connection.CreateCommand())
@@ -82,7 +72,7 @@ namespace Movtech_Workflow_Pedidos
                 }
                 if (!string.IsNullOrEmpty(workflow.Documento))
                 {
-                    sql.AppendLine($"AND pd.documento LIKE '%' + @documento + '%'");
+                    sql.AppendLine($"AND pd.documento LIKE '%' + @documento + '%' AND pd.codEmpresa = 1 AND pd.tipo = 'F'");
                     command.Parameters.AddWithValue("@documento", workflow.Documento);
                 }
                 if (!string.IsNullOrEmpty(workflow.DataDe) && !string.IsNullOrEmpty(workflow.DataAte))
@@ -120,52 +110,6 @@ namespace Movtech_Workflow_Pedidos
             return pedidos;
         }
 
-        /*public List<WorkflowPedidosModel> GetPedidos(WorkflowPedidosModel workflow)
-        {
-            List<WorkflowPedidosModel> pedidos = new List<WorkflowPedidosModel>();
-            using (SqlCommand command = Connection.CreateCommand())
-            {
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT c.nomeCliente, p.nomeProduto, pd.documento, pd.qtde, pd.valorFaturado, (pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit,");
-                sql.AppendLine("pd.dataProjecao, pd.codEmpresa, pd.dataEmissao FROM MvtCadCliente c");
-                sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
-                sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
-                sql.AppendLine("WHERE 1 = 1");
-                if (!string.IsNullOrEmpty(workflow.NomeCliente))
-                {
-                    sql.AppendLine($"AND c.nomeCLiente = @cliente");
-                    command.Parameters.AddWithValue("@cliente", workflow.NomeCliente);
-                }
-                if (!string.IsNullOrEmpty(workflow.NomeProduto))
-                {
-                    sql.AppendLine($"AND p.nomeProduto = @produto");
-                    command.Parameters.AddWithValue("@produto", workflow.NomeProduto);
-                }
-                if (!string.IsNullOrEmpty(workflow.Documento))
-                {
-                    sql.AppendLine($"AND pd.documento = @documento");
-                    command.Parameters.AddWithValue("@documento", workflow.Documento);
-                }
-                if (!string.IsNullOrEmpty(workflow.DataDe) && !string.IsNullOrEmpty(workflow.DataAte))
-                {
-                    sql.AppendLine($"AND pd.dataEmissao BETWEEN @dataDe AND @dataAte");
-                    command.Parameters.AddWithValue("@dataDe", workflow.DataDe);
-                    command.Parameters.AddWithValue("@dataAte", workflow.DataAte);
-                }
-
-                command.CommandText = sql.ToString();
-                using (SqlDataReader dr = command.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        pedidos.Add(PopulateDrPedidos(dr));
-                    }
-                }
-            }
-            return pedidos;
-        }*/
-
-
         public WorkflowPedidosModel PopulateDrPedidos(SqlDataReader dr)
         {
             WorkflowPedidosModel model = new WorkflowPedidosModel();
@@ -174,10 +118,6 @@ namespace Movtech_Workflow_Pedidos
             {
                 model.NomeCliente = dr["nomeCliente"].ToString();
             }
-            /*if (DBNull.Value != dr["nomeProduto"])
-            {
-                model.NomeProduto = dr["nomeProduto"].ToString();
-            }*/
             if (DBNull.Value != dr["documento"])
             {
                 model.Documento = dr["documento"].ToString();

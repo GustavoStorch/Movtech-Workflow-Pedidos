@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
@@ -47,7 +48,8 @@ namespace Movtech_Workflow_Pedidos
             lblDataAtual.Text = "Data: " + DateTime.Now.ToString(dataFake);
             InitializaColumnsTable();
             btnBaixarEtapa.Enabled = false;
-            pictureBox1.Visible = false;
+            imgLoad.SizeMode = PictureBoxSizeMode.CenterImage;
+            imgLoad.Visible = false;
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -177,57 +179,9 @@ namespace Movtech_Workflow_Pedidos
             }
         }
 
-        /*private void btnConsultar_Click(object sender, EventArgs e)
-         {
-             pictureBox1.Visible = true;
-             using (SqlConnection connection = DaoConnection.GetConexao())
-             {
-                 WorkflowDAO dao = new WorkflowDAO(connection);
-
-                 bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
-                 {
-                     NomeCliente = txtNomeCliente.Text,
-                     NomeProduto = txtProduto.Text,
-                     Documento = txtPedido.Text
-                 });
-
-                 if (verificaCampos)
-                 {
-                     InitializeTable(dtgDadosPedidos);
-                     List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
-
-                     // Percorre os registros e atribui as datas e cores às células correspondentes
-                     foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
-                     {
-                         string columnName = etapaBaixa.Etapas;
-
-                         // Verifica se a coluna existe na tabela
-                         if (dtgDadosPedidos.Columns.Contains(columnName))
-                         {
-                             // Encontra a célula correspondente com base no documento
-                             DataGridViewCell cell = dtgDadosPedidos.Rows
-                         .Cast<DataGridViewRow>()
-                         .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
-                         .Select(row => row.Cells[columnName])
-                         .FirstOrDefault();
-
-                             if (cell != null)
-                             {
-                                 // Atribui a data e a cor à célula correspondente
-                                 cell.Value = etapaBaixa.DataBaixa.ToString().Substring(0, 10);
-                                 cell.Style.BackColor = ColorTranslator.FromHtml(etapaBaixa.CorCelula);
-                             }
-                         }
-                     }
-                 }   
-             }
-             pictureBox1.Visible = false;
-             btnBaixarEtapa.Enabled = true;
-         }*/
-
         private async void btnConsultar_Click(object sender, EventArgs e)
         {
-            pictureBox1.Visible = true;
+            imgLoad.Visible = true;
             btnConsultar.Enabled = false;
             btnBaixarEtapa.Enabled = true;
             try
@@ -237,29 +191,21 @@ namespace Movtech_Workflow_Pedidos
                     using (SqlConnection connection = DaoConnection.GetConexao())
                     {
                         WorkflowDAO dao = new WorkflowDAO(connection);
-                        bool verificaCampos = dao.VerificaCampos(new WorkflowPedidosModel()
-                        {
-                            NomeCliente = txtNomeCliente.Text,
-                            NomeProduto = txtProduto.Text,
-                            Documento = txtPedido.Text
-                        });
 
-                        if (verificaCampos)
-                        {
-                            InitializeTable(dtgDadosPedidos);
-                            List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
+                        InitializeTable(dtgDadosPedidos);
+                        List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
 
-                            foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
+                        foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
+                        {
+                            string columnName = etapaBaixa.Etapas;
+
+                            if (dtgDadosPedidos.Columns.Contains(columnName))
                             {
-                                string columnName = etapaBaixa.Etapas;
-
-                                if (dtgDadosPedidos.Columns.Contains(columnName))
-                                {
-                                    DataGridViewCell cell = dtgDadosPedidos.Rows
-                                        .Cast<DataGridViewRow>()
-                                        .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
-                                        .Select(row => row.Cells[columnName])
-                                        .FirstOrDefault();
+                                DataGridViewCell cell = dtgDadosPedidos.Rows
+                                    .Cast<DataGridViewRow>()
+                                    .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
+                                    .Select(row => row.Cells[columnName])
+                                    .FirstOrDefault();
 
                                     if (cell != null)
                                     {
@@ -270,27 +216,23 @@ namespace Movtech_Workflow_Pedidos
                                             cell.Style.BackColor = ColorTranslator.FromHtml(etapaBaixa.CorCelula);
                                         });
                                     }
-                                }
                             }
-                            return dao.GetPedidos(new WorkflowPedidosModel()
-                            {
-                                NomeCliente = txtNomeCliente.Text,
-                                NomeProduto = txtProduto.Text,
-                                Documento = txtPedido.Text,
-                                DataDe = dtpDataDe.Text,
-                                DataAte = dtpDataAte.Text
-                            });
                         }
-                        else
+                        return dao.GetPedidos(new WorkflowPedidosModel()
                         {
-                            return new List<WorkflowPedidosModel>();
-                        }
+                            NomeCliente = txtNomeCliente.Text,
+                            NomeProduto = txtProduto.Text,
+                            Documento = txtPedido.Text,
+                            DataDe = dtpDataDe.Text,
+                            DataAte = dtpDataAte.Text
+                        });
+                        
                     }
                 });
             }
             finally
             {
-                pictureBox1.Visible = false;
+                imgLoad.Visible = false;
                 btnConsultar.Enabled = true;
             }
         }
@@ -408,6 +350,19 @@ namespace Movtech_Workflow_Pedidos
 
                 FormDetalhaPedidos formDetalhaPedidos = new FormDetalhaPedidos(pedido, nomeCliente, dtEmissao, dtEntrega, qtd, valorUnit, valorTotal);
                 formDetalhaPedidos.ShowDialog();
+            }
+        }
+
+        private void FormWorkflowPedidos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show(this, "Você tem certeza que deseja sair?", "Confirmação", MessageBoxButtons.YesNo);
+
+                if(result != DialogResult.Yes)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

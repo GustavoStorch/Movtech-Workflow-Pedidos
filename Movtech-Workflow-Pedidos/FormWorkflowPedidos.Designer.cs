@@ -43,27 +43,27 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dtgDadosPedidos = new System.Windows.Forms.DataGridView();
+            this.colPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDataEmissao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDataEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQtdTipos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCodEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBaixarEtapa = new System.Windows.Forms.Button();
             this.txtPedido = new System.Windows.Forms.TextBox();
             this.lblPedido = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.colCodEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQtdTipos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDataEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDataEmissao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.imgLoad = new System.Windows.Forms.PictureBox();
             this.btnBuscarPedidos = new System.Windows.Forms.Button();
             this.btnBuscarProduto = new System.Windows.Forms.Button();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoad)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDateDe
@@ -203,6 +203,99 @@
             this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick_1);
             this.dtgDadosPedidos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgDadosPedidos_CellMouseDoubleClick);
             // 
+            // colPedido
+            // 
+            this.colPedido.FillWeight = 42.79435F;
+            this.colPedido.HeaderText = "Pedido";
+            this.colPedido.MinimumWidth = 8;
+            this.colPedido.Name = "colPedido";
+            this.colPedido.ReadOnly = true;
+            this.colPedido.Width = 94;
+            // 
+            // colDataEmissao
+            // 
+            this.colDataEmissao.HeaderText = "Emissão";
+            this.colDataEmissao.MinimumWidth = 8;
+            this.colDataEmissao.Name = "colDataEmissao";
+            this.colDataEmissao.ReadOnly = true;
+            this.colDataEmissao.Visible = false;
+            this.colDataEmissao.Width = 106;
+            // 
+            // colDataEntrega
+            // 
+            this.colDataEntrega.FillWeight = 70.94281F;
+            this.colDataEntrega.HeaderText = "Data Entrega";
+            this.colDataEntrega.MinimumWidth = 8;
+            this.colDataEntrega.Name = "colDataEntrega";
+            this.colDataEntrega.ReadOnly = true;
+            this.colDataEntrega.Width = 141;
+            // 
+            // colNomeCliente
+            // 
+            this.colNomeCliente.FillWeight = 61.20673F;
+            this.colNomeCliente.HeaderText = "Cliente";
+            this.colNomeCliente.MinimumWidth = 8;
+            this.colNomeCliente.Name = "colNomeCliente";
+            this.colNomeCliente.ReadOnly = true;
+            this.colNomeCliente.Width = 94;
+            // 
+            // colNomeProduto
+            // 
+            this.colNomeProduto.HeaderText = "Produto";
+            this.colNomeProduto.MinimumWidth = 8;
+            this.colNomeProduto.Name = "colNomeProduto";
+            this.colNomeProduto.ReadOnly = true;
+            this.colNomeProduto.Visible = false;
+            this.colNomeProduto.Width = 101;
+            // 
+            // colQuantidade
+            // 
+            this.colQuantidade.FillWeight = 57.28085F;
+            this.colQuantidade.HeaderText = "Qtd";
+            this.colQuantidade.MinimumWidth = 8;
+            this.colQuantidade.Name = "colQuantidade";
+            this.colQuantidade.ReadOnly = true;
+            this.colQuantidade.Width = 71;
+            // 
+            // colQtdTipos
+            // 
+            this.colQtdTipos.FillWeight = 106.2537F;
+            this.colQtdTipos.HeaderText = "Qtde. Tipos";
+            this.colQtdTipos.MinimumWidth = 8;
+            this.colQtdTipos.Name = "colQtdTipos";
+            this.colQtdTipos.ReadOnly = true;
+            this.colQtdTipos.Width = 126;
+            // 
+            // colValorUnit
+            // 
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colValorUnit.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colValorUnit.FillWeight = 110.8096F;
+            this.colValorUnit.HeaderText = "Valor Unit";
+            this.colValorUnit.MinimumWidth = 8;
+            this.colValorUnit.Name = "colValorUnit";
+            this.colValorUnit.ReadOnly = true;
+            this.colValorUnit.Width = 115;
+            // 
+            // colValorTotal
+            // 
+            this.colValorTotal.FillWeight = 130.7119F;
+            this.colValorTotal.HeaderText = "Valor Total";
+            this.colValorTotal.MinimumWidth = 8;
+            this.colValorTotal.Name = "colValorTotal";
+            this.colValorTotal.ReadOnly = true;
+            this.colValorTotal.Width = 121;
+            // 
+            // colCodEmpresa
+            // 
+            this.colCodEmpresa.HeaderText = "CodEmpresa";
+            this.colCodEmpresa.MinimumWidth = 8;
+            this.colCodEmpresa.Name = "colCodEmpresa";
+            this.colCodEmpresa.ReadOnly = true;
+            this.colCodEmpresa.Visible = false;
+            this.colCodEmpresa.Width = 138;
+            // 
             // btnBaixarEtapa
             // 
             this.btnBaixarEtapa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -238,109 +331,17 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // colCodEmpresa
+            // imgLoad
             // 
-            this.colCodEmpresa.HeaderText = "CodEmpresa";
-            this.colCodEmpresa.MinimumWidth = 8;
-            this.colCodEmpresa.Name = "colCodEmpresa";
-            this.colCodEmpresa.ReadOnly = true;
-            this.colCodEmpresa.Visible = false;
-            this.colCodEmpresa.Width = 138;
-            // 
-            // colValorTotal
-            // 
-            this.colValorTotal.FillWeight = 130.7119F;
-            this.colValorTotal.HeaderText = "Valor Total";
-            this.colValorTotal.MinimumWidth = 8;
-            this.colValorTotal.Name = "colValorTotal";
-            this.colValorTotal.ReadOnly = true;
-            this.colValorTotal.Width = 121;
-            // 
-            // colValorUnit
-            // 
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.colValorUnit.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colValorUnit.FillWeight = 110.8096F;
-            this.colValorUnit.HeaderText = "Valor Unit";
-            this.colValorUnit.MinimumWidth = 8;
-            this.colValorUnit.Name = "colValorUnit";
-            this.colValorUnit.ReadOnly = true;
-            this.colValorUnit.Width = 115;
-            // 
-            // colQtdTipos
-            // 
-            this.colQtdTipos.FillWeight = 106.2537F;
-            this.colQtdTipos.HeaderText = "Qtde. Tipos";
-            this.colQtdTipos.MinimumWidth = 8;
-            this.colQtdTipos.Name = "colQtdTipos";
-            this.colQtdTipos.ReadOnly = true;
-            this.colQtdTipos.Width = 126;
-            // 
-            // colQuantidade
-            // 
-            this.colQuantidade.FillWeight = 57.28085F;
-            this.colQuantidade.HeaderText = "Qtd";
-            this.colQuantidade.MinimumWidth = 8;
-            this.colQuantidade.Name = "colQuantidade";
-            this.colQuantidade.ReadOnly = true;
-            this.colQuantidade.Width = 71;
-            // 
-            // colNomeProduto
-            // 
-            this.colNomeProduto.HeaderText = "Produto";
-            this.colNomeProduto.MinimumWidth = 8;
-            this.colNomeProduto.Name = "colNomeProduto";
-            this.colNomeProduto.ReadOnly = true;
-            this.colNomeProduto.Visible = false;
-            this.colNomeProduto.Width = 101;
-            // 
-            // colNomeCliente
-            // 
-            this.colNomeCliente.FillWeight = 61.20673F;
-            this.colNomeCliente.HeaderText = "Cliente";
-            this.colNomeCliente.MinimumWidth = 8;
-            this.colNomeCliente.Name = "colNomeCliente";
-            this.colNomeCliente.ReadOnly = true;
-            this.colNomeCliente.Width = 94;
-            // 
-            // colDataEntrega
-            // 
-            this.colDataEntrega.FillWeight = 70.94281F;
-            this.colDataEntrega.HeaderText = "Data Entrega";
-            this.colDataEntrega.MinimumWidth = 8;
-            this.colDataEntrega.Name = "colDataEntrega";
-            this.colDataEntrega.ReadOnly = true;
-            this.colDataEntrega.Width = 141;
-            // 
-            // colDataEmissao
-            // 
-            this.colDataEmissao.HeaderText = "Emissão";
-            this.colDataEmissao.MinimumWidth = 8;
-            this.colDataEmissao.Name = "colDataEmissao";
-            this.colDataEmissao.ReadOnly = true;
-            this.colDataEmissao.Visible = false;
-            this.colDataEmissao.Width = 106;
-            // 
-            // colPedido
-            // 
-            this.colPedido.FillWeight = 42.79435F;
-            this.colPedido.HeaderText = "Pedido";
-            this.colPedido.MinimumWidth = 8;
-            this.colPedido.Name = "colPedido";
-            this.colPedido.ReadOnly = true;
-            this.colPedido.Width = 94;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.ezgif_com_crop;
-            this.pictureBox1.Location = new System.Drawing.Point(625, 314);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 67);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 23;
-            this.pictureBox1.TabStop = false;
+            this.imgLoad.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imgLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.imgLoad.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.ezgif_com_crop;
+            this.imgLoad.Location = new System.Drawing.Point(625, 314);
+            this.imgLoad.Name = "imgLoad";
+            this.imgLoad.Size = new System.Drawing.Size(67, 67);
+            this.imgLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.imgLoad.TabIndex = 23;
+            this.imgLoad.TabStop = false;
             // 
             // btnBuscarPedidos
             // 
@@ -389,7 +390,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 751);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.imgLoad);
             this.Controls.Add(this.btnBuscarPedidos);
             this.Controls.Add(this.txtPedido);
             this.Controls.Add(this.lblPedido);
@@ -412,10 +413,11 @@
             this.Name = "FormWorkflowPedidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WorkFlow - Pedidos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormWorkflowPedidos_FormClosing);
             this.Load += new System.EventHandler(this.FormWorkflowPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,7 +444,7 @@
         private System.Windows.Forms.TextBox txtPedido;
         private System.Windows.Forms.Label lblPedido;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox imgLoad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDataEmissao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDataEntrega;
