@@ -39,9 +39,7 @@ namespace Movtech_Workflow_Pedidos
         public FormWorkflowPedidos(string NomeUsuario)
         {
             InitializeComponent();
-            nomeUsuario = NomeUsuario;
-
-            
+            nomeUsuario = NomeUsuario;   
         }
 
         private void FormWorkflowPedidos_Load(object sender, EventArgs e)
@@ -298,8 +296,6 @@ namespace Movtech_Workflow_Pedidos
         }
 
 
-
-
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
         {
             if (dtgDadosPedidos.CurrentCell != null)
@@ -308,11 +304,19 @@ namespace Movtech_Workflow_Pedidos
 
                 if (selectedCell.Value == null)
                 {
-                    CarregaFormBaixaEtapa();
+                    DataGridViewCell selectedCellAnterior = selectedCell.OwningRow.Cells[selectedCell.ColumnIndex - 1];
+                    if (selectedCellAnterior.Value == null)
+                    {
+                        MessageBox.Show("A etapa anterior ainda não foi finalizada!", "Ops, algo inesperado aconteceu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        CarregaFormBaixaEtapa();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Célula inválida, por favor selecione uma etapa!");
+                    MessageBox.Show("Célula inválida, por favor selecione uma etapa!", "Ops, algo inesperado aconteceu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -337,26 +341,33 @@ namespace Movtech_Workflow_Pedidos
                 }
                 else
                 {
-
                     DataGridViewCell selectedCell = dtgDadosPedidos.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    DataGridViewCell selectedCellAnterior = dtgDadosPedidos.Rows[e.RowIndex].Cells[e.ColumnIndex - 1];
                     if (selectedCell.Value == null)
                     {
-                        pedido = dtgDadosPedidos.Rows[e.RowIndex].Cells[colPedido.Index].Value + "";
-                        nomeCliente = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeCliente.Index].Value + "";
-                        using (SqlConnection connection = DaoConnection.GetConexao())
+                        if(selectedCellAnterior.Value == null)
                         {
-                            WorkflowDAO dao = new WorkflowDAO(connection);
-                            empresa = dao.GetNomeEmpresa(new WorkflowPedidosModel()
-                            {
-                                CodEmpresa = "1"
-                            });
+                            MessageBox.Show("A etapa anterior ainda não foi finalizada!", "Ops, algo inesperado aconteceu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente, nomeUsuario);
-                        formBaixaEtapa.ShowDialog();
+                        else
+                        {
+                            pedido = dtgDadosPedidos.Rows[e.RowIndex].Cells[colPedido.Index].Value + "";
+                            nomeCliente = dtgDadosPedidos.Rows[e.RowIndex].Cells[colNomeCliente.Index].Value + "";
+                            using (SqlConnection connection = DaoConnection.GetConexao())
+                            {
+                                WorkflowDAO dao = new WorkflowDAO(connection);
+                                empresa = dao.GetNomeEmpresa(new WorkflowPedidosModel()
+                                {
+                                    CodEmpresa = "1"
+                                });
+                            }
+                            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente, nomeUsuario);
+                            formBaixaEtapa.ShowDialog();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Célula inválida, por favor selecione uma etapa!");
+                        MessageBox.Show("Célula inválida, por favor selecione uma etapa!", "Ops, algo inesperado aconteceu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
