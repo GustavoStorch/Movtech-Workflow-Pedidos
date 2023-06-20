@@ -108,7 +108,7 @@
             this.dtpDataDaBaixa.Name = "dtpDataDaBaixa";
             this.dtpDataDaBaixa.Size = new System.Drawing.Size(144, 26);
             this.dtpDataDaBaixa.TabIndex = 8;
-            this.dtpDataDaBaixa.Value = new System.DateTime(2020, 1, 5, 0, 0, 0, 0);
+            this.dtpDataDaBaixa.Value = new System.DateTime(2020, 2, 5, 0, 0, 0, 0);
             // 
             // txtNomeOperador
             // 

@@ -67,7 +67,13 @@ namespace Movtech_Workflow_Pedidos
                 }
                 if (!string.IsNullOrEmpty(workflow.NomeProduto))
                 {
-                    sql.AppendLine($"AND EXISTS (SELECT 1 FROM MvtVendasEstruturaFaturamento pd2 JOIN MvtCadProduto p2 ON pd2.codProduto = p2.codProduto WHERE pd2.documento = pd.documento AND p2.nomeProduto LIKE '%' + @produto + '%')");
+                    if (string.IsNullOrEmpty(workflow.Documento) && string.IsNullOrEmpty(workflow.NomeCliente))
+                    {
+                        sql.AppendLine($"AND EXISTS (SELECT 1 FROM MvtVendasEstruturaFaturamento pd2 JOIN MvtCadProduto p2 ON pd2.codProduto = p2.codProduto WHERE pd2.documento = pd.documento AND p2.nomeProduto LIKE '%' + @produto + '%')");
+                    } else
+                    {
+                        sql.AppendLine($"AND p.nomeProduto LIKE '%' + @produto + '%'");
+                    }
                     command.Parameters.AddWithValue("@produto", workflow.NomeProduto);
                 }
                 if (!string.IsNullOrEmpty(workflow.Documento))

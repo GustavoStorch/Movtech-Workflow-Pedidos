@@ -25,6 +25,8 @@ namespace Movtech_Workflow_Pedidos
 
         public string nomeUsuario { get; set; }
 
+        public DateTime Data { get; set; }
+
         public FormBaixaEtapa(string Pedido, string Empresa, string NomeCliente, string NomeUsuario)
         {
             InitializeComponent();
@@ -44,6 +46,22 @@ namespace Movtech_Workflow_Pedidos
             txtNomeEmpresa.Text = empresa;
             txtNomeEtapa.Text = columnName2;
             txtNomeOperador.Text = nomeUsuario;
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                BaixaEtapaDAO dao = new BaixaEtapaDAO(connection);
+                string auxiliarCodCliente = dao.GetCodCliente(new WorkflowPedidosModel()
+                {
+                    NomeCliente = nomeCliente
+                });
+
+                DateTime dataEmissaoPedido = dao.GetDataEmissao(new WorkflowPedidosModel()
+                {
+                    Documento = pedido,
+                    CodCliente = auxiliarCodCliente
+                });
+
+                dtpDataDaBaixa.Text = dataEmissaoPedido.ToString();
+            }
         }
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)

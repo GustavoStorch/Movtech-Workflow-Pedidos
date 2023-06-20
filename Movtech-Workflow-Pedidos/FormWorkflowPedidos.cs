@@ -15,7 +15,7 @@ namespace Movtech_Workflow_Pedidos
 {
     public partial class FormWorkflowPedidos : Form
     {
-        public string dataFake { get; } = "05/01/2020";
+        public string dataFake { get; } = "05/02/2020";
 
         public string pedido { get; set; }
 
@@ -229,6 +229,10 @@ namespace Movtech_Workflow_Pedidos
                         
                     }
                 });
+                if (dtgDadosPedidos.RowCount == 0)
+                {
+                    MessageBox.Show("Não foi encontrado nenhum registro!", "Ops, algo inesperado aconteceu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             finally
             {
