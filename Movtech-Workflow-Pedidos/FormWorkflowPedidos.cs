@@ -50,6 +50,7 @@ namespace Movtech_Workflow_Pedidos
             btnBaixarEtapa.Enabled = false;
             imgLoad.SizeMode = PictureBoxSizeMode.CenterImage;
             imgLoad.Visible = false;
+            imgLoad.Enabled = false;
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -181,6 +182,7 @@ namespace Movtech_Workflow_Pedidos
 
         private async void btnConsultar_Click(object sender, EventArgs e)
         {
+            imgLoad.Enabled = true;
             imgLoad.Visible = true;
             btnConsultar.Enabled = false;
             btnBaixarEtapa.Enabled = true;
@@ -232,11 +234,13 @@ namespace Movtech_Workflow_Pedidos
                 if (dtgDadosPedidos.RowCount == 0)
                 {
                     MessageBox.Show("Não foi encontrado nenhum registro!", "Ops, algo inesperado aconteceu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnBaixarEtapa.Enabled = false;
                 }
             }
             finally
             {
                 imgLoad.Visible = false;
+                imgLoad.Enabled = false;
                 btnConsultar.Enabled = true;
             }
         }
