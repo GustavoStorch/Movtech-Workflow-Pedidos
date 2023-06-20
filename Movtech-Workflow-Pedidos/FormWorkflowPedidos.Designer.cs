@@ -130,6 +130,7 @@
             this.dtpDataAte.Name = "dtpDataAte";
             this.dtpDataAte.Size = new System.Drawing.Size(139, 26);
             this.dtpDataAte.TabIndex = 2;
+            this.dtpDataAte.Value = new System.DateTime(2020, 1, 21, 0, 0, 0, 0);
             // 
             // txtNomeCliente
             // 

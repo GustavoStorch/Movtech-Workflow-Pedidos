@@ -97,7 +97,7 @@ namespace Movtech_Workflow_Pedidos
         public void LimparCampos()
         {
             dtpDataDe.Text = "2020-01-01";
-            dtpDataAte.Text = string.Empty;
+            dtpDataAte.Text = "2020-01-21";
             txtNomeCliente.Text = string.Empty;
             txtPedido.Text = string.Empty;
             txtProduto.Text = string.Empty;
