@@ -28,18 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetalhaPedidos));
             this.lblPedido = new System.Windows.Forms.Label();
             this.lblDatePrevEntrega = new System.Windows.Forms.Label();
             this.lblNomeCliente = new System.Windows.Forms.Label();
-            this.lblQuantidade = new System.Windows.Forms.Label();
-            this.lblValorUnitario = new System.Windows.Forms.Label();
-            this.lblValorTotal = new System.Windows.Forms.Label();
             this.txtPedido = new System.Windows.Forms.TextBox();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
-            this.txtQuantidade = new System.Windows.Forms.TextBox();
-            this.txtValorUnitario = new System.Windows.Forms.TextBox();
-            this.txtValorTotal = new System.Windows.Forms.TextBox();
             this.dtpDataEntrega = new System.Windows.Forms.DateTimePicker();
             this.btnFechar = new System.Windows.Forms.Button();
             this.lblDataPedido = new System.Windows.Forms.Label();
@@ -49,7 +44,13 @@
             this.colValorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtpDataPedido = new System.Windows.Forms.DateTimePicker();
+            this.dtgMostraTotais = new System.Windows.Forms.DataGridView();
+            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQtdeTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValorUnitTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValorTotalTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosDetalhados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgMostraTotais)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPedido
@@ -79,35 +80,6 @@
             this.lblNomeCliente.TabIndex = 2;
             this.lblNomeCliente.Text = "Cliente:";
             // 
-            // lblQuantidade
-            // 
-            this.lblQuantidade.AutoSize = true;
-            this.lblQuantidade.Location = new System.Drawing.Point(12, 97);
-            this.lblQuantidade.Name = "lblQuantidade";
-            this.lblQuantidade.Size = new System.Drawing.Size(96, 20);
-            this.lblQuantidade.TabIndex = 4;
-            this.lblQuantidade.Text = "Quantidade:";
-            // 
-            // lblValorUnitario
-            // 
-            this.lblValorUnitario.AutoSize = true;
-            this.lblValorUnitario.Location = new System.Drawing.Point(219, 97);
-            this.lblValorUnitario.Name = "lblValorUnitario";
-            this.lblValorUnitario.Size = new System.Drawing.Size(83, 20);
-            this.lblValorUnitario.TabIndex = 5;
-            this.lblValorUnitario.Text = "Valor Unit:";
-            // 
-            // lblValorTotal
-            // 
-            this.lblValorTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblValorTotal.AutoSize = true;
-            this.lblValorTotal.Location = new System.Drawing.Point(465, 100);
-            this.lblValorTotal.Name = "lblValorTotal";
-            this.lblValorTotal.Size = new System.Drawing.Size(89, 20);
-            this.lblValorTotal.TabIndex = 6;
-            this.lblValorTotal.Text = "Valor Total:";
-            // 
             // txtPedido
             // 
             this.txtPedido.Location = new System.Drawing.Point(113, 48);
@@ -123,37 +95,8 @@
             this.txtNomeCliente.Location = new System.Drawing.Point(320, 48);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.ReadOnly = true;
-            this.txtNomeCliente.Size = new System.Drawing.Size(418, 26);
+            this.txtNomeCliente.Size = new System.Drawing.Size(471, 26);
             this.txtNomeCliente.TabIndex = 3;
-            // 
-            // txtQuantidade
-            // 
-            this.txtQuantidade.Location = new System.Drawing.Point(113, 94);
-            this.txtQuantidade.Name = "txtQuantidade";
-            this.txtQuantidade.ReadOnly = true;
-            this.txtQuantidade.Size = new System.Drawing.Size(100, 26);
-            this.txtQuantidade.TabIndex = 5;
-            this.txtQuantidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtValorUnitario
-            // 
-            this.txtValorUnitario.Location = new System.Drawing.Point(320, 97);
-            this.txtValorUnitario.Name = "txtValorUnitario";
-            this.txtValorUnitario.ReadOnly = true;
-            this.txtValorUnitario.Size = new System.Drawing.Size(132, 26);
-            this.txtValorUnitario.TabIndex = 6;
-            this.txtValorUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtValorTotal
-            // 
-            this.txtValorTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValorTotal.Location = new System.Drawing.Point(560, 94);
-            this.txtValorTotal.Name = "txtValorTotal";
-            this.txtValorTotal.ReadOnly = true;
-            this.txtValorTotal.Size = new System.Drawing.Size(178, 26);
-            this.txtValorTotal.TabIndex = 7;
-            this.txtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // dtpDataEntrega
             // 
@@ -168,7 +111,7 @@
             // 
             this.btnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFechar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnFechar.Location = new System.Drawing.Point(593, 473);
+            this.btnFechar.Location = new System.Drawing.Point(648, 499);
             this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(145, 35);
             this.btnFechar.TabIndex = 8;
@@ -199,12 +142,13 @@
             this.colQuantidadeProduto,
             this.colValorUnit,
             this.colValorTotal});
-            this.dtgDadosDetalhados.Location = new System.Drawing.Point(12, 129);
+            this.dtgDadosDetalhados.Location = new System.Drawing.Point(16, 91);
             this.dtgDadosDetalhados.Name = "dtgDadosDetalhados";
             this.dtgDadosDetalhados.ReadOnly = true;
             this.dtgDadosDetalhados.RowHeadersWidth = 62;
             this.dtgDadosDetalhados.RowTemplate.Height = 28;
-            this.dtgDadosDetalhados.Size = new System.Drawing.Size(726, 338);
+            this.dtgDadosDetalhados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgDadosDetalhados.Size = new System.Drawing.Size(777, 360);
             this.dtgDadosDetalhados.TabIndex = 11;
             // 
             // colNomeProduto
@@ -247,25 +191,77 @@
             this.dtpDataPedido.Size = new System.Drawing.Size(151, 26);
             this.dtpDataPedido.TabIndex = 10;
             // 
+            // dtgMostraTotais
+            // 
+            this.dtgMostraTotais.AllowUserToAddRows = false;
+            this.dtgMostraTotais.AllowUserToDeleteRows = false;
+            this.dtgMostraTotais.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgMostraTotais.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgMostraTotais.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgMostraTotais.ColumnHeadersVisible = false;
+            this.dtgMostraTotais.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colTotal,
+            this.colQtdeTotal,
+            this.colValorUnitTotal,
+            this.colValorTotalTotal});
+            this.dtgMostraTotais.Location = new System.Drawing.Point(16, 448);
+            this.dtgMostraTotais.MultiSelect = false;
+            this.dtgMostraTotais.Name = "dtgMostraTotais";
+            this.dtgMostraTotais.ReadOnly = true;
+            this.dtgMostraTotais.RowHeadersWidth = 62;
+            this.dtgMostraTotais.RowTemplate.Height = 28;
+            this.dtgMostraTotais.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgMostraTotais.Size = new System.Drawing.Size(777, 45);
+            this.dtgMostraTotais.TabIndex = 12;
+            // 
+            // colTotal
+            // 
+            this.colTotal.HeaderText = "Total";
+            this.colTotal.MinimumWidth = 8;
+            this.colTotal.Name = "colTotal";
+            this.colTotal.ReadOnly = true;
+            // 
+            // colQtdeTotal
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colQtdeTotal.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colQtdeTotal.FillWeight = 30F;
+            this.colQtdeTotal.HeaderText = "Qtde";
+            this.colQtdeTotal.MinimumWidth = 8;
+            this.colQtdeTotal.Name = "colQtdeTotal";
+            this.colQtdeTotal.ReadOnly = true;
+            // 
+            // colValorUnitTotal
+            // 
+            this.colValorUnitTotal.FillWeight = 65F;
+            this.colValorUnitTotal.HeaderText = "Valor Unitário";
+            this.colValorUnitTotal.MinimumWidth = 8;
+            this.colValorUnitTotal.Name = "colValorUnitTotal";
+            this.colValorUnitTotal.ReadOnly = true;
+            // 
+            // colValorTotalTotal
+            // 
+            this.colValorTotalTotal.FillWeight = 60F;
+            this.colValorTotalTotal.HeaderText = "Valor Total";
+            this.colValorTotalTotal.MinimumWidth = 8;
+            this.colValorTotalTotal.Name = "colValorTotalTotal";
+            this.colValorTotalTotal.ReadOnly = true;
+            // 
             // FormDetalhaPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnFechar;
-            this.ClientSize = new System.Drawing.Size(749, 520);
+            this.ClientSize = new System.Drawing.Size(802, 544);
+            this.Controls.Add(this.dtgMostraTotais);
             this.Controls.Add(this.dtgDadosDetalhados);
             this.Controls.Add(this.dtpDataPedido);
             this.Controls.Add(this.lblDataPedido);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.dtpDataEntrega);
-            this.Controls.Add(this.txtValorTotal);
-            this.Controls.Add(this.txtValorUnitario);
-            this.Controls.Add(this.txtQuantidade);
             this.Controls.Add(this.txtNomeCliente);
             this.Controls.Add(this.txtPedido);
-            this.Controls.Add(this.lblValorTotal);
-            this.Controls.Add(this.lblValorUnitario);
-            this.Controls.Add(this.lblQuantidade);
             this.Controls.Add(this.lblNomeCliente);
             this.Controls.Add(this.lblDatePrevEntrega);
             this.Controls.Add(this.lblPedido);
@@ -275,6 +271,7 @@
             this.Text = "Detalhes do Pedido";
             this.Load += new System.EventHandler(this.FormDetalhaPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosDetalhados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgMostraTotais)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,14 +282,8 @@
         private System.Windows.Forms.Label lblPedido;
         private System.Windows.Forms.Label lblDatePrevEntrega;
         private System.Windows.Forms.Label lblNomeCliente;
-        private System.Windows.Forms.Label lblQuantidade;
-        private System.Windows.Forms.Label lblValorUnitario;
-        private System.Windows.Forms.Label lblValorTotal;
         private System.Windows.Forms.TextBox txtPedido;
         private System.Windows.Forms.TextBox txtNomeCliente;
-        private System.Windows.Forms.TextBox txtQuantidade;
-        private System.Windows.Forms.TextBox txtValorUnitario;
-        private System.Windows.Forms.TextBox txtValorTotal;
         private System.Windows.Forms.DateTimePicker dtpDataEntrega;
         private System.Windows.Forms.Button btnFechar;
         private System.Windows.Forms.Label lblDataPedido;
@@ -302,5 +293,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotal;
         private System.Windows.Forms.DateTimePicker dtpDataPedido;
+        private System.Windows.Forms.DataGridView dtgMostraTotais;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQtdeTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colValorUnitTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotalTotal;
     }
 }

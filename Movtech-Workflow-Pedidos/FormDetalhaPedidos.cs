@@ -13,16 +13,22 @@ namespace Movtech_Workflow_Pedidos
 {
     public partial class FormDetalhaPedidos : Form
     {
+        public string qtdeTotal { get; set; }
+
+        public string valorUnit { get;set; }
+
+        public string valorTotal { get; set; }
+
         public FormDetalhaPedidos(string Pedido, String NomeCliente, String DtEmissao, String DtEntrega, String Qtd, String ValorUnit, String ValorTotal)
         {
             InitializeComponent();
             txtPedido.Text = Pedido;
             txtNomeCliente.Text = NomeCliente;
             dtpDataEntrega.Text = DtEntrega;
-            txtQuantidade.Text = Qtd;
-            txtValorUnitario.Text = Convert.ToDouble(ValorUnit).ToString("C2");
-            txtValorTotal.Text = Convert.ToDouble(ValorTotal).ToString("C2");
             dtpDataPedido.Text = DtEmissao;
+            qtdeTotal = Qtd;
+            valorUnit = ValorUnit;
+            valorTotal = ValorTotal;
         }
 
         private void FormDetalhaPedidos_Load(object sender, EventArgs e)
@@ -42,6 +48,12 @@ namespace Movtech_Workflow_Pedidos
             dtgDadosDetalhados.Columns["colQuantidadeProduto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dtgDadosDetalhados.Columns["colValorTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dtgDadosDetalhados.Columns["colValorUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dtgMostraTotais.Columns["colValorUnitTotal"].DefaultCellStyle.Format = "C2";
+            dtgMostraTotais.Columns["colValorTotalTotal"].DefaultCellStyle.Format = "C2";
+            dtgMostraTotais.Columns["colQtdeTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dtgMostraTotais.Columns["colValorUnitTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dtgMostraTotais.Columns["colValorTotalTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
 
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
@@ -51,6 +63,7 @@ namespace Movtech_Workflow_Pedidos
                     Documento = txtPedido.Text,
                     NomeCliente = txtNomeCliente.Text
                 });
+                
                 foreach (WorkflowPedidosModel detalhe in detalhes)
                 {
                     DataGridViewRow row = dtgDadosDetalhados.Rows[dtgDadosDetalhados.Rows.Add()];
@@ -59,6 +72,15 @@ namespace Movtech_Workflow_Pedidos
                     row.Cells[colValorUnit.Index].Value = detalhe.ValorUnitario;
                     row.Cells[colValorTotal.Index].Value = detalhe.ValorTotal;
                 }
+
+                
+                DataGridViewRow row2 = dtgMostraTotais.Rows[dtgMostraTotais.Rows.Add()];
+                row2.Cells[colTotal.Index].Value = "Total";
+                row2.Cells[colQtdeTotal.Index].Value = qtdeTotal;
+                row2.Cells[colValorUnitTotal.Index].Value = Convert.ToDouble(valorUnit);
+                row2.Cells[colValorTotalTotal.Index].Value = Convert.ToDouble(valorTotal);
+
+                dtgMostraTotais.ColumnHeadersVisible = false;
             }
         }
     }
