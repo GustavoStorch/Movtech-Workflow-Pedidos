@@ -154,6 +154,11 @@ namespace Movtech_Workflow_Pedidos
                 {
                     dataGridView.Columns[colValorTotal.Index].Frozen = true;
                 });
+
+                dtgMostraTotaisPedidos.Invoke((MethodInvoker)delegate
+                {
+                    dtgMostraTotaisPedidos.ColumnHeadersVisible = false;
+                });
             }
         }
 
