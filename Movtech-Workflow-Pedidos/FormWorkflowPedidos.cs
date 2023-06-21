@@ -184,6 +184,7 @@ namespace Movtech_Workflow_Pedidos
                     row2.Cells[colValorTotalTotal.Index].Value = totalValorTotal;
 
                     dtgMostraTotaisPedidos.ColumnHeadersVisible = false;
+                    dtgMostraTotaisPedidos.Columns[colValorTotalTotal.Index].Frozen = true;
                 });
             }
         }
@@ -208,6 +209,7 @@ namespace Movtech_Workflow_Pedidos
             foreach (string etapa in etapas)
             {
                 dtgDadosPedidos.Columns.Add(etapa, etapa);
+                dtgMostraTotaisPedidos.Columns.Add(etapa, etapa);
             }
         }
 
@@ -402,6 +404,16 @@ namespace Movtech_Workflow_Pedidos
                 {
                     e.Cancel = true;
                 }
+            }
+        }
+
+        private void dtgMostraTotaisPedidos_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
+            {
+                int scrollValue = e.NewValue;
+
+                dtgDadosPedidos.HorizontalScrollingOffset = scrollValue;
             }
         }
     }
