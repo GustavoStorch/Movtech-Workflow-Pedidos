@@ -102,14 +102,21 @@ namespace Movtech_Workflow_Pedidos
             txtPedido.Text = string.Empty;
             txtProduto.Text = string.Empty;
             dtgDadosPedidos.Rows.Clear();
+            dtgMostraTotaisPedidos.Rows.Clear();
             btnBaixarEtapa.Enabled = false;
         }
 
         public void InitializeTable(DataGridView dataGridView)
         {
+            int totalQuantidade = 0;
+            int totalQuantidadeTipos = 0;
+            double totalValorUnitario = 0;
+            double totalValorTotal = 0;
+
             dataGridView.Invoke((MethodInvoker)delegate
             {
                 dataGridView.Rows.Clear();
+                dtgMostraTotaisPedidos.Rows.Clear();
                 dataGridView.Columns["colDataEntrega"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 dataGridView.Columns["colValorTotal"].DefaultCellStyle.Format = "C2";
                 dataGridView.Columns["colValorUnit"].DefaultCellStyle.Format = "C2";
@@ -117,6 +124,12 @@ namespace Movtech_Workflow_Pedidos
                 dataGridView.Columns["colValorTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridView.Columns["colValorUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridView.Columns["colQtdTipos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dtgMostraTotaisPedidos.Columns["colValorUnitTotal"].DefaultCellStyle.Format = "C2";
+                dtgMostraTotaisPedidos.Columns["colValorTotalTotal"].DefaultCellStyle.Format = "C2";
+                dtgMostraTotaisPedidos.Columns["colQuantidadeTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dtgMostraTotaisPedidos.Columns["colQuantidadeTiposTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dtgMostraTotaisPedidos.Columns["colValorUnitTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dtgMostraTotaisPedidos.Columns["colValorTotalTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             });
             using (SqlConnection connection = DaoConnection.GetConexao())
             {
@@ -148,6 +161,11 @@ namespace Movtech_Workflow_Pedidos
                         row.Cells[colCodEmpresa.Index].Value = pedido.CodEmpresa;
                         row.Cells[colDataEmissao.Index].Value = pedido.DataEmissao;
                         row.Cells[colQtdTipos.Index].Value = pedido.QuantidadeTipoProduto;
+
+                        totalQuantidade += pedido.Quantidade;
+                        totalQuantidadeTipos += pedido.QuantidadeTipoProduto;
+                        totalValorUnitario += pedido.ValorUnitario;
+                        totalValorTotal += pedido.ValorTotal;
                     });
                 }
                 dataGridView.Invoke((MethodInvoker)delegate
@@ -157,6 +175,14 @@ namespace Movtech_Workflow_Pedidos
 
                 dtgMostraTotaisPedidos.Invoke((MethodInvoker)delegate
                 {
+                    totalValorUnitario = totalValorTotal / totalQuantidade;
+                    DataGridViewRow row2 = dtgMostraTotaisPedidos.Rows[dtgMostraTotaisPedidos.Rows.Add()];
+                    row2.Cells[colTotal.Index].Value = "Total";
+                    row2.Cells[colQuantidadeTotal.Index].Value = totalQuantidade;
+                    row2.Cells[colQuantidadeTiposTotal.Index].Value = totalQuantidadeTipos;
+                    row2.Cells[colValorUnitTotal.Index].Value = totalValorUnitario;
+                    row2.Cells[colValorTotalTotal.Index].Value = totalValorTotal;
+
                     dtgMostraTotaisPedidos.ColumnHeadersVisible = false;
                 });
             }

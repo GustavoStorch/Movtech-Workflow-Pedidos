@@ -205,7 +205,7 @@
             this.dtgDadosPedidos.ReadOnly = true;
             this.dtgDadosPedidos.RowHeadersWidth = 62;
             this.dtgDadosPedidos.RowTemplate.Height = 28;
-            this.dtgDadosPedidos.Size = new System.Drawing.Size(1338, 491);
+            this.dtgDadosPedidos.Size = new System.Drawing.Size(1338, 475);
             this.dtgDadosPedidos.TabIndex = 11;
             this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick_1);
             this.dtgDadosPedidos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgDadosPedidos_CellMouseDoubleClick);
@@ -312,13 +312,13 @@
             this.colQuantidadeTiposTotal,
             this.colValorUnitTotal,
             this.colValorTotalTotal});
-            this.dtgMostraTotaisPedidos.Location = new System.Drawing.Point(16, 666);
+            this.dtgMostraTotaisPedidos.Location = new System.Drawing.Point(16, 652);
             this.dtgMostraTotaisPedidos.Name = "dtgMostraTotaisPedidos";
             this.dtgMostraTotaisPedidos.ReadOnly = true;
             this.dtgMostraTotaisPedidos.RowHeadersWidth = 62;
             this.dtgMostraTotaisPedidos.RowTemplate.Height = 28;
             this.dtgMostraTotaisPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgMostraTotaisPedidos.Size = new System.Drawing.Size(1338, 30);
+            this.dtgMostraTotaisPedidos.Size = new System.Drawing.Size(1338, 44);
             this.dtgMostraTotaisPedidos.TabIndex = 24;
             // 
             // colPedido
