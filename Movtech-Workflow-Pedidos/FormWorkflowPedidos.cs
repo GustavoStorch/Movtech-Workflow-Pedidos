@@ -261,7 +261,7 @@ namespace Movtech_Workflow_Pedidos
                         {
                             foreach (DataGridViewCell cell in row.Cells)
                             {
-                                if (cell.Style.BackColor != Color.ForestGreen && cell.Style.BackColor != Color.Yellow && cell.Value == null)
+                                if (cell.Style.BackColor != Color.ForestGreen && cell.Style.BackColor != Color.Yellow && string.IsNullOrEmpty(cell.Value?.ToString()))
                                 {
                                     string columnName = cell.OwningColumn.Name;
                                    
@@ -281,7 +281,9 @@ namespace Movtech_Workflow_Pedidos
                                         CodCliente = auxiliarCodCliente
                                     });
 
+                                    MessageBox.Show("emissao: "+dataEmissaoPedido.ToString());
                                     int duracaoEtapa = (dataSimulacao - dataEmissaoPedido).Days;
+                                    MessageBox.Show("duracao: " + duracaoEtapa);
                                     if (duracaoEtapa > prazoEtapa)
                                     {
                                         cell.Style.BackColor = Color.Red;
