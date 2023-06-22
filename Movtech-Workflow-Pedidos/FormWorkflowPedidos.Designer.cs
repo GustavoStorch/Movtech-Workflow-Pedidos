@@ -113,7 +113,7 @@
             // 
             this.lblDataAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDataAtual.AutoSize = true;
-            this.lblDataAtual.Location = new System.Drawing.Point(1222, 17);
+            this.lblDataAtual.Location = new System.Drawing.Point(1029, 17);
             this.lblDataAtual.Name = "lblDataAtual";
             this.lblDataAtual.Size = new System.Drawing.Size(132, 20);
             this.lblDataAtual.TabIndex = 4;
@@ -154,13 +154,13 @@
             this.txtProduto.Location = new System.Drawing.Point(740, 102);
             this.txtProduto.MaxLength = 100;
             this.txtProduto.Name = "txtProduto";
-            this.txtProduto.Size = new System.Drawing.Size(550, 26);
+            this.txtProduto.Size = new System.Drawing.Size(357, 26);
             this.txtProduto.TabIndex = 7;
             // 
             // btnLimpar
             // 
             this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLimpar.Location = new System.Drawing.Point(1114, 136);
+            this.btnLimpar.Location = new System.Drawing.Point(921, 136);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(116, 34);
@@ -172,7 +172,7 @@
             // btnConsultar
             // 
             this.btnConsultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConsultar.Location = new System.Drawing.Point(1238, 136);
+            this.btnConsultar.Location = new System.Drawing.Point(1045, 136);
             this.btnConsultar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(116, 34);
@@ -206,7 +206,7 @@
             this.dtgDadosPedidos.RowHeadersWidth = 62;
             this.dtgDadosPedidos.RowTemplate.Height = 28;
             this.dtgDadosPedidos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dtgDadosPedidos.Size = new System.Drawing.Size(1338, 472);
+            this.dtgDadosPedidos.Size = new System.Drawing.Size(1145, 472);
             this.dtgDadosPedidos.TabIndex = 11;
             this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick_1);
             this.dtgDadosPedidos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgDadosPedidos_CellMouseDoubleClick);
@@ -308,7 +308,7 @@
             // btnBaixarEtapa
             // 
             this.btnBaixarEtapa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBaixarEtapa.Location = new System.Drawing.Point(1210, 729);
+            this.btnBaixarEtapa.Location = new System.Drawing.Point(1017, 729);
             this.btnBaixarEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBaixarEtapa.Name = "btnBaixarEtapa";
             this.btnBaixarEtapa.Size = new System.Drawing.Size(144, 34);
@@ -319,8 +319,6 @@
             // 
             // txtPedido
             // 
-            this.txtPedido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPedido.Location = new System.Drawing.Point(88, 58);
             this.txtPedido.MaxLength = 100;
             this.txtPedido.Name = "txtPedido";
@@ -345,7 +343,7 @@
             this.imgLoad.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.imgLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.imgLoad.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.ezgif_com_crop;
-            this.imgLoad.Location = new System.Drawing.Point(625, 327);
+            this.imgLoad.Location = new System.Drawing.Point(528, 327);
             this.imgLoad.Name = "imgLoad";
             this.imgLoad.Size = new System.Drawing.Size(67, 67);
             this.imgLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -359,7 +357,7 @@
             this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarPedidos.Location = new System.Drawing.Point(359, 58);
+            this.btnBuscarPedidos.Location = new System.Drawing.Point(370, 58);
             this.btnBuscarPedidos.Name = "btnBuscarPedidos";
             this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
             this.btnBuscarPedidos.TabIndex = 4;
@@ -373,7 +371,7 @@
             this.btnBuscarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarProduto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBuscarProduto.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarProduto.Location = new System.Drawing.Point(1296, 102);
+            this.btnBuscarProduto.Location = new System.Drawing.Point(1103, 102);
             this.btnBuscarProduto.Name = "btnBuscarProduto";
             this.btnBuscarProduto.Size = new System.Drawing.Size(58, 26);
             this.btnBuscarProduto.TabIndex = 8;
@@ -413,7 +411,7 @@
             this.dtgMostraTotaisPedidos.RowHeadersWidth = 62;
             this.dtgMostraTotaisPedidos.RowTemplate.Height = 28;
             this.dtgMostraTotaisPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgMostraTotaisPedidos.Size = new System.Drawing.Size(1338, 73);
+            this.dtgMostraTotaisPedidos.Size = new System.Drawing.Size(1145, 73);
             this.dtgMostraTotaisPedidos.TabIndex = 24;
             this.dtgMostraTotaisPedidos.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dtgMostraTotaisPedidos_Scroll);
             // 
@@ -462,7 +460,7 @@
             this.AcceptButton = this.btnConsultar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1366, 776);
+            this.ClientSize = new System.Drawing.Size(1173, 776);
             this.Controls.Add(this.dtgMostraTotaisPedidos);
             this.Controls.Add(this.imgLoad);
             this.Controls.Add(this.btnBuscarPedidos);
