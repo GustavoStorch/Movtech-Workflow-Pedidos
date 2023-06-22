@@ -59,7 +59,7 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine($"SELECT data FROM MvtVendasEstruturaFaturamento WHERE documento = @documento AND codCliente = @codCliente");
+                sql.AppendLine($"SELECT data FROM MvtVendasEstruturaFaturamento WHERE documento = @documento AND codCliente LIKE '%' + @codCliente + '%'");
                 command.CommandText = sql.ToString();
                 command.Parameters.AddWithValue("@documento", workflow.Documento);
                 command.Parameters.Add(new SqlParameter("@codCliente", workflow.CodCliente));

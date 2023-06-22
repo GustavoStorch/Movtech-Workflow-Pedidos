@@ -254,6 +254,43 @@ namespace Movtech_Workflow_Pedidos
                                     }
                             }
                         }
+
+                        BaixaEtapaDAO dao2 = new BaixaEtapaDAO(connection);
+
+                        foreach (DataGridViewRow row in dtgDadosPedidos.Rows)
+                        {
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                if (cell.Style.BackColor != Color.ForestGreen && cell.Style.BackColor != Color.Yellow && cell.Value == null)
+                                {
+                                    string columnName = cell.OwningColumn.Name;
+                                   
+                                    int prazoEtapa = dao2.GetLeadTime(new WorkflowPedidosModel()
+                                    {
+                                        Etapas = columnName
+                                    });
+
+                                    string auxiliarCodCliente = dao2.GetCodCliente(new WorkflowPedidosModel()
+                                    {
+                                        NomeCliente = row.Cells["colNomeCliente"].Value.ToString()
+                                    });
+
+                                    DateTime dataEmissaoPedido = dao2.GetDataEmissao(new WorkflowPedidosModel()
+                                    {
+                                        Documento = row.Cells["colPedido"].Value.ToString(),
+                                        CodCliente = auxiliarCodCliente
+                                    });
+
+                                    int duracaoEtapa = (dataSimulacao - dataEmissaoPedido).Days;
+                                    if (duracaoEtapa > prazoEtapa)
+                                    {
+                                        cell.Style.BackColor = Color.Red;
+                                    }
+                                    
+                                }
+                            }
+                        }
+
                         return dao.GetPedidos(new WorkflowPedidosModel()
                         {
                             NomeCliente = txtNomeCliente.Text,
