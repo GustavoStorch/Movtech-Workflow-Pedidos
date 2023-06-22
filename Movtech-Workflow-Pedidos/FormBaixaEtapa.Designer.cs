@@ -102,6 +102,7 @@
             // 
             // dtpDataDaBaixa
             // 
+            this.dtpDataDaBaixa.Enabled = false;
             this.dtpDataDaBaixa.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDataDaBaixa.Location = new System.Drawing.Point(129, 57);
             this.dtpDataDaBaixa.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);

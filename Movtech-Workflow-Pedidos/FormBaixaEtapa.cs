@@ -25,15 +25,14 @@ namespace Movtech_Workflow_Pedidos
 
         public string nomeUsuario { get; set; }
 
-        public DateTime Data { get; set; }
-
-        public FormBaixaEtapa(string Pedido, string Empresa, string NomeCliente, string NomeUsuario)
+        public FormBaixaEtapa(string Pedido, string Empresa, string NomeCliente, string NomeUsuario, DateTime DataSimulacao)
         {
             InitializeComponent();
             pedido = Pedido;
             empresa = Empresa;
             nomeCliente = NomeCliente;
             nomeUsuario = NomeUsuario;
+            dtpDataDaBaixa.Text = DataSimulacao.ToShortDateString();
         }
 
         private void FormBaixaEtapa_Load(object sender, EventArgs e)
@@ -59,8 +58,6 @@ namespace Movtech_Workflow_Pedidos
                     Documento = pedido,
                     CodCliente = auxiliarCodCliente
                 });
-
-                dtpDataDaBaixa.Text = dataEmissaoPedido.ToString();
             }
         }
 
@@ -112,8 +109,8 @@ namespace Movtech_Workflow_Pedidos
                         }
                         else
                         {
-                            formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.IndianRed;
-                            corCelula = Color.IndianRed;
+                            formWorkflowPedidos.dtgDadosPedidos.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.Yellow;
+                            corCelula = Color.Yellow;
                         }
 
                         dao.AtualizaDataEtapa(new WorkflowPedidosModel()

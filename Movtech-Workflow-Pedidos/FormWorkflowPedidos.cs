@@ -15,7 +15,7 @@ namespace Movtech_Workflow_Pedidos
 {
     public partial class FormWorkflowPedidos : Form
     {
-        public string dataFake { get; } = "05/02/2020";
+        public DateTime dataSimulacao { get; set; }
 
         public string pedido { get; set; }
 
@@ -37,15 +37,16 @@ namespace Movtech_Workflow_Pedidos
 
         public string nomeUsuario { get; set; }
 
-        public FormWorkflowPedidos(string NomeUsuario)
+        public FormWorkflowPedidos(string NomeUsuario, DateTime DataSimulacao)
         {
             InitializeComponent();
-            nomeUsuario = NomeUsuario;   
+            nomeUsuario = NomeUsuario;
+            dataSimulacao = DataSimulacao;
         }
 
         private void FormWorkflowPedidos_Load(object sender, EventArgs e)
         {
-            lblDataAtual.Text = "Data: " + DateTime.Now.ToString(dataFake);
+            lblDataAtual.Text = "Data: " + dataSimulacao.ToShortDateString();
             InitializaColumnsTable();
             btnBaixarEtapa.Enabled = false;
             imgLoad.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -344,7 +345,7 @@ namespace Movtech_Workflow_Pedidos
                                     CodEmpresa = "1"
                                 });
                             }
-                            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente, nomeUsuario);
+                            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente, nomeUsuario, dataSimulacao);
                             formBaixaEtapa.ShowDialog();
                         }
                     }
@@ -372,7 +373,7 @@ namespace Movtech_Workflow_Pedidos
                     CodEmpresa = "1"
                 });
             }
-            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente, nomeUsuario);
+            FormBaixaEtapa formBaixaEtapa = new FormBaixaEtapa(pedido, empresa, nomeCliente, nomeUsuario, dataSimulacao);
             formBaixaEtapa.ShowDialog();
         }
 
