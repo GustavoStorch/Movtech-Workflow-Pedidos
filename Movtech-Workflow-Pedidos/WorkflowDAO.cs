@@ -78,7 +78,7 @@ namespace Movtech_Workflow_Pedidos
                 }
                 if (!string.IsNullOrEmpty(workflow.Documento))
                 {
-                    sql.AppendLine($"AND pd.documento LIKE '%' + @documento + '%' AND pd.codEmpresa = 1 AND pd.tipo = 'F'");
+                    sql.AppendLine($"AND pd.documento LIKE '%' + @documento + '%'");
                     command.Parameters.AddWithValue("@documento", workflow.Documento);
                 }
                 if (!string.IsNullOrEmpty(workflow.DataDe) && !string.IsNullOrEmpty(workflow.DataAte))
@@ -87,6 +87,7 @@ namespace Movtech_Workflow_Pedidos
                     command.Parameters.AddWithValue("@dataDe", workflow.DataDe);
                     command.Parameters.AddWithValue("@dataAte", workflow.DataAte);
                 }
+                sql.AppendLine($"AND pd.codEmpresa = 1 AND pd.tipo = 'F'");
                 sql.AppendLine($"GROUP BY pd.documento, c.nomeCliente, pd.valorFaturado, pd.qtde, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
                 command.CommandText = sql.ToString();
                 using (SqlDataReader dr = command.ExecuteReader())

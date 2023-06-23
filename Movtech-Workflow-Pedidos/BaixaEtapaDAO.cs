@@ -59,10 +59,9 @@ namespace Movtech_Workflow_Pedidos
             using (SqlCommand command = Connection.CreateCommand())
             {
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine($"SELECT data FROM MvtVendasEstruturaFaturamento WHERE documento = @documento AND codCliente LIKE '%' + @codCliente + '%'");
+                sql.AppendLine($"SELECT data FROM MvtVendasEstruturaFaturamento WHERE documento = @documento");
                 command.CommandText = sql.ToString();
                 command.Parameters.AddWithValue("@documento", workflow.Documento);
-                command.Parameters.Add(new SqlParameter("@codCliente", workflow.CodCliente));
                 DateTime result = Convert.ToDateTime(command.ExecuteScalar());
                 return result;
             }
@@ -88,10 +87,9 @@ namespace Movtech_Workflow_Pedidos
                 try
                 {
                     StringBuilder sql = new StringBuilder();
-                    sql.AppendLine($"UPDATE MvtVendasEstruturaFaturamento SET data =  DATEADD(day, @dataNova, data) WHERE documento = @documento AND codCliente = @codCliente");
+                    sql.AppendLine($"UPDATE MvtVendasEstruturaFaturamento SET data =  DATEADD(day, @dataNova, data) WHERE documento = @documento");
                     command.Parameters.Add(new SqlParameter("@dataNova", workflow.LeadTime));
                     command.Parameters.Add(new SqlParameter("@documento", workflow.Documento));
-                    command.Parameters.Add(new SqlParameter("@codCliente", workflow.CodCliente));
                     command.CommandText = sql.ToString();
 
                     command.ExecuteNonQuery();
@@ -100,19 +98,6 @@ namespace Movtech_Workflow_Pedidos
                 {
                     throw ex;
                 }
-            }
-        }
-
-        public string GetCodCliente(WorkflowPedidosModel workflow)
-        {
-            using (SqlCommand command = Connection.CreateCommand())
-            {
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine($"SELECT codCliente FROM vwMvtCadCliente WHERE nomeCliente = @nomeCliente");
-                command.CommandText = sql.ToString();
-                command.Parameters.AddWithValue("@nomeCliente", workflow.NomeCliente);
-                string result = Convert.ToString(command.ExecuteScalar());
-                return result;
             }
         }
 

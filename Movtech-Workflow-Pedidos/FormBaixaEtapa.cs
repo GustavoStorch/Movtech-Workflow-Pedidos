@@ -45,20 +45,6 @@ namespace Movtech_Workflow_Pedidos
             txtNomeEmpresa.Text = empresa;
             txtNomeEtapa.Text = columnName2;
             txtNomeOperador.Text = nomeUsuario;
-            using (SqlConnection connection = DaoConnection.GetConexao())
-            {
-                BaixaEtapaDAO dao = new BaixaEtapaDAO(connection);
-                string auxiliarCodCliente = dao.GetCodCliente(new WorkflowPedidosModel()
-                {
-                    NomeCliente = nomeCliente
-                });
-
-                DateTime dataEmissaoPedido = dao.GetDataEmissao(new WorkflowPedidosModel()
-                {
-                    Documento = pedido,
-                    CodCliente = auxiliarCodCliente
-                });
-            }
         }
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
@@ -83,15 +69,9 @@ namespace Movtech_Workflow_Pedidos
 
                     if (verificaCampos)
                     {
-                        string auxiliarCodCliente = dao.GetCodCliente(new WorkflowPedidosModel()
-                        {
-                            NomeCliente = nomeCliente
-                        });
-
                         DateTime dataEmissaoPedido = dao.GetDataEmissao(new WorkflowPedidosModel()
                         {
-                            Documento = pedido,
-                            CodCliente = auxiliarCodCliente
+                            Documento = pedido
                         });
 
                         int prazoEtapa = dao.GetLeadTime(new WorkflowPedidosModel()
@@ -116,7 +96,6 @@ namespace Movtech_Workflow_Pedidos
                         dao.AtualizaDataEtapa(new WorkflowPedidosModel()
                         {
                             Documento = txtPedido.Text,
-                            CodCliente = auxiliarCodCliente,
                             LeadTime = prazoEtapa
                         });
 

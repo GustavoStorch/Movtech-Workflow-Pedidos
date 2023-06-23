@@ -176,12 +176,19 @@ namespace Movtech_Workflow_Pedidos
 
                 dtgMostraTotaisPedidos.Invoke((MethodInvoker)delegate
                 {
-                    totalValorUnitario = totalValorTotal / totalQuantidade;
+                    if (totalQuantidade != 0)
+                    {
+                        totalValorUnitario = totalValorTotal / totalQuantidade;
+                    } else
+                    {
+                        totalValorUnitario = totalValorTotal / 1;
+                    }
+                    
                     DataGridViewRow row2 = dtgMostraTotaisPedidos.Rows[dtgMostraTotaisPedidos.Rows.Add()];
                     row2.Cells[colTotal.Index].Value = "Total";
                     row2.Cells[colQuantidadeTotal.Index].Value = totalQuantidade;
                     row2.Cells[colQuantidadeTiposTotal.Index].Value = totalQuantidadeTipos;
-                    row2.Cells[colValorUnitTotal.Index].Value = totalValorUnitario;
+                    row2.Cells[colValorUnitTotal.Index].Value = Convert.ToDouble(totalValorUnitario);
                     row2.Cells[colValorTotalTotal.Index].Value = totalValorTotal;
 
                     dtgMostraTotaisPedidos.ColumnHeadersVisible = false;
@@ -256,11 +263,11 @@ namespace Movtech_Workflow_Pedidos
                         }
 
                         BaixaEtapaDAO dao2 = new BaixaEtapaDAO(connection);
-                        
 
+                        int prazoNovaEtapa = 0;
                         foreach (DataGridViewRow row in dtgDadosPedidos.Rows)
                         {
-                            int prazoNovaEtapa = 0;
+                            prazoNovaEtapa = 0;
                             foreach (DataGridViewCell cell in row.Cells)
                             {
                                 if (cell.Style.BackColor != Color.ForestGreen && cell.Style.BackColor != Color.Yellow && string.IsNullOrEmpty(cell.Value?.ToString()))
@@ -272,15 +279,9 @@ namespace Movtech_Workflow_Pedidos
                                         Etapas = columnName
                                     });
 
-                                    string auxiliarCodCliente = dao2.GetCodCliente(new WorkflowPedidosModel()
-                                    {
-                                        NomeCliente = row.Cells["colNomeCliente"].Value.ToString()
-                                    });
-
                                     DateTime dataEmissaoPedido = dao2.GetDataEmissao(new WorkflowPedidosModel()
                                     {
-                                        Documento = row.Cells["colPedido"].Value.ToString(),
-                                        CodCliente = auxiliarCodCliente
+                                        Documento = row.Cells["colPedido"].Value.ToString()
                                     });
 
                                     prazoNovaEtapa = prazoNovaEtapa + prazoEtapa;
@@ -289,8 +290,11 @@ namespace Movtech_Workflow_Pedidos
                                     if (duracaoEtapa > prazoNovaEtapa)
                                     {
                                         cell.Style.BackColor = Color.Red;
+                                    } else
+                                    {
+                                        prazoNovaEtapa = 0;
+                                        break;
                                     }
-                                    
                                 }
                             }
                         }
@@ -452,11 +456,12 @@ namespace Movtech_Workflow_Pedidos
         private void dtgMostraTotaisPedidos_Scroll(object sender, ScrollEventArgs e)
         {
             if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
-            {
-                int scrollValue = e.NewValue;
-
-                dtgDadosPedidos.HorizontalScrollingOffset = scrollValue;
-            }
+             {
+                 int scrollValue = e.NewValue;
+                 dtgDadosPedidos.SuspendLayout();
+                 dtgDadosPedidos.HorizontalScrollingOffset = scrollValue;
+                 dtgDadosPedidos.ResumeLayout();
+             }
         }
     }
 }
