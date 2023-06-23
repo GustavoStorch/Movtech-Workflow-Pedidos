@@ -57,7 +57,7 @@ namespace Movtech_Workflow_Pedidos
                 sql.AppendLine("SELECT pd.documento, c.nomeCliente, SUM(pd.qtde) AS qtdeTotal,COUNT(p.nomeProduto) AS qtdeTipoProd,");
                 sql.AppendLine("SUM(pd.valorFaturado) AS valorTotal, AVG(pd.valorFaturado / NULLIF(pd.qtde, 0)) AS valorUnit, pd.dataProjecao, pd.codEmpresa, pd.dataEmissao");
                 sql.AppendLine("FROM MvtCadCliente c");
-                sql.AppendLine("JOIN MvtVendasEstruturaFaturamento pd ON c.codCliente = pd.codCliente");
+                sql.AppendLine("JOIN MvtVendasEstruturaFaturamentoView pd ON c.codCliente = pd.codCliente");
                 sql.AppendLine("JOIN MvtCadProduto p ON pd.codProduto = p.codProduto");
                 sql.AppendLine("WHERE 1 = 1");
                 if (!string.IsNullOrEmpty(workflow.NomeCliente))
@@ -69,7 +69,7 @@ namespace Movtech_Workflow_Pedidos
                 {
                     if (string.IsNullOrEmpty(workflow.Documento) && string.IsNullOrEmpty(workflow.NomeCliente))
                     {
-                        sql.AppendLine($"AND EXISTS (SELECT 1 FROM MvtVendasEstruturaFaturamento pd2 JOIN MvtCadProduto p2 ON pd2.codProduto = p2.codProduto WHERE pd2.documento = pd.documento AND p2.nomeProduto LIKE '%' + @produto + '%')");
+                        sql.AppendLine($"AND EXISTS (SELECT 1 FROM MvtVendasEstruturaFaturamentoView pd2 JOIN MvtCadProduto p2 ON pd2.codProduto = p2.codProduto WHERE pd2.documento = pd.documento AND p2.nomeProduto LIKE '%' + @produto + '%')");
                     } else
                     {
                         sql.AppendLine($"AND p.nomeProduto LIKE '%' + @produto + '%'");
