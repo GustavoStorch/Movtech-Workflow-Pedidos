@@ -256,9 +256,11 @@ namespace Movtech_Workflow_Pedidos
                         }
 
                         BaixaEtapaDAO dao2 = new BaixaEtapaDAO(connection);
+                        
 
                         foreach (DataGridViewRow row in dtgDadosPedidos.Rows)
                         {
+                            int prazoNovaEtapa = 0;
                             foreach (DataGridViewCell cell in row.Cells)
                             {
                                 if (cell.Style.BackColor != Color.ForestGreen && cell.Style.BackColor != Color.Yellow && string.IsNullOrEmpty(cell.Value?.ToString()))
@@ -281,10 +283,10 @@ namespace Movtech_Workflow_Pedidos
                                         CodCliente = auxiliarCodCliente
                                     });
 
-                                    MessageBox.Show("emissao: "+dataEmissaoPedido.ToString());
+                                    prazoNovaEtapa = prazoNovaEtapa + prazoEtapa;
                                     int duracaoEtapa = (dataSimulacao - dataEmissaoPedido).Days;
-                                    MessageBox.Show("duracao: " + duracaoEtapa);
-                                    if (duracaoEtapa > prazoEtapa)
+
+                                    if (duracaoEtapa > prazoNovaEtapa)
                                     {
                                         cell.Style.BackColor = Color.Red;
                                     }
