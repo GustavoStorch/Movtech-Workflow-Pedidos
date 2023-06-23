@@ -86,7 +86,7 @@
             this.txtPedido.Name = "txtPedido";
             this.txtPedido.ReadOnly = true;
             this.txtPedido.Size = new System.Drawing.Size(133, 26);
-            this.txtPedido.TabIndex = 1;
+            this.txtPedido.TabIndex = 3;
             // 
             // txtNomeCliente
             // 
@@ -96,7 +96,7 @@
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.ReadOnly = true;
             this.txtNomeCliente.Size = new System.Drawing.Size(471, 26);
-            this.txtNomeCliente.TabIndex = 3;
+            this.txtNomeCliente.TabIndex = 4;
             // 
             // dtpDataEntrega
             // 
@@ -114,7 +114,7 @@
             this.btnFechar.Location = new System.Drawing.Point(648, 499);
             this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(145, 35);
-            this.btnFechar.TabIndex = 8;
+            this.btnFechar.TabIndex = 7;
             this.btnFechar.Text = "Fechar";
             this.btnFechar.UseVisualStyleBackColor = true;
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
@@ -145,11 +145,12 @@
             this.dtgDadosDetalhados.Location = new System.Drawing.Point(16, 91);
             this.dtgDadosDetalhados.Name = "dtgDadosDetalhados";
             this.dtgDadosDetalhados.ReadOnly = true;
+            this.dtgDadosDetalhados.RowHeadersVisible = false;
             this.dtgDadosDetalhados.RowHeadersWidth = 62;
             this.dtgDadosDetalhados.RowTemplate.Height = 28;
             this.dtgDadosDetalhados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgDadosDetalhados.Size = new System.Drawing.Size(777, 360);
-            this.dtgDadosDetalhados.TabIndex = 11;
+            this.dtgDadosDetalhados.TabIndex = 5;
             // 
             // colNomeProduto
             // 
@@ -189,7 +190,7 @@
             this.dtpDataPedido.Location = new System.Drawing.Point(143, 12);
             this.dtpDataPedido.Name = "dtpDataPedido";
             this.dtpDataPedido.Size = new System.Drawing.Size(151, 26);
-            this.dtpDataPedido.TabIndex = 10;
+            this.dtpDataPedido.TabIndex = 1;
             // 
             // dtgMostraTotais
             // 
@@ -209,11 +210,12 @@
             this.dtgMostraTotais.MultiSelect = false;
             this.dtgMostraTotais.Name = "dtgMostraTotais";
             this.dtgMostraTotais.ReadOnly = true;
+            this.dtgMostraTotais.RowHeadersVisible = false;
             this.dtgMostraTotais.RowHeadersWidth = 62;
             this.dtgMostraTotais.RowTemplate.Height = 28;
             this.dtgMostraTotais.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgMostraTotais.Size = new System.Drawing.Size(777, 45);
-            this.dtgMostraTotais.TabIndex = 12;
+            this.dtgMostraTotais.TabIndex = 6;
             // 
             // colTotal
             // 

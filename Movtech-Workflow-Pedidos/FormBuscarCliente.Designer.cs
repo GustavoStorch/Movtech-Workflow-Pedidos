@@ -73,11 +73,12 @@
             this.dtgDadosCliente.Location = new System.Drawing.Point(16, 88);
             this.dtgDadosCliente.Name = "dtgDadosCliente";
             this.dtgDadosCliente.ReadOnly = true;
+            this.dtgDadosCliente.RowHeadersVisible = false;
             this.dtgDadosCliente.RowHeadersWidth = 62;
             this.dtgDadosCliente.RowTemplate.Height = 28;
             this.dtgDadosCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgDadosCliente.Size = new System.Drawing.Size(677, 309);
-            this.dtgDadosCliente.TabIndex = 2;
+            this.dtgDadosCliente.TabIndex = 3;
             this.dtgDadosCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosCliente_CellDoubleClick);
             // 
             // colCodCliente
@@ -112,7 +113,7 @@
             this.btnConsultar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(116, 34);
-            this.btnConsultar.TabIndex = 14;
+            this.btnConsultar.TabIndex = 2;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);

@@ -33,9 +33,9 @@
             this.lblProduto = new System.Windows.Forms.Label();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dtgDadosProduto = new System.Windows.Forms.DataGridView();
-            this.txtCodProduto = new System.Windows.Forms.TextBox();
             this.colCodProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNomeProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtCodProduto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosProduto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +47,7 @@
             this.txtNomeProduto.MaxLength = 50;
             this.txtNomeProduto.Name = "txtNomeProduto";
             this.txtNomeProduto.Size = new System.Drawing.Size(613, 26);
-            this.txtNomeProduto.TabIndex = 3;
+            this.txtNomeProduto.TabIndex = 1;
             // 
             // lblProduto
             // 
@@ -65,7 +65,7 @@
             this.btnConsultar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(116, 34);
-            this.btnConsultar.TabIndex = 15;
+            this.btnConsultar.TabIndex = 2;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -85,22 +85,13 @@
             this.dtgDadosProduto.Location = new System.Drawing.Point(16, 88);
             this.dtgDadosProduto.Name = "dtgDadosProduto";
             this.dtgDadosProduto.ReadOnly = true;
+            this.dtgDadosProduto.RowHeadersVisible = false;
             this.dtgDadosProduto.RowHeadersWidth = 62;
             this.dtgDadosProduto.RowTemplate.Height = 28;
             this.dtgDadosProduto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgDadosProduto.Size = new System.Drawing.Size(677, 309);
-            this.dtgDadosProduto.TabIndex = 16;
+            this.dtgDadosProduto.TabIndex = 3;
             this.dtgDadosProduto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosProduto_CellDoubleClick);
-            // 
-            // txtCodProduto
-            // 
-            this.txtCodProduto.Enabled = false;
-            this.txtCodProduto.Location = new System.Drawing.Point(0, 383);
-            this.txtCodProduto.Name = "txtCodProduto";
-            this.txtCodProduto.ReadOnly = true;
-            this.txtCodProduto.Size = new System.Drawing.Size(10, 26);
-            this.txtCodProduto.TabIndex = 17;
-            this.txtCodProduto.Visible = false;
             // 
             // colCodProduto
             // 
@@ -116,6 +107,16 @@
             this.colNomeProduto.MinimumWidth = 8;
             this.colNomeProduto.Name = "colNomeProduto";
             this.colNomeProduto.ReadOnly = true;
+            // 
+            // txtCodProduto
+            // 
+            this.txtCodProduto.Enabled = false;
+            this.txtCodProduto.Location = new System.Drawing.Point(0, 383);
+            this.txtCodProduto.Name = "txtCodProduto";
+            this.txtCodProduto.ReadOnly = true;
+            this.txtCodProduto.Size = new System.Drawing.Size(10, 26);
+            this.txtCodProduto.TabIndex = 17;
+            this.txtCodProduto.Visible = false;
             // 
             // FormBuscarProdutos
             // 

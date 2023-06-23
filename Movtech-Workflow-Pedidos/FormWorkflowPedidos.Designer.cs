@@ -122,7 +122,7 @@
             this.lblDataAtual.Name = "lblDataAtual";
             this.lblDataAtual.Size = new System.Drawing.Size(132, 20);
             this.lblDataAtual.TabIndex = 4;
-            this.lblDataAtual.Text = "Data: 01/01/2001";
+            this.lblDataAtual.Text = "Data: 01/01/2020";
             // 
             // dtpDataDe
             // 
@@ -232,6 +232,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dtgDadosPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dtgDadosPedidos.RowHeadersVisible = false;
             this.dtgDadosPedidos.RowHeadersWidth = 62;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
@@ -386,12 +387,11 @@
             // 
             // btnBuscarPedidos
             // 
-            this.btnBuscarPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscarPedidos.FlatAppearance.BorderSize = 0;
             this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBuscarPedidos.Image = global::Movtech_Workflow_Pedidos.Properties.Resources.lupa__1_;
-            this.btnBuscarPedidos.Location = new System.Drawing.Point(370, 58);
+            this.btnBuscarPedidos.Location = new System.Drawing.Point(359, 58);
             this.btnBuscarPedidos.Name = "btnBuscarPedidos";
             this.btnBuscarPedidos.Size = new System.Drawing.Size(58, 26);
             this.btnBuscarPedidos.TabIndex = 4;
@@ -453,6 +453,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dtgMostraTotaisPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dtgMostraTotaisPedidos.RowHeadersVisible = false;
             this.dtgMostraTotaisPedidos.RowHeadersWidth = 62;
             this.dtgMostraTotaisPedidos.RowTemplate.Height = 28;
             this.dtgMostraTotaisPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -528,8 +529,7 @@
             this.Controls.Add(this.lblDateDe);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormWorkflowPedidos";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "  ";
+            this.Text = "Workflow - Pedidos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormWorkflowPedidos_FormClosing);
             this.Load += new System.EventHandler(this.FormWorkflowPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).EndInit();

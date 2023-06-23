@@ -63,12 +63,6 @@
     <Compile Include="FormBuscarCliente.Designer.cs">
       <DependentUpon>FormBuscarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBuscarOperador.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormBuscarOperador.Designer.cs">
-      <DependentUpon>FormBuscarOperador.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormBuscarPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,7 +87,6 @@
     <Compile Include="FormWorkflowPedidos.Designer.cs">
       <DependentUpon>FormWorkflowPedidos.cs</DependentUpon>
     </Compile>
-    <Compile Include="OperadorDAO.cs" />
     <Compile Include="PedidosDAO.cs" />
     <Compile Include="ProdutoDAO.cs" />
     <Compile Include="Program.cs" />
@@ -110,9 +103,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarCliente.resx">
       <DependentUpon>FormBuscarCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormBuscarOperador.resx">
-      <DependentUpon>FormBuscarOperador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarPedidos.resx">
       <DependentUpon>FormBuscarPedidos.cs</DependentUpon>

@@ -43,8 +43,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPedido.Location = new System.Drawing.Point(80, 12);
             this.txtPedido.Name = "txtPedido";
-            this.txtPedido.Size = new System.Drawing.Size(613, 26);
-            this.txtPedido.TabIndex = 3;
+            this.txtPedido.Size = new System.Drawing.Size(312, 26);
+            this.txtPedido.TabIndex = 1;
             // 
             // lblPedido
             // 
@@ -58,11 +58,11 @@
             // btnConsultar
             // 
             this.btnConsultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConsultar.Location = new System.Drawing.Point(577, 46);
+            this.btnConsultar.Location = new System.Drawing.Point(276, 46);
             this.btnConsultar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(116, 34);
-            this.btnConsultar.TabIndex = 15;
+            this.btnConsultar.TabIndex = 2;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -81,11 +81,12 @@
             this.dtgDadosPedidos.Location = new System.Drawing.Point(16, 88);
             this.dtgDadosPedidos.Name = "dtgDadosPedidos";
             this.dtgDadosPedidos.ReadOnly = true;
+            this.dtgDadosPedidos.RowHeadersVisible = false;
             this.dtgDadosPedidos.RowHeadersWidth = 62;
             this.dtgDadosPedidos.RowTemplate.Height = 28;
             this.dtgDadosPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgDadosPedidos.Size = new System.Drawing.Size(677, 313);
-            this.dtgDadosPedidos.TabIndex = 16;
+            this.dtgDadosPedidos.Size = new System.Drawing.Size(376, 471);
+            this.dtgDadosPedidos.TabIndex = 3;
             this.dtgDadosPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosPedidos_CellDoubleClick);
             // 
             // colPedido
@@ -100,7 +101,7 @@
             this.AcceptButton = this.btnConsultar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 413);
+            this.ClientSize = new System.Drawing.Size(403, 571);
             this.Controls.Add(this.dtgDadosPedidos);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.txtPedido);

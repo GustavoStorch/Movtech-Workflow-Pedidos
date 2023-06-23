@@ -89,7 +89,7 @@
             this.txtNomeEmpresa.Name = "txtNomeEmpresa";
             this.txtNomeEmpresa.ReadOnly = true;
             this.txtNomeEmpresa.Size = new System.Drawing.Size(373, 26);
-            this.txtNomeEmpresa.TabIndex = 5;
+            this.txtNomeEmpresa.TabIndex = 1;
             // 
             // txtPedido
             // 
@@ -98,7 +98,7 @@
             this.txtPedido.Name = "txtPedido";
             this.txtPedido.ReadOnly = true;
             this.txtPedido.Size = new System.Drawing.Size(154, 26);
-            this.txtPedido.TabIndex = 6;
+            this.txtPedido.TabIndex = 2;
             // 
             // dtpDataDaBaixa
             // 
@@ -108,7 +108,7 @@
             this.dtpDataDaBaixa.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpDataDaBaixa.Name = "dtpDataDaBaixa";
             this.dtpDataDaBaixa.Size = new System.Drawing.Size(144, 26);
-            this.dtpDataDaBaixa.TabIndex = 8;
+            this.dtpDataDaBaixa.TabIndex = 3;
             this.dtpDataDaBaixa.Value = new System.DateTime(2020, 2, 5, 0, 0, 0, 0);
             // 
             // txtNomeOperador
@@ -119,7 +119,7 @@
             this.txtNomeOperador.Name = "txtNomeOperador";
             this.txtNomeOperador.ReadOnly = true;
             this.txtNomeOperador.Size = new System.Drawing.Size(366, 26);
-            this.txtNomeOperador.TabIndex = 9;
+            this.txtNomeOperador.TabIndex = 4;
             // 
             // btnCancelar
             // 
@@ -128,7 +128,7 @@
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(116, 34);
-            this.btnCancelar.TabIndex = 26;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -140,7 +140,7 @@
             this.btnBaixarEtapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBaixarEtapa.Name = "btnBaixarEtapa";
             this.btnBaixarEtapa.Size = new System.Drawing.Size(116, 34);
-            this.btnBaixarEtapa.TabIndex = 27;
+            this.btnBaixarEtapa.TabIndex = 7;
             this.btnBaixarEtapa.Text = "Baixar Etapa";
             this.btnBaixarEtapa.UseVisualStyleBackColor = true;
             this.btnBaixarEtapa.Click += new System.EventHandler(this.btnBaixarEtapa_Click);
@@ -162,7 +162,7 @@
             this.txtNomeEtapa.Name = "txtNomeEtapa";
             this.txtNomeEtapa.ReadOnly = true;
             this.txtNomeEtapa.Size = new System.Drawing.Size(148, 26);
-            this.txtNomeEtapa.TabIndex = 29;
+            this.txtNomeEtapa.TabIndex = 5;
             // 
             // FormBaixaEtapa
             // 

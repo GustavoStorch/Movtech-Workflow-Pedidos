@@ -5,7 +5,6 @@ C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtec
 C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\MovtechWorkflowPedidos.csproj.SuggestedBindingRedirects.cache
 C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBaixaEtapa.resources
 C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBuscarCliente.resources
-C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBuscarOperador.resources
 C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBuscarPedidos.resources
 C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormBuscarProdutos.resources
 C:\Users\estagiario1\Documents\Movtech\Projeto 2\Movtech-Workflow-Pedidos\Movtech-Workflow-Pedidos\obj\Debug\Movtech_Workflow_Pedidos.FormDetalhaPedidos.resources
