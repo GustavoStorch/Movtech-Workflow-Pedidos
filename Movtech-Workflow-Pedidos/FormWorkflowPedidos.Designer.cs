@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormWorkflowPedidos));
             this.lblDateDe = new System.Windows.Forms.Label();
             this.lblDataAte = new System.Windows.Forms.Label();
@@ -72,6 +73,7 @@
             this.colQuantidadeTiposTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorUnitTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValorTotalTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consultaWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosPedidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLoad)).BeginInit();
@@ -359,6 +361,7 @@
             this.txtPedido.Name = "txtPedido";
             this.txtPedido.Size = new System.Drawing.Size(265, 26);
             this.txtPedido.TabIndex = 3;
+            this.txtPedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPedido_KeyPress);
             // 
             // lblPedido
             // 
@@ -439,20 +442,27 @@
             this.colQuantidadeTiposTotal,
             this.colValorUnitTotal,
             this.colValorTotalTotal});
-            this.dtgMostraTotaisPedidos.GridColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgMostraTotaisPedidos.DefaultCellStyle = dataGridViewCellStyle6;
             this.dtgMostraTotaisPedidos.Location = new System.Drawing.Point(16, 627);
             this.dtgMostraTotaisPedidos.MultiSelect = false;
             this.dtgMostraTotaisPedidos.Name = "dtgMostraTotaisPedidos";
             this.dtgMostraTotaisPedidos.ReadOnly = true;
             this.dtgMostraTotaisPedidos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgMostraTotaisPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgMostraTotaisPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dtgMostraTotaisPedidos.RowHeadersVisible = false;
             this.dtgMostraTotaisPedidos.RowHeadersWidth = 62;
             this.dtgMostraTotaisPedidos.RowTemplate.Height = 28;
@@ -500,6 +510,11 @@
             this.colValorTotalTotal.Name = "colValorTotalTotal";
             this.colValorTotalTotal.ReadOnly = true;
             this.colValorTotalTotal.Width = 85;
+            // 
+            // consultaWorker
+            // 
+            this.consultaWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.consultaWorker_DoWork);
+            this.consultaWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.consultaWorker_RunWorkerCompleted);
             // 
             // FormWorkflowPedidos
             // 
@@ -579,6 +594,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantidadeTiposTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorUnitTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorTotalTotal;
+        private System.ComponentModel.BackgroundWorker consultaWorker;
     }
 }
 

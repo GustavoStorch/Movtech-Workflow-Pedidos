@@ -81,6 +81,8 @@ namespace Movtech_Workflow_Pedidos
                 row2.Cells[colValorTotalTotal.Index].Value = Convert.ToDouble(valorTotal);
 
                 dtgMostraTotais.ColumnHeadersVisible = false;
+                dtgMostraTotais.ClearSelection();
+                dtgDadosDetalhados.ClearSelection();
             }
         }
     }

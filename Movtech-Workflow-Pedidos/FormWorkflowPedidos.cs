@@ -193,6 +193,8 @@ namespace Movtech_Workflow_Pedidos
 
                     dtgMostraTotaisPedidos.ColumnHeadersVisible = false;
                     dtgMostraTotaisPedidos.Columns[colValorTotalTotal.Index].Frozen = true;
+                    dtgMostraTotaisPedidos.ClearSelection();
+                    dtgDadosPedidos.ClearSelection();
                 });
             }
         }
@@ -221,109 +223,13 @@ namespace Movtech_Workflow_Pedidos
             }
         }
 
-        private async void btnConsultar_Click(object sender, EventArgs e)
+        private void btnConsultar_Click(object sender, EventArgs e)
         {
             imgLoad.Enabled = true;
             imgLoad.Visible = true;
-            btnConsultar.Enabled = false;
-            btnBaixarEtapa.Enabled = true;
-            try
-            {
-                List<WorkflowPedidosModel> pedidos = await Task.Run(() =>
-                {
-                    using (SqlConnection connection = DaoConnection.GetConexao())
-                    {
-                        WorkflowDAO dao = new WorkflowDAO(connection);
-
-                        InitializeTable(dtgDadosPedidos);
-                        List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
-
-                        foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
-                        {
-                            string columnName = etapaBaixa.Etapas;
-
-                            if (dtgDadosPedidos.Columns.Contains(columnName))
-                            {
-                                DataGridViewCell cell = dtgDadosPedidos.Rows
-                                    .Cast<DataGridViewRow>()
-                                    .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
-                                    .Select(row => row.Cells[columnName])
-                                    .FirstOrDefault();
-
-                                    if (cell != null)
-                                    {
-                                        string dataBaixa = etapaBaixa.DataBaixa.ToString().Substring(0,10);
-                                        dtgDadosPedidos.Invoke((MethodInvoker)delegate
-                                        {
-                                            cell.Value = dataBaixa;
-                                            cell.Style.BackColor = ColorTranslator.FromHtml(etapaBaixa.CorCelula);
-                                        });
-                                    }
-                            }
-                        }
-
-                        BaixaEtapaDAO dao2 = new BaixaEtapaDAO(connection);
-
-                        int prazoNovaEtapa = 0;
-                        foreach (DataGridViewRow row in dtgDadosPedidos.Rows)
-                        {
-                            prazoNovaEtapa = 0;
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                if (cell.Style.BackColor != Color.ForestGreen && cell.Style.BackColor != Color.Yellow && string.IsNullOrEmpty(cell.Value?.ToString()))
-                                {
-                                    string columnName = cell.OwningColumn.Name;
-                                   
-                                    int prazoEtapa = dao2.GetLeadTime(new WorkflowPedidosModel()
-                                    {
-                                        Etapas = columnName
-                                    });
-
-                                    DateTime dataEmissaoPedido = dao2.GetDataEmissao(new WorkflowPedidosModel()
-                                    {
-                                        Documento = row.Cells["colPedido"].Value.ToString()
-                                    });
-
-                                    prazoNovaEtapa = prazoNovaEtapa + prazoEtapa;
-                                    int duracaoEtapa = (dataSimulacao - dataEmissaoPedido).Days;
-
-                                    if (duracaoEtapa > prazoNovaEtapa)
-                                    {
-                                        cell.Style.BackColor = Color.Red;
-                                    } else
-                                    {
-                                        prazoNovaEtapa = 0;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-
-                        return dao.GetPedidos(new WorkflowPedidosModel()
-                        {
-                            NomeCliente = txtNomeCliente.Text,
-                            NomeProduto = txtProduto.Text,
-                            Documento = txtPedido.Text,
-                            DataDe = dtpDataDe.Text,
-                            DataAte = dtpDataAte.Text
-                        });
-                        
-                    }
-                });
-                if (dtgDadosPedidos.RowCount == 0)
-                {
-                    MessageBox.Show("Não foi encontrado nenhum registro!", "Ops, algo inesperado aconteceu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnBaixarEtapa.Enabled = false;
-                }
-            }
-            finally
-            {
-                imgLoad.Visible = false;
-                imgLoad.Enabled = false;
-                btnConsultar.Enabled = true;
-            }
+            DesabilipaCampos();
+            consultaWorker.RunWorkerAsync();
         }
-
 
         private void btnBaixarEtapa_Click(object sender, EventArgs e)
         {
@@ -462,6 +368,150 @@ namespace Movtech_Workflow_Pedidos
                  dtgDadosPedidos.HorizontalScrollingOffset = scrollValue;
                  dtgDadosPedidos.ResumeLayout();
              }
+        }
+
+        private void consultaWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            using (SqlConnection connection = DaoConnection.GetConexao())
+            {
+                WorkflowDAO dao = new WorkflowDAO(connection);
+                BaixaEtapaDAO dao2 = new BaixaEtapaDAO(connection);
+
+                InitializeTable(dtgDadosPedidos);
+                List<WorkflowPedidosModel> etapasBaixas = dao.GetEtapasBaixas();
+
+                foreach (WorkflowPedidosModel etapaBaixa in etapasBaixas)
+                {
+                    string columnName = etapaBaixa.Etapas;
+
+                    if (dtgDadosPedidos.Columns.Contains(columnName))
+                    {
+                        DataGridViewCell cell = dtgDadosPedidos.Rows
+                            .Cast<DataGridViewRow>()
+                            .Where(row => row.Cells["colPedido"].Value.ToString() == etapaBaixa.Documento)
+                            .Select(row => row.Cells[columnName])
+                            .FirstOrDefault();
+
+                        if (cell != null)
+                        {
+                            string dataBaixa = etapaBaixa.DataBaixa.ToString().Substring(0, 10);
+                            cell.Value = dataBaixa;
+                            cell.Style.BackColor = ColorTranslator.FromHtml(etapaBaixa.CorCelula);
+                        }
+                    }
+                }
+
+                int prazoNovaEtapa = 0;
+                foreach (DataGridViewRow row in dtgDadosPedidos.Rows)
+                {
+                    prazoNovaEtapa = 0;
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Style.BackColor != Color.ForestGreen && cell.Style.BackColor != Color.Yellow && string.IsNullOrEmpty(cell.Value?.ToString()))
+                        {
+                            string columnName = cell.OwningColumn.Name;
+
+                            int prazoEtapa = dao2.GetLeadTime(new WorkflowPedidosModel()
+                            {
+                                Etapas = columnName
+                            });
+
+                            DateTime dataEmissaoPedido = dao2.GetDataEmissao(new WorkflowPedidosModel()
+                            {
+                                Documento = row.Cells["colPedido"].Value.ToString()
+                            });
+
+                            prazoNovaEtapa = prazoNovaEtapa + prazoEtapa;
+                            int duracaoEtapa = (dataSimulacao - dataEmissaoPedido).Days;
+
+                            if (duracaoEtapa > prazoNovaEtapa)
+                            {
+                                cell.Style.BackColor = Color.Red;
+                            }
+                            else
+                            {
+                                prazoNovaEtapa = 0;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                List<WorkflowPedidosModel> pedidos = dao.GetPedidos(new WorkflowPedidosModel()
+                {
+                    NomeCliente = txtNomeCliente.Text,
+                    NomeProduto = txtProduto.Text,
+                    Documento = txtPedido.Text,
+                    DataDe = dtpDataDe.Text,
+                    DataAte = dtpDataAte.Text
+                });
+
+                e.Result = pedidos;
+            }
+        }
+
+        private void consultaWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            imgLoad.Visible = false;
+            imgLoad.Enabled = false;
+            HabilitaComponentes();
+
+            if (e.Error != null)
+            {
+                MessageBox.Show("Ocorreu um erro durante a consulta: " + e.Error.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            List<WorkflowPedidosModel> pedidos = e.Result as List<WorkflowPedidosModel>;
+            if (pedidos != null && pedidos.Count > 0)
+            {
+                btnBaixarEtapa.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Não foi encontrado nenhum registro!", "Ops, algo inesperado aconteceu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnBaixarEtapa.Enabled = false;
+            }
+        }
+
+        public void HabilitaComponentes()
+        {
+            btnConsultar.Enabled = true;
+            btnLimpar.Enabled = true;
+            btnBuscarPedidos.Enabled = true;
+            btnBuscarCliente.Enabled = true;
+            btnBuscarProduto.Enabled = true;
+            dtpDataDe.Enabled = true;
+            dtpDataAte.Enabled = true;
+            txtPedido.ReadOnly = false;
+            txtNomeCliente.ReadOnly = false;
+            txtProduto.ReadOnly = false;
+            dtgDadosPedidos.Enabled = true;
+            dtgMostraTotaisPedidos.Enabled = true;
+        }
+
+        public void DesabilipaCampos()
+        {
+            btnConsultar.Enabled = false;
+            btnLimpar.Enabled = false;
+            btnBuscarPedidos.Enabled = false;
+            btnBuscarCliente.Enabled = false;
+            btnBuscarProduto.Enabled = false;
+            dtpDataDe.Enabled = false;
+            dtpDataAte.Enabled = false;
+            txtPedido.ReadOnly = true;
+            txtNomeCliente.ReadOnly = true;
+            txtProduto.ReadOnly = true;
+            dtgDadosPedidos.Enabled = false;
+            dtgMostraTotaisPedidos.Enabled = false;
+        }
+
+        private void txtPedido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
