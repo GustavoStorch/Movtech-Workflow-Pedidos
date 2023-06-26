@@ -192,6 +192,8 @@
             // 
             this.dtgDadosPedidos.AllowUserToAddRows = false;
             this.dtgDadosPedidos.AllowUserToDeleteRows = false;
+            this.dtgDadosPedidos.AllowUserToResizeColumns = false;
+            this.dtgDadosPedidos.AllowUserToResizeRows = false;
             this.dtgDadosPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -432,6 +434,8 @@
             // 
             this.dtgMostraTotaisPedidos.AllowUserToAddRows = false;
             this.dtgMostraTotaisPedidos.AllowUserToDeleteRows = false;
+            this.dtgMostraTotaisPedidos.AllowUserToResizeColumns = false;
+            this.dtgMostraTotaisPedidos.AllowUserToResizeRows = false;
             this.dtgMostraTotaisPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgMostraTotaisPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
