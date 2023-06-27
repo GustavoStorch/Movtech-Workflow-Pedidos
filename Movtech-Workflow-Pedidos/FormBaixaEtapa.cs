@@ -124,18 +124,5 @@ namespace Movtech_Workflow_Pedidos
         {
             this.Close();
         }
-
-        /*private void btnBuscarPedidos_Click(object sender, EventArgs e)
-        {
-            CarregaFormBuscarOperadores();
-        }
-
-        public void CarregaFormBuscarOperadores()
-        {
-            FormBuscarOperador formBuscarOperador = new FormBuscarOperador();
-            formBuscarOperador.ShowDialog();
-            txtNomeOperador.Text = formBuscarOperador.nomeOperador;
-            codOperador = formBuscarOperador.codOperador;
-        }*/
     }
 }

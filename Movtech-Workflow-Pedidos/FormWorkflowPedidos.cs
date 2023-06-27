@@ -171,6 +171,8 @@ namespace Movtech_Workflow_Pedidos
                 }
                 dataGridView.Invoke((MethodInvoker)delegate
                 {
+                    dataGridView.RowsDefaultCellStyle.BackColor = Color.White;
+                    dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
                     dataGridView.Columns[colValorTotal.Index].Frozen = true;
                 });
 
@@ -512,6 +514,11 @@ namespace Movtech_Workflow_Pedidos
             {
                 e.Handled = true;
             }
+        }
+
+        private void dtgDadosPedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
